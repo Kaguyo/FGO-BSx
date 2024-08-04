@@ -12,6 +12,17 @@ namespace FGO_BSx.CharactersFate
     internal class Artoria : FGO_BSx.Interfaces.ISaber
     {
         internal String name = "Artoria";
+        internal double hpMax = 5629;
+        internal int atkMax = 172;
+        internal int defMax = 529;
+        internal double hp = 1000;
+        internal int atk = 172;
+        internal int def = 529;
+        internal int spCost = 140;
+        internal int spInitial = 0;
+        internal double basicAtk = 1.70;
+        internal double ultNp = 5.33;
+
         private static Random random = new Random();
         private static IWavePlayer waveOutDevice; // Para tocar áudio
         private static WaveStream audioFileReader; // Para ler o arquivo de áudio
@@ -205,7 +216,7 @@ namespace FGO_BSx.CharactersFate
                 }
                 else if (c == 'E')
                 {
-                    Thread.Sleep(0200);
+                    Thread.Sleep(0500);
                     WriteColored2(ConsoleColor.Yellow);
                     Console.Write(c);
                     Thread.Sleep(42);
@@ -213,7 +224,7 @@ namespace FGO_BSx.CharactersFate
                 else if (c == 'X')
                 {
                     Console.Write(c.ToString());
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1700);
                     foreach (char x in calibur) 
                     {
                         Console.Write(x.ToString());
@@ -253,7 +264,7 @@ namespace FGO_BSx.CharactersFate
                 }
                 else if (c == 'E')
                 {
-                    Thread.Sleep(0200);
+                    Thread.Sleep(0600);
                     WriteColored2(ConsoleColor.Yellow);
                     Console.Write(c);
                     Thread.Sleep(42);
