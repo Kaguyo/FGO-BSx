@@ -27,4 +27,11 @@ namespace FGO_BSx.Interfaces
             Console.WriteLine("Habilidade Assassin");
         }
     }
+    interface IAvenger
+    {
+        virtual void StackUp()
+        {
+            Console.WriteLine("Buff");
+        }
+    }
 }

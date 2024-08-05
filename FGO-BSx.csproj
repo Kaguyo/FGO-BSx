@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CharactersFate\NovaPasta\**" />
+    <EmbeddedResource Remove="CharactersFate\NovaPasta\**" />
+    <None Remove="CharactersFate\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
   </ItemGroup>
 

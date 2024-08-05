@@ -19,5 +19,9 @@ namespace FGO_BSx.CharactersFate
         internal int spInitial = 0;
         internal double basicAtk = 1.70;
         internal double ultNp = 5.5;
+        internal int spd = 100;
+        internal int lvl = 1;
+        internal double critDmg = 10;
+        internal double critRate = 5;
     }
 }
