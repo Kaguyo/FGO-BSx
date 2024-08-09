@@ -121,7 +121,7 @@ namespace FGO_BSx.Controls
             {
                 Baobhan.SkillsBaobhan(baobhan.spInitial, baobhan.spCost);
             }
-            else if (Personagem is Jalter firstHassan)
+            else if (Personagem is Jalter jalter)
             {
                 Jalter.SkillsJalter(jalter.spInitial, jalter.spCost);
             }
