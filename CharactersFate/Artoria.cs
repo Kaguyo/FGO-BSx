@@ -108,7 +108,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment1()
         {
             string comment = "I'll take them myself!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_Skill4.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Skill4.wav";
 
             PlaySound(audioFilePath);
 
@@ -124,7 +124,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment2()
         {
             string comment = "I'll show you my strength!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_Skill2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Skill2.wav";
 
             PlaySound(audioFilePath);
 
@@ -140,7 +140,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment3()
         {
             string comment = "I'll cut them down!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_Attack4.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Attack4.wav";
 
             PlaySound(audioFilePath);
 
@@ -156,7 +156,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment4()
         {
             string comment = "There's still more!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_Attack5.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Attack5.wav";
 
             PlaySound(audioFilePath);
 
@@ -172,7 +172,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformExcalibur1()
         {
             string comment = "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_NP1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_NP1.wav";
 
             PlaySound(audioFilePath);
 
@@ -220,7 +220,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformExcalibur2()
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_NP2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_NP2.wav";
 
             PlaySound(audioFilePath);
 
@@ -271,7 +271,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformExcalibur3()
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_NP3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_NP3.wav";
 
             PlaySound(audioFilePath);
 
@@ -322,7 +322,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformManaLoading1()
         {
             string comment = "Sacred sword, release...";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_mana1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_mana1.wav";
 
             PlaySound(audioFilePath);
 
@@ -346,7 +346,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformManaLoading2()
         {
             string comment = "If that is your decision...";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_mana2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_mana2.wav";
 
             PlaySound(audioFilePath);
 
@@ -362,7 +362,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformManaLoading3()
         {
             string comment = "All right. Let's finish this";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\ArtoriasNoises\S002_mana3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_mana3.wav";
 
             PlaySound(audioFilePath);
 

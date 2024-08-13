@@ -291,11 +291,13 @@ namespace FGO_BSx.Controls
         public static void WriteColoredAnsi(string text, string ansiColor)
         {
             Console.Write($"{ansiColor}{text}\x1b[0m");
+            Console.ResetColor();
         }
 
         public static void WriteColoredAnsi(int i, string ansiColor)
         {
             Console.Write($"{ansiColor}{i}\x1b[0m");
+            Console.ResetColor();
         }
     }
 }

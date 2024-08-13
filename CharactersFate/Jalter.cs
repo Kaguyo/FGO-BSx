@@ -27,22 +27,28 @@ namespace FGO_BSx.CharactersFate
 
         public static void SkillsJalter(double sp, double spCost) 
         {
-            FGO_BSx.Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.Yellow);
+            FGO_BSx.Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.DarkYellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);
             Console.WriteLine(")");
-            FGO_BSx.Controls.SistemaFGO.WriteColored("Finesse Improvement", ConsoleColor.Red);
+            FGO_BSx.Controls.SistemaFGO.WriteColored("Self Modification", ConsoleColor.DarkYellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("2", ConsoleColor.Green);
             Console.WriteLine(")");
+            FGO_BSx.Controls.SistemaFGO.WriteColored("Ephemeral Dream", ConsoleColor.DarkYellow);
+            Console.Write(" (");
+            Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
+            Console.WriteLine(")");
+            //passive Self-Replenishment (Magic)
+            //passive Extra Attack Finesse Improvement
             if (sp < spCost)
             {
-                FGO_BSx.Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Red);
+                FGO_BSx.Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
                 FGO_BSx.Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.Magenta);
                 Controls.SistemaFGO.WriteColored(" (", ConsoleColor.Gray);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("Fetch Failnaught", ConsoleColor.Red);
+                FGO_BSx.Controls.SistemaFGO.WriteColored("Le Grondement de la Haine", ConsoleColor.DarkYellow);
                 Console.Write(" (");
-                Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored("4", ConsoleColor.Green);
                 Console.Write(")");
                 FGO_BSx.Controls.SistemaFGO.WriteColored(")", ConsoleColor.Gray);
                 Controls.SistemaFGO.WriteColored("\nNP Energy", ConsoleColor.Magenta);
@@ -53,15 +59,15 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored("/", ConsoleColor.Magenta);
                 FGO_BSx.Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
                 FGO_BSx.Controls.SistemaFGO.WriteColored("  NOT READY", ConsoleColor.DarkRed);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Red);
+                FGO_BSx.Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
             }
             else if (sp >= spCost)
             {
                 sp = spCost;
-                FGO_BSx.Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Red);
+                FGO_BSx.Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
                 FGO_BSx.Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.Magenta);
                 Controls.SistemaFGO.WriteColored(" (", ConsoleColor.Gray);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("Fetch Failnaught", ConsoleColor.Red);
+                FGO_BSx.Controls.SistemaFGO.WriteColored("Le Grondement de la Haine", ConsoleColor.DarkYellow);
                 Console.Write(" (");
                 Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
                 Console.Write(")");
@@ -74,7 +80,7 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored("/", ConsoleColor.Magenta);
                 FGO_BSx.Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
                 FGO_BSx.Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Red);
+                FGO_BSx.Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
             }
         }
     }

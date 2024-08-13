@@ -53,7 +53,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformFetchFailnaught2()
         {
             string comment = "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage1_NP2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage1_NP2.wav";
 
             PlaySound(audioFilePath);
             byte i = 0;
@@ -107,7 +107,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformFetchFailnaught1()
         {
             string comment = "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage3_NP3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage3_NP3.wav";
 
             PlaySound(audioFilePath);
             byte i = 0;
@@ -161,7 +161,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment6()
         {
             string comment = "More, more!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage1_Skill4.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage1_Skill4.wav";
 
             PlaySound(audioFilePath);
 
@@ -184,7 +184,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment5()
         {
             string comment = "Like taking a bath !";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage1_Skill3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage1_Skill3.wav";
 
             PlaySound(audioFilePath);
 
@@ -207,7 +207,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment4()
         {
             string comment = "Cruelty. Depravity.";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage1_Skill2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage1_Skill2.wav";
 
             PlaySound(audioFilePath);
             byte i = 0;
@@ -268,7 +268,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment1()
         {
             string comment = "You have awful taste!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage1_SelectAttack1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage1_SelectAttack1.wav";
 
             PlaySound(audioFilePath);
 
@@ -284,7 +284,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment2()
         {
             string comment = "Does it hurt?";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage1_Attack3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage1_Attack3.wav";
 
             PlaySound(audioFilePath);
 
@@ -300,7 +300,7 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment3()
         {
             string comment = "Why don't you die?";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\BaobhanNoises\S311_Stage1_SelectAttack3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\BaobhanNoises\S311_Stage1_SelectAttack3.wav";
 
             PlaySound(audioFilePath);
 

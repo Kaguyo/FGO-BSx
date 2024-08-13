@@ -212,13 +212,14 @@ namespace FGO_BSx
                         Controls.SistemaFGO.escolhaSkill != "7" && Controls.SistemaFGO.escolhaSkill != "8" &&
                         Controls.SistemaFGO.escolhaSkill != "9") 
                     {
-                    Console.WriteLine("\n");
-                    Controls.SistemaFGO.MyServant(Controls.SistemaFGO.personagemEscolhido);
-                    Console.WriteLine("\n\n===============");
-                    Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
-                    Console.WriteLine(":");
-                    Console.WriteLine("===============\n");
-                    Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
+                        Console.WriteLine("\n");
+                        Controls.SistemaFGO.MyServant(Controls.SistemaFGO.personagemEscolhido);
+
+                        Console.WriteLine("\n\n===============");
+                        Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
+                        Console.WriteLine(":");
+                        Console.WriteLine("===============\n");
+                        Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
 
 
                     
