@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FGO_BSx.EnemiesFate
 {
 
-    internal class Artoria : Interfaces.IEnemySwordsman
+    internal class EnemyArtoria : Interfaces.IEnemySwordsman
     {
         private string _name = "Artoria";
         private double _hpMax = 265629;

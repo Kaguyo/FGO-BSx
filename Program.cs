@@ -24,27 +24,27 @@ namespace FGO_BSx
                 FGO_BSx.CharactersFate.Jalter jalter = new FGO_BSx.CharactersFate.Jalter();
                 FGO_BSx.CharactersFate.Okada okada = new FGO_BSx.CharactersFate.Okada();
 
-                double[] ComHp = { enemyArtoria.hp };
+                double[] ComHp = { enemyArtoria.Hp };
                 //  Apenas para exibicao ao console.
-                string[] inimigosNome = { enemyArtoria.name };
+                string[] inimigosNome = { enemyArtoria.Name };
                 //  Lista de objetos necessaria para logica de atributos.
                 object[] inimigos = { enemyArtoria };
 
 
                 //  Apenas para exibicao ao console.t
-                double[] userHp = { artoria.hp,
-                                    baobhan.hp,
-                                    okada.hp,
-                                    mordred.hp,
-                                    tristan.hp,
-                                    jalter.hp
+                double[] userHp = { artoria.Hp,
+                                    baobhan.Hp,
+                                    okada.Hp,
+                                    mordred.Hp,
+                                    tristan.Hp,
+                                    jalter.Hp
                                         };
-                string[] personagensNome = { artoria.name,
-                                         baobhan.name,
-                                         okada.name,
-                                         mordred.name,
-                                         tristan.name,
-                                         jalter.name
+                string[] personagensNome = { artoria.Name,
+                                         baobhan.Name,
+                                         okada.Name,
+                                         mordred.Name,
+                                         tristan.Name,
+                                         jalter.Name
                                         };
                 //  Lista de objetos necessaria para logica de atributos.
                 object[] personagens = { artoria,
@@ -202,7 +202,7 @@ namespace FGO_BSx
                     indexInimigo = 1;
                 }
 
-                // Enquanto o hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
+                // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                 while (userHp[indexPersonagem] > 0 && (ComHp[indexInimigo] > 0
                        && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop")))
                 {
