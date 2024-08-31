@@ -9,23 +9,183 @@ using System.Xml.Linq;
 
 namespace FGO_BSx.CharactersFate
 {
-    internal class Artoria : FGO_BSx.Interfaces.ISaber
+    internal class Artoria : Interfaces.ISaber
     {
-        internal String name = "Artoria";
-        internal double hpMax = 5629;
-        internal int atkMax = 172;
-        internal int defMax = 529;
-        internal double hp = 5629;
-        internal int atk = 172;
-        internal int def = 529;
-        internal double spCost = 140;
-        internal double spInitial = 105;
-        internal double basicAtk = 1.70;
-        internal double ultNp = 5.33;
-        internal int spd = 110;
-        internal int lvl = 1;
-        internal double critDmg = 10;
-        internal double critRate = 5;
+        private string _name = "Artoria";
+        private double _hpMax = 5629;
+        private int _atkMax = 172;
+        private int _defMax = 529;
+        private double _hp = 5629;
+        private int _atk = 172;
+        private int _def = 529;
+        private double _spCost = 140;
+        private double _spInitial = 0;
+        private double _basicAtk = 1.70;
+        private double _ultNp = 5.33;
+        private int _spd = 110;
+        private int _lvl = 1;
+        private double _critDmg = 10;
+        private double _critRate = 5;
+        internal string? LastComment { get; set; }
+        internal string Name 
+        {
+            get { return _name; }     
+        }
+        internal double HpMax
+        {
+            get
+            {
+                return _hpMax;
+            }
+            set 
+            {
+                _hpMax = value;
+            }
+        }
+        internal int AtkMax
+        {
+            get
+            {
+                return _atkMax;
+            }
+            set
+            {
+                _atkMax = value;
+            }
+        }
+        internal int DefMax
+        {
+            get
+            {
+                return _defMax;
+            }
+            set
+            {
+                _defMax = value;
+            }
+        }
+        internal double Hp
+        {
+            get
+            {
+                return _hp;
+            }
+            set
+            {
+                _hp = value;
+            }
+        }
+        internal int Atk
+        {
+            get
+            {
+                return _atk;
+            }
+            set
+            {
+                _atk = value;
+            }
+        }
+        internal int Def
+        {
+            get
+            {
+                return _def;
+            }
+            set
+            {
+                _def = value;
+            }
+        }
+        internal double SpCost
+        {
+            get
+            {
+                return _spCost;
+            }
+            set
+            {
+                _spCost = value;
+            }
+        }
+        internal double SpInitial
+        {
+            get
+            {
+                return _spInitial;
+            }
+            set
+            {
+                _spInitial = value;
+            }
+        }
+        internal double BasicAttack
+        {
+            get
+            {
+                return _basicAtk;
+            }
+            set
+            {
+                _basicAtk = value;
+            }
+        }
+        internal double UltNp
+        {
+            get
+            {
+                return _ultNp;
+            }
+            set
+            {
+                _ultNp = value;
+            }
+        }
+        internal int SPD
+        {
+            get
+            {
+                return _spd;
+            }
+            set
+            {
+                _spd = value;
+            }
+        }
+        internal int Lvl
+        {
+            get
+            {
+                return _lvl;
+            }
+            set
+            {
+                _lvl = value;
+            }
+        }
+        internal double CritDmg
+        {
+            get
+            {
+                return _critDmg;
+            }
+            set
+            {
+                _critDmg = value;
+            }
+        }
+        internal double CritRate
+        {
+            get
+            {
+                return _critRate;
+            }
+            set
+            {
+                _critRate = value;
+            }
+        }
+
 
         private static Random random = new Random();
         private static IWavePlayer waveOutDevice;
@@ -33,57 +193,59 @@ namespace FGO_BSx.CharactersFate
 
         public void Excalibur()
         {
-            FGO_BSx.Controls.SistemaFGO.WriteColored(name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
-            int choice = random.Next(1, 4);
-            int lastChoice = 0;
+            while (true)
+            {
+                int choice = random.Next(1, 4);
 
-            while (choice == lastChoice)
-            {
-                choice = random.Next(1, 4);
-            }
-            switch (choice)
-            {
-                case 1:
+                if (choice == 1 && LastComment != "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !")
+                {
                     PerformExcalibur1();
                     break;
-                case 2:
+                }
+                else if (choice == 2 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !")
+                {
                     PerformExcalibur2();
                     break;
-                case 3:
+                }
+                else if (choice == 3 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !") 
+                {
                     PerformExcalibur3();
                     break;
+                }
             }
         }
 
         public void ManaLoading()
         {
-            FGO_BSx.Controls.SistemaFGO.WriteColored(name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
-            int choice = random.Next(1, 4);
-            int lastChoice = 0;
+            while (true)
+            {
+                int choice = random.Next(1, 4);
 
-            while (choice == lastChoice)
-            {
-                choice = random.Next(1, 4);
-            }
-            switch (choice)
-            {
-                case 1:
+                if (choice == 1 && LastComment != "Sacred sword, release...")
+                {
                     PerformManaLoading1();
                     break;
-                case 2:
+                }
+                else if (choice == 2 && LastComment != "If that is your decision...")
+                {
                     PerformManaLoading2();
                     break;
-                case 3:
+                }
+                else if (choice == 3 && LastComment != "All right. Let's finish this") 
+                {
                     PerformManaLoading3();
                     break;
+                }
             }
         }
 
         public void SwordSkill()
         {
-            FGO_BSx.Controls.SistemaFGO.WriteColored(name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             int choice = random.Next(1, 4);
             int lastChoice;
@@ -108,7 +270,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment1()
         {
             string comment = "I'll take them myself!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Skill4.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Skill4.wav";
 
             PlaySound(audioFilePath);
 
@@ -124,7 +287,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment2()
         {
             string comment = "I'll show you my strength!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Skill2.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Skill2.wav";
 
             PlaySound(audioFilePath);
 
@@ -140,7 +304,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment3()
         {
             string comment = "I'll cut them down!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Attack4.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack4.wav";
 
             PlaySound(audioFilePath);
 
@@ -156,7 +321,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformComment4()
         {
             string comment = "There's still more!";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_Attack5.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack5.wav";
 
             PlaySound(audioFilePath);
 
@@ -172,7 +338,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformExcalibur1()
         {
             string comment = "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_NP1.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP1.wav";
 
             PlaySound(audioFilePath);
 
@@ -189,17 +356,17 @@ namespace FGO_BSx.CharactersFate
                 }
                 else if (exclamations.Contains(c))
                 {
-                    FGO_BSx.Controls.SistemaFGO.WriteColored(c.ToString(), ConsoleColor.Yellow);
+                    Controls.SistemaFGO.WriteColored(c.ToString(), ConsoleColor.Yellow);
                     Thread.Sleep(40);
                 }
                 else if (calibur.Contains(c))
                 {
-                    FGO_BSx.Controls.SistemaFGO.WriteColored(c.ToString(), ConsoleColor.Yellow);
+                    Controls.SistemaFGO.WriteColored(c.ToString(), ConsoleColor.Yellow);
                     Thread.Sleep(10);
                 }
                 else if (trailing.Contains(c))
                 {
-                    FGO_BSx.Controls.SistemaFGO.WriteColored(c.ToString(), ConsoleColor.Yellow);
+                    Controls.SistemaFGO.WriteColored(c.ToString(), ConsoleColor.Yellow);
                     Thread.Sleep(42);
                 }
                 else
@@ -220,7 +387,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformExcalibur2()
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_NP2.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP2.wav";
 
             PlaySound(audioFilePath);
 
@@ -271,7 +439,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformExcalibur3()
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_NP3.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP3.wav";
 
             PlaySound(audioFilePath);
 
@@ -322,7 +491,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformManaLoading1()
         {
             string comment = "Sacred sword, release...";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_mana1.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana1.wav";
 
             PlaySound(audioFilePath);
 
@@ -346,7 +516,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformManaLoading2()
         {
             string comment = "If that is your decision...";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_mana2.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana2.wav";
 
             PlaySound(audioFilePath);
 
@@ -362,7 +533,8 @@ namespace FGO_BSx.CharactersFate
         private void PerformManaLoading3()
         {
             string comment = "All right. Let's finish this";
-            string audioFilePath = @"C:\Users\Kaguyo\Desktop\srcFate\Characters\ArtoriasNoises\S002_mana3.wav";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana3.wav";
 
             PlaySound(audioFilePath);
 
@@ -406,54 +578,54 @@ namespace FGO_BSx.CharactersFate
 
         public static void SkillsArtoria(double sp, double spCost)
         {
-            FGO_BSx.Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.Yellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);
             Console.WriteLine(")");
-            FGO_BSx.Controls.SistemaFGO.WriteColored("Mana Loading", ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored("Mana Loading", ConsoleColor.Yellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("2", ConsoleColor.Green);
             Console.WriteLine(")");
             if (sp < spCost)
             {
-                FGO_BSx.Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.Magenta);
-                Controls.SistemaFGO.WriteColored(" (", ConsoleColor.Gray);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("Excalibur", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.White);
+                Controls.SistemaFGO.WriteColored(" (", ConsoleColor.DarkGray);
+                Controls.SistemaFGO.WriteColored("Excalibur", ConsoleColor.Yellow);
                 Console.Write(" (");
                 Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
                 Console.Write(")");
-                FGO_BSx.Controls.SistemaFGO.WriteColored(")", ConsoleColor.Gray);
-                Controls.SistemaFGO.WriteColored("\nNP Energy", ConsoleColor.Magenta);
+                Controls.SistemaFGO.WriteColored(")", ConsoleColor.DarkGray);
+                Controls.SistemaFGO.WriteColored("\nNP Energy", ConsoleColor.White);
                 Console.Write(": ");
                 sp /= spCost;
                 sp *= 100;
-                FGO_BSx.Controls.SistemaFGO.WriteColored((int)sp, ConsoleColor.DarkGray);
-                Controls.SistemaFGO.WriteColored("/", ConsoleColor.Magenta);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("  NOT READY", ConsoleColor.DarkRed);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored((int)sp, ConsoleColor.DarkGray);
+                Controls.SistemaFGO.WriteColored("/", ConsoleColor.White);
+                Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored("  NOT READY", ConsoleColor.DarkRed);
+                Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
             }
             else if (sp >= spCost)
             {
                 sp = spCost;
-                FGO_BSx.Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.Magenta);
-                Controls.SistemaFGO.WriteColored(" (", ConsoleColor.Gray);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("Excalibur", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.White);
+                Controls.SistemaFGO.WriteColored(" (", ConsoleColor.DarkGray);
+                Controls.SistemaFGO.WriteColored("Excalibur", ConsoleColor.Yellow);
                 Console.Write(" (");
                 Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
                 Console.Write(")");
-                FGO_BSx.Controls.SistemaFGO.WriteColored(")", ConsoleColor.Gray);
-                Controls.SistemaFGO.WriteColored("\nNP Energy", ConsoleColor.Magenta);
+                Controls.SistemaFGO.WriteColored(")", ConsoleColor.DarkGray);
+                Controls.SistemaFGO.WriteColored("\nNP Energy", ConsoleColor.White);
                 Console.Write(": ");
                 sp /= spCost;
                 sp *= 100;
-                FGO_BSx.Controls.SistemaFGO.WriteColored(((int)sp), ConsoleColor.Green);
-                Controls.SistemaFGO.WriteColored("/", ConsoleColor.Magenta);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);
-                FGO_BSx.Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored(((int)sp), ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored("/", ConsoleColor.White);
+                Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
             }
         }
     }

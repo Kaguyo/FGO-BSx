@@ -51,7 +51,7 @@ namespace FGO_BSx.Controls
                 Console.Write("[");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)artoria.hp, (int)artoria.hpMax);
+                DisplayHP((int)artoria.Hp, (int)artoria.HpMax);
             }
             else if (personagemEscolhido is Baobhan baobhan)
             {
@@ -59,7 +59,7 @@ namespace FGO_BSx.Controls
                 Console.Write("[");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)baobhan.hp, (int)baobhan.hpMax);
+                DisplayHP((int)baobhan.Hp, (int)baobhan.HpMax);
             }
             else if (personagemEscolhido is Jalter firstHassan)
             {
@@ -67,7 +67,7 @@ namespace FGO_BSx.Controls
                 Console.Write("[");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)firstHassan.hp, (int)firstHassan.hpMax);
+                DisplayHP((int)firstHassan.Hp, (int)firstHassan.HpMax);
             }
             else if (personagemEscolhido is Mordred mordred)
             {
@@ -75,7 +75,7 @@ namespace FGO_BSx.Controls
                 Console.Write("[");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)mordred.hp, (int)mordred.hpMax);
+                DisplayHP((int)mordred.Hp, (int)mordred.HpMax);
             }
             else if (personagemEscolhido is Tristan tristan)
             {
@@ -83,7 +83,7 @@ namespace FGO_BSx.Controls
                 Console.Write("[");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)tristan.hp, (int)tristan.hpMax);
+                DisplayHP((int)tristan.Hp, (int)tristan.HpMax);
             }
             else if (personagemEscolhido is Okada okada)
             {
@@ -91,7 +91,7 @@ namespace FGO_BSx.Controls
                 Console.Write("[");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)okada.hp, (int)okada.hpMax);
+                DisplayHP((int)okada.Hp, (int)okada.HpMax);
             }
         }
 
@@ -115,27 +115,27 @@ namespace FGO_BSx.Controls
         {
             if (Personagem is Artoria artoria)
             {
-                Artoria.SkillsArtoria(artoria.spInitial, artoria.spCost);
+                Artoria.SkillsArtoria(artoria.SpInitial, artoria.SpCost);
             }
             else if (Personagem is Baobhan baobhan)
             {
-                Baobhan.SkillsBaobhan(baobhan.spInitial, baobhan.spCost);
+                Baobhan.SkillsBaobhan(baobhan.SpInitial, baobhan.SpCost);
             }
             else if (Personagem is Jalter jalter)
             {
-                Jalter.SkillsJalter(jalter.spInitial, jalter.spCost);
+                Jalter.SkillsJalter(jalter.SpInitial, jalter.SpCost);
             }
             else if (Personagem is Mordred mordred)
             {
-                Mordred.SkillsMordred(mordred.spInitial, mordred.spCost);
+                Mordred.SkillsMordred(mordred.SpInitial, mordred.SpCost);
             }
             else if (Personagem is Tristan tristan)
             {
-                Tristan.SkillsTristan(tristan.spInitial, tristan.spCost);
+                Tristan.SkillsTristan(tristan.SpInitial, tristan.SpCost);
             }
             else if (Personagem is Okada okada)
             {
-                Okada.SkillsOkada(okada.spInitial, okada.spCost);
+                Okada.SkillsOkada(okada.SpInitial, okada.SpCost);
             }
         }
 
@@ -167,7 +167,7 @@ namespace FGO_BSx.Controls
                     artoria.ManaLoading();
                     Controls.SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3")
+                else if (Controls.SistemaFGO.escolhaSkill == "3" && artoria.SpInitial >= artoria.SpCost)
                 {
                     artoria.Excalibur();
                     Controls.SistemaFGO.escolhaSkill = "";
@@ -185,7 +185,7 @@ namespace FGO_BSx.Controls
                     baobhan.FinesseImprovement();
                     Controls.SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3")
+                else if (Controls.SistemaFGO.escolhaSkill == "3" && baobhan.SpInitial >= baobhan.SpCost)
                 {
                     baobhan.FetchFailnaught();
                     Controls.SistemaFGO.escolhaSkill = "";
@@ -203,7 +203,7 @@ namespace FGO_BSx.Controls
                     okada.AntiSaberAtkUp();
                     Controls.SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3")
+                else if (Controls.SistemaFGO.escolhaSkill == "3" && okada.SpInitial >= okada.SpCost)
                 {
                     okada.Shimatsuken();
                     Controls.SistemaFGO.escolhaSkill = "";
@@ -226,7 +226,7 @@ namespace FGO_BSx.Controls
                     jalter.OblivionCorrectionCritUp();
                     Controls.SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "4")
+                else if (Controls.SistemaFGO.escolhaSkill == "4" && jalter.SpInitial >= jalter.SpCost)
                 {
                     jalter.LeGrondementdelaHaine();
                     Controls.SistemaFGO.escolhaSkill = "";
@@ -244,7 +244,7 @@ namespace FGO_BSx.Controls
                     tristan.ManaLoading();
                     Controls.SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3")
+                else if (Controls.SistemaFGO.escolhaSkill == "3" && tristan.SpInitial >= tristan.SpCost)
                 {
                     tristan.Failnaught();
                     Controls.SistemaFGO.escolhaSkill = "";
@@ -267,7 +267,7 @@ namespace FGO_BSx.Controls
                     mordred.KnightofCrimsonThunder();
                     Controls.SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "4")
+                else if (Controls.SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)
                 {
                     mordred.ClarentBloodArthur();
                     Controls.SistemaFGO.escolhaSkill = "";
