@@ -1,1 +1,1 @@
-FAN GAME DE FATE
+Fan game de fate sem video visual
