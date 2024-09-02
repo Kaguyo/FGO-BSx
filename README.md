@@ -1,1 +1,8 @@
-Fan game de fate sem video visual
+## Créditos
+
+Este jogo é um **fan game** baseado em *Fate/Grand Order*. Todos os direitos sobre a propriedade intelectual original pertencem aos seus respectivos criadores.
+
+### Criadores Originais
+
+- **Franquia Fate**: [Type-Moon](http://www.typemoon.com/)
+- **Desenvolvimento do jogo original Fate/Grand Order**: Aniplex e Delightworks
