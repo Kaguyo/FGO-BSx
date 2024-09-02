@@ -9,6 +9,7 @@ namespace FGO_BSx.CharactersFate
 {
     internal class Jalter : Interfaces.IAvenger
     {
+        private static Random random = new Random();
         private string _name = "Jeanne d'Arc (Alter)";
         private double _hpMax = 6551;
         private int _atkMax = 222;
@@ -184,8 +185,58 @@ namespace FGO_BSx.CharactersFate
             }
         }
 
+        public void SwordSkill()
+        {
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
+            Console.WriteLine(":");
 
-        public static void SkillsJalter(double sp, double spCost) 
+            while (true)
+            {
+                int choice = random.Next(1, 5);
+
+                if (choice == 1 && LastComment != "I'll take them myself!")
+                {
+                    PerformComment1();
+                    break;
+                }
+                else if (choice == 2 && LastComment != "I'll show you my strength!")
+                {
+                    PerformComment2();
+                    break;
+                }
+                else if (choice == 3 && LastComment != "I'll cut them down!")
+                {
+                    PerformComment3();
+                    break;
+                }
+            }
+        }
+        private void PerformComment1()
+        {
+            string comment = "I'll cut them down!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+        }
+        private void PerformComment2()
+        {
+            string comment = "I'll cut them down!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+        }
+        private void PerformComment3()
+        {
+            string comment = "I'll cut them down!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+        }
+
+            public static void SkillsJalter(double sp, double spCost) 
         {
             Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.DarkYellow);
             Console.Write(" (");

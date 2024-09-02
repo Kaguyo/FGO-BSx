@@ -138,7 +138,21 @@ namespace FGO_BSx.Controls
                 Okada.SkillsOkada(okada.SpInitial, okada.SpCost);
             }
         }
-
+        internal static void PlaySound(string audioFilePath)
+        {
+            if (waveOutDevice != null)
+            {
+                waveOutDevice.Dispose();
+            }
+            if (audioFileReader != null)
+            {
+                audioFileReader.Dispose();
+            }
+            audioFileReader = new AudioFileReader(audioFilePath);
+            waveOutDevice = new WaveOutEvent();
+            waveOutDevice.Init(audioFileReader);
+            waveOutDevice.Play();
+        }
         public static void StopBackgroundSound()
         {
             if (backgroundWaveOutDevice != null)
@@ -157,120 +171,120 @@ namespace FGO_BSx.Controls
         {
             if (personagem is Artoria artoria)
             {
-                if (Controls.SistemaFGO.escolhaSkill == "1")
+                if (SistemaFGO.escolhaSkill == "1")
                 {
                     artoria.SwordSkill();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "2")
+                else if (SistemaFGO.escolhaSkill == "2")
                 {
                     artoria.ManaLoading();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3" && artoria.SpInitial >= artoria.SpCost)
+                else if (SistemaFGO.escolhaSkill == "3" && artoria.SpInitial >= artoria.SpCost)
                 {
                     artoria.Excalibur();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
             }
             else if (personagem is Baobhan baobhan) 
             {
-                if (Controls.SistemaFGO.escolhaSkill == "1")
+                if (SistemaFGO.escolhaSkill == "1")
                 {
                     baobhan.RangeAttack();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "2")
+                else if (SistemaFGO.escolhaSkill == "2")
                 {
                     baobhan.FinesseImprovement();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3" && baobhan.SpInitial >= baobhan.SpCost)
+                else if (SistemaFGO.escolhaSkill == "3" && baobhan.SpInitial >= baobhan.SpCost)
                 {
                     baobhan.FetchFailnaught();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
             }
             else if (personagem is Okada okada)
             {
-                if (Controls.SistemaFGO.escolhaSkill == "1")
+                if (SistemaFGO.escolhaSkill == "1")
                 {
                     okada.SwordSkill();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "2")
+                else if (SistemaFGO.escolhaSkill == "2")
                 {
                     okada.AntiSaberAtkUp();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3" && okada.SpInitial >= okada.SpCost)
+                else if (SistemaFGO.escolhaSkill == "3" && okada.SpInitial >= okada.SpCost)
                 {
                     okada.Shimatsuken();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
             }
             else if (personagem is Jalter jalter)
             {
-                if (Controls.SistemaFGO.escolhaSkill == "1")
+                if (SistemaFGO.escolhaSkill == "1")
                 {
                     jalter.SwordSkill();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "2")
+                else if (SistemaFGO.escolhaSkill == "2")
                 {
                     jalter.SelfModificationCritUp();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3")
+                else if (SistemaFGO.escolhaSkill == "3")
                 {
                     jalter.OblivionCorrectionCritUp();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "4" && jalter.SpInitial >= jalter.SpCost)
+                else if (SistemaFGO.escolhaSkill == "4" && jalter.SpInitial >= jalter.SpCost)
                 {
                     jalter.LeGrondementdelaHaine();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
             }
             else if (personagem is Tristan tristan)
             {
-                if (Controls.SistemaFGO.escolhaSkill == "1")
+                if (SistemaFGO.escolhaSkill == "1")
                 {
                     tristan.RangeAttack();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "2")
+                else if (SistemaFGO.escolhaSkill == "2")
                 {
                     tristan.ManaLoading();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3" && tristan.SpInitial >= tristan.SpCost)
+                else if (SistemaFGO.escolhaSkill == "3" && tristan.SpInitial >= tristan.SpCost)
                 {
                     tristan.Failnaught();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
             }
             else if (personagem is Mordred mordred)
             {
-                if (Controls.SistemaFGO.escolhaSkill == "1")
+                if (SistemaFGO.escolhaSkill == "1")
                 {
                     mordred.SwordSkill();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "2")
+                else if (SistemaFGO.escolhaSkill == "2")
                 {
                     mordred.ManaLoading();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "3")
+                else if (SistemaFGO.escolhaSkill == "3")
                 {
                     mordred.KnightofCrimsonThunder();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
-                else if (Controls.SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)
+                else if (SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)
                 {
                     mordred.ClarentBloodArthur();
-                    Controls.SistemaFGO.escolhaSkill = "";
+                    SistemaFGO.escolhaSkill = "";
                 }
             }
         }
@@ -287,7 +301,10 @@ namespace FGO_BSx.Controls
             Console.Write(i);
             Console.ResetColor();
         }
-
+        public static void WriteColored2(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+        }
         public static void WriteColoredAnsi(string text, string ansiColor)
         {
             Console.Write($"{ansiColor}{text}\x1b[0m");

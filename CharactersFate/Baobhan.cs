@@ -187,8 +187,6 @@ namespace FGO_BSx.CharactersFate
         }
 
         private static Random random = new Random();
-        private static IWavePlayer waveOutDevice;
-        private static WaveStream audioFileReader;
 
         public void FetchFailnaught() 
         {
@@ -215,7 +213,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_NP3.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
             byte i = 0;
             foreach (char c in comment)
             {
@@ -246,7 +244,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_NP2.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
             byte i = 0;
             byte j = 0;
             foreach (char c in comment)
@@ -278,7 +276,7 @@ namespace FGO_BSx.CharactersFate
                     {
                         Console.Write(c);
                         Thread.Sleep(500);
-                        WriteColored2(ConsoleColor.Red); 
+                        Controls.SistemaFGO.WriteColored2(ConsoleColor.Red); 
                     }
                 }
                 else
@@ -322,7 +320,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Skill4.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -346,7 +344,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Skill3.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -370,7 +368,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Skill2.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
             byte i = 0;
             foreach (char c in comment)
             {
@@ -425,7 +423,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_SelectAttack1.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -442,7 +440,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Attack3.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -459,7 +457,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_SelectAttack3.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -520,26 +518,6 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Red);
             }
-        }
-
-        private static void PlaySound(string audioFilePath)
-        {
-            if (waveOutDevice != null)
-            {
-                waveOutDevice.Dispose();
-            }
-            if (audioFileReader != null)
-            {
-                audioFileReader.Dispose();
-            }
-            audioFileReader = new AudioFileReader(audioFilePath);
-            waveOutDevice = new WaveOutEvent();
-            waveOutDevice.Init(audioFileReader);
-            waveOutDevice.Play();
-        }
-        static void WriteColored2(ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
         }
     }
 }

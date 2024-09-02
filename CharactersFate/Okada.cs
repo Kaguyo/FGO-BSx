@@ -184,8 +184,7 @@ namespace FGO_BSx.CharactersFate
             }
         }
         private static Random random = new Random();
-        private static IWavePlayer waveOutDevice;
-        private static WaveStream audioFileReader;
+
 
         public void Shimatsuken()
         {

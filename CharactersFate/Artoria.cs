@@ -46,7 +46,7 @@ namespace FGO_BSx.CharactersFate
         {
             get
             {
-                return _atkMax;
+                return _atkMax = 123;
             }
             set
             {
@@ -185,14 +185,17 @@ namespace FGO_BSx.CharactersFate
                 _critRate = value;
             }
         }
+        internal int ExcaliburBuff { get; set; }
+
+        internal int ExtraAttackCooldown { get; set; }
 
 
         private static Random random = new Random();
-        private static IWavePlayer waveOutDevice;
-        private static WaveStream audioFileReader;
 
         public void Excalibur()
         {
+            ExcaliburBuff = 2; // Contador de duração do buff após uso de Excalibur
+
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
@@ -201,19 +204,30 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !")
                 {
+                    CritRate += 20;
+                    CritDmg += 40;
                     PerformExcalibur1();
                     break;
                 }
                 else if (choice == 2 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !")
                 {
+                    CritRate += 20;
+                    CritDmg += 40;
                     PerformExcalibur2();
                     break;
                 }
                 else if (choice == 3 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !") 
                 {
+                    CritRate += 20;
+                    CritDmg += 40;
                     PerformExcalibur3();
                     break;
                 }
+            }
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                ExtraAttack();
             }
         }
 
@@ -227,19 +241,34 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "Sacred sword, release...")
                 {
+
                     PerformManaLoading1();
+                    SpInitial += 60;
                     break;
                 }
                 else if (choice == 2 && LastComment != "If that is your decision...")
                 {
                     PerformManaLoading2();
+                    SpInitial += 60;
                     break;
                 }
                 else if (choice == 3 && LastComment != "All right. Let's finish this") 
                 {
                     PerformManaLoading3();
+                    SpInitial += 60;
                     break;
                 }
+            }
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                ExtraAttack();
+            }
+            ExcaliburBuff -= 1;
+            if (ExcaliburBuff == 0) 
+            {
+                CritRate -= 20;
+                CritDmg -= 40;
             }
         }
 
@@ -247,33 +276,139 @@ namespace FGO_BSx.CharactersFate
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
-            int choice = random.Next(1, 4);
-            int lastChoice;
-
-            switch (choice)
+            while (true)
             {
-                case 1:
-                    lastChoice = choice;
+                int choice = random.Next(1, 5);
+
+                if (choice == 1 && LastComment != "I'll take them myself!")
+                {
                     PerformComment1();
+                    SpInitial += 15;
                     break;
-                case 2:
-                    lastChoice = choice;
+                }
+                else if (choice == 2 && LastComment != "I'll show you my strength!")
+                {
                     PerformComment2();
+                    SpInitial += 15;
                     break;
-                case 3:
-                    lastChoice = choice;
+                }
+                else if (choice == 3 && LastComment != "I'll cut them down!")
+                {
                     PerformComment3();
+                    SpInitial += 15;
                     break;
+                }
+                else if (choice == 4 && LastComment != "There's still more!")
+                {
+                    PerformComment4();
+                    SpInitial += 15;
+                    break;
+                }
+            }
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                ExtraAttack();
+            }
+            ExcaliburBuff -= 1;
+            if (ExcaliburBuff == 0)
+            {
+                CritRate -= 20;
+                CritDmg -= 40;
             }
         }
+        public void ExtraAttack() 
+        {
+            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Console.WriteLine(":");
+            while (true)
+            {
+                int choice = random.Next(1, 4);
 
+                if (choice == 1 && LastComment != "I'll take them myself!")
+                {
+                    PerformExtra1();
+                    SpInitial += 5;
+                    break;
+                }
+                else if (choice == 2 && LastComment != "O wind, whirl away!")
+                {
+                    PerformExtra2();
+                    SpInitial += 5;
+                    break;
+                }
+                else if (choice == 3 && LastComment != "Strike Air!") 
+                {
+                    PerformExtra3();
+                    SpInitial += 5;
+                    break;
+                }
+            }
+            ExtraAttackCooldown = 6;
+        }
+        private void PerformExtra1() 
+        {
+            string comment = "Got you!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack6.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(22);
+            }
+            Console.WriteLine();
+            Console.ReadKey();
+        }
+        private void PerformExtra2()
+        {
+            string comment = "O wind, whirl away!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_ExtraAttack1.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                if (c == ',')
+                {
+                    Console.Write(c);
+                    Thread.Sleep(300);
+                }
+                else
+                {
+                    Console.Write(c);
+                    Thread.Sleep(22);
+                }
+            }
+            Console.WriteLine();
+            Console.ReadKey();
+        }
+        private void PerformExtra3()
+        {
+            string comment = "Strike Air!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_ExtraAttack2.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(22);
+            }
+            Console.WriteLine();
+            Console.ReadKey();
+        }
         private void PerformComment1()
         {
             string comment = "I'll take them myself!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Skill4.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -290,7 +425,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Skill2.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -307,7 +442,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack4.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -324,7 +459,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack5.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -341,7 +476,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP1.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             string exclamations = "EX";
             string calibur = "CALIBUR";
@@ -389,11 +524,9 @@ namespace FGO_BSx.CharactersFate
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP2.wav";
-
-            PlaySound(audioFilePath);
-
-            string exclamations = "EX";
             string calibur = "CALIBUR ! !";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -441,11 +574,9 @@ namespace FGO_BSx.CharactersFate
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP3.wav";
-
-            PlaySound(audioFilePath);
-
-            string exclamations = "EX";
             string calibur = "CALIBUR ! !";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -494,7 +625,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana1.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -519,7 +650,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana2.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -536,7 +667,7 @@ namespace FGO_BSx.CharactersFate
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana3.wav";
 
-            PlaySound(audioFilePath);
+            Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
@@ -553,22 +684,6 @@ namespace FGO_BSx.CharactersFate
             }
             Console.WriteLine();
             Console.ReadKey();
-        }
-
-        private void PlaySound(string audioFilePath)
-        {
-            if (waveOutDevice != null)
-            {
-                waveOutDevice.Dispose();
-            }
-            if (audioFileReader != null)
-            {
-                audioFileReader.Dispose();
-            }
-            audioFileReader = new AudioFileReader(audioFilePath);
-            waveOutDevice = new WaveOutEvent();
-            waveOutDevice.Init(audioFileReader);
-            waveOutDevice.Play();
         }
 
         static void WriteColored2(ConsoleColor color)
