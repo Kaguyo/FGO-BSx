@@ -1,6 +1,6 @@
 ## Créditos
 
-Este jogo é um **fan game** baseado em *Fate/Grand Order*. Todos os direitos sobre a propriedade intelectual original pertencem aos seus respectivos criadores.
+Este jogo é um **fan game** sem fins lucrativos baseado em *Fate/Grand Order*. Todos os direitos sobre a propriedade intelectual original pertencem aos seus respectivos criadores.
 
 ### Criadores Originais
 
