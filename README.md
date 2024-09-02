@@ -4,5 +4,5 @@ Este jogo é um **fan game** baseado em *Fate/Grand Order*. Todos os direitos so
 
 ### Criadores Originais
 
-- **Franquia Fate**: [Type-Moon](http://www.typemoon.com/)
+- **Franquia Fate**: [Type-Moon](https://typemoon.com)
 - **Desenvolvimento do jogo original Fate/Grand Order**: Aniplex e Delightworks
