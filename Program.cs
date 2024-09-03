@@ -6,14 +6,10 @@ namespace FGO_BSx
 {
     public class Program
     {
-        private static IWavePlayer backgroundWaveOutDevice;
-        private static WaveStream backgroundAudioFileReader;
         public static void Main()
         {
 
-
-
-            while (Controls.SistemaFGO.pararJogo != "stop" && Controls.SistemaFGO.pararJogo != "0")
+            while (true)
             {
                 FGO_BSx.EnemiesFate.EnemyArtoria enemyArtoria = new FGO_BSx.EnemiesFate.EnemyArtoria();
 
@@ -38,7 +34,7 @@ namespace FGO_BSx
                                     mordred.Hp,
                                     tristan.Hp,
                                     jalter.Hp
-                                        };
+                                  };
                 string[] personagensNome = { artoria.Name,
                                          baobhan.Name,
                                          okada.Name,
@@ -57,6 +53,7 @@ namespace FGO_BSx
 
                 string escolhaPersonagem;
                 string escolhaInimigo;
+                int defInimigo = 0;
 
                 List<string> validChoices = new List<string>();
                 List<string> validEnemyChoices = new List<string>();
@@ -103,14 +100,10 @@ namespace FGO_BSx
 
                     Console.Clear();
                 }
-                for (int i = 1; i <= personagensNome.Length; i++)
+                if (escolhaPersonagem == "0" || escolhaPersonagem == "Stop")
                 {
-                    validChoices.Add(i.ToString());
+                    break;
                 }
-
-                validEnemyChoices.Add("0");
-                validEnemyChoices.Add("Stop");
-
                 while (true)
                 {
                     Console.Clear();
@@ -137,7 +130,7 @@ namespace FGO_BSx
                     escolhaInimigo = Console.ReadLine().ToString().ToLower();
                     escolhaInimigo = Controls.SistemaFGO.Capitalize(escolhaInimigo);
 
-                    if (validChoices.Contains(escolhaPersonagem))
+                    if (validEnemyChoices.Contains(escolhaInimigo))
                     {
                         Console.Clear();
                         break;
@@ -191,26 +184,28 @@ namespace FGO_BSx
                 {
                     break;
                 }
-                else if (escolhaInimigo == "1" || escolhaInimigo == personagensNome[0])
+                else if (escolhaInimigo == "1" || escolhaInimigo == inimigosNome[0])
                 {
                     Controls.SistemaFGO.inimigoEscolhido = inimigos[0];
                     indexInimigo = 0;
+                    defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigos[0]);
                 }
-                else if (escolhaInimigo == "2" || escolhaInimigo == personagensNome[1])
+                else if (escolhaInimigo == "2" || escolhaInimigo == inimigosNome[1])
                 {
                     Controls.SistemaFGO.inimigoEscolhido = inimigos[1];
                     indexInimigo = 1;
+                    defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigos[1]);
                 }
 
                 // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                 while (userHp[indexPersonagem] > 0 && (ComHp[indexInimigo] > 0
-                       && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop")))
+                && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop")))
                 {
                     while (Controls.SistemaFGO.escolhaSkill != "1" && Controls.SistemaFGO.escolhaSkill != "2" &&
-                        Controls.SistemaFGO.escolhaSkill != "3" && Controls.SistemaFGO.escolhaSkill != "4" &&
-                        Controls.SistemaFGO.escolhaSkill != "5" && Controls.SistemaFGO.escolhaSkill != "6" &&
-                        Controls.SistemaFGO.escolhaSkill != "7" && Controls.SistemaFGO.escolhaSkill != "8" &&
-                        Controls.SistemaFGO.escolhaSkill != "9") 
+                    Controls.SistemaFGO.escolhaSkill != "3" && Controls.SistemaFGO.escolhaSkill != "4" &&
+                    Controls.SistemaFGO.escolhaSkill != "5" && Controls.SistemaFGO.escolhaSkill != "6" &&
+                    Controls.SistemaFGO.escolhaSkill != "7" && Controls.SistemaFGO.escolhaSkill != "8" &&
+                    Controls.SistemaFGO.escolhaSkill != "9") 
                     {
                         Console.WriteLine("\n");
                         Controls.SistemaFGO.MyServant(Controls.SistemaFGO.personagemEscolhido);
@@ -231,7 +226,7 @@ namespace FGO_BSx
                     }
                     if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
 
-                    Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido);
+                    Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo);
                     Console.Clear();
                 }
             }

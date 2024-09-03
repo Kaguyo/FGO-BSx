@@ -13,19 +13,21 @@ namespace FGO_BSx.CharactersFate
     {
         private string _name = "Artoria";
         private double _hpMax = 5629;
-        private int _atkMax = 172;
+        private int _atkMax = 772;
         private int _defMax = 529;
         private double _hp = 5629;
         private int _atk = 172;
         private int _def = 529;
         private double _spCost = 140;
         private double _spInitial = 0;
-        private double _basicAtk = 1.70;
-        private double _ultNp = 5.33;
+        private double _basicAtk = 1.70; // single hit
+        private double _ultNp = 1.23; // 7 hits
+        private double _extraAtk = 0.73; // 3 hits
         private int _spd = 110;
         private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 5;
+        internal int DanoCausado { get; set; }
         internal string? LastComment { get; set; }
         internal string Name 
         {
@@ -185,14 +187,31 @@ namespace FGO_BSx.CharactersFate
                 _critRate = value;
             }
         }
+        internal double Extra
+        {
+            get
+            {
+                return _extraAtk;
+            }
+            set
+            {
+                _extraAtk= value;
+            }
+        }
         internal int ExcaliburBuff { get; set; }
 
         internal int ExtraAttackCooldown { get; set; }
 
 
         private static Random random = new Random();
+        //  =========================================
+        //  INICIO DE "FUNCOES GENERICAS".
+        //  =========================================
 
-        public void Excalibur()
+        /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
+        as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
+        */
+        public void Excalibur(int defesaInimigo)
         {
             ExcaliburBuff = 2; // Contador de duração do buff após uso de Excalibur
 
@@ -206,32 +225,32 @@ namespace FGO_BSx.CharactersFate
                 {
                     CritRate += 20;
                     CritDmg += 40;
-                    PerformExcalibur1();
+                    PerformExcalibur1(defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !")
                 {
                     CritRate += 20;
                     CritDmg += 40;
-                    PerformExcalibur2();
+                    PerformExcalibur2(defesaInimigo);
                     break;
                 }
                 else if (choice == 3 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !") 
                 {
                     CritRate += 20;
                     CritDmg += 40;
-                    PerformExcalibur3();
+                    PerformExcalibur3(defesaInimigo);
                     break;
                 }
             }
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack();
+                ExtraAttack(defesaInimigo);
             }
         }
 
-        public void ManaLoading()
+        public void ManaLoading(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
@@ -262,7 +281,7 @@ namespace FGO_BSx.CharactersFate
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack();
+                ExtraAttack(defesaInimigo);
             }
             ExcaliburBuff -= 1;
             if (ExcaliburBuff == 0) 
@@ -272,7 +291,7 @@ namespace FGO_BSx.CharactersFate
             }
         }
 
-        public void SwordSkill()
+        public void SwordSkill(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
@@ -282,25 +301,25 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
-                    PerformComment1();
+                    PerformComment1(defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 2 && LastComment != "I'll show you my strength!")
                 {
-                    PerformComment2();
+                    PerformComment2(defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 3 && LastComment != "I'll cut them down!")
                 {
-                    PerformComment3();
+                    PerformComment3(defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 4 && LastComment != "There's still more!")
                 {
-                    PerformComment4();
+                    PerformComment4(defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
@@ -308,7 +327,7 @@ namespace FGO_BSx.CharactersFate
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack();
+                ExtraAttack(defesaInimigo);
             }
             ExcaliburBuff -= 1;
             if (ExcaliburBuff == 0)
@@ -317,7 +336,7 @@ namespace FGO_BSx.CharactersFate
                 CritDmg -= 40;
             }
         }
-        public void ExtraAttack() 
+        public void ExtraAttack(int defesaInimigo) 
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
@@ -327,27 +346,44 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
-                    PerformExtra1();
+                    PerformExtra1(defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
-                    PerformExtra2();
+                    PerformExtra2(defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!") 
                 {
-                    PerformExtra3();
+                    PerformExtra3(defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
             }
             ExtraAttackCooldown = 6;
         }
-        private void PerformExtra1() 
+        //  =========================================
+        //  FIM DE "FUNCOES GENERICAS".
+        //  =========================================
+
+
+        //  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+        //  =========================================
+        //  INICIO DE "FUNCOES ACTIONS".
+        //  =========================================
+
+        /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
+        specially damage dealt logics, to guarantee damage is generated only if the attack is performed, plus patterns and organization.
+        */
+        private void PerformExtra1(int defesaInimigo) 
         {
+            
+            
             string comment = "Got you!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack6.wav";
@@ -360,9 +396,11 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
             Console.ReadKey();
         }
-        private void PerformExtra2()
+        private void PerformExtra2(int defesaInimigo)
         {
             string comment = "O wind, whirl away!";
             LastComment = comment;
@@ -384,9 +422,11 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
             Console.ReadKey();
         }
-        private void PerformExtra3()
+        private void PerformExtra3(int defesaInimigo)
         {
             string comment = "Strike Air!";
             LastComment = comment;
@@ -400,9 +440,11 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
             Console.ReadKey();
         }
-        private void PerformComment1()
+        private void PerformComment1(int defesaInimigo)
         {
             string comment = "I'll take them myself!";
             LastComment = comment;
@@ -416,10 +458,12 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.ReadKey();
         }
 
-        private void PerformComment2()
+        private void PerformComment2(int defesaInimigo)
         {
             string comment = "I'll show you my strength!";
             LastComment = comment;
@@ -433,10 +477,12 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.ReadKey();
         }
 
-        private void PerformComment3()
+        private void PerformComment3(int defesaInimigo)
         {
             string comment = "I'll cut them down!";
             LastComment = comment;
@@ -450,10 +496,12 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(10);
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.ReadKey();
         }
 
-        private void PerformComment4()
+        private void PerformComment4(int defesaInimigo)
         {
             string comment = "There's still more!";
             LastComment = comment;
@@ -467,10 +515,12 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(10);
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.ReadKey();
         }
 
-        private void PerformExcalibur1()
+        private void PerformExcalibur1(int defesaInimigo)
         {
             string comment = "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !";
             LastComment = comment;
@@ -516,10 +566,12 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
             Console.ReadKey();
         }
 
-        private void PerformExcalibur2()
+        private void PerformExcalibur2(int defesaInimigo)
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !";
             LastComment = comment;
@@ -543,7 +595,7 @@ namespace FGO_BSx.CharactersFate
                 else if (c == 'E')
                 {
                     Thread.Sleep(0500);
-                    WriteColored2(ConsoleColor.Yellow);
+                    Controls.SistemaFGO.WriteColored2(ConsoleColor.Yellow);
                     Console.Write(c);
                     Thread.Sleep(42);
                 }
@@ -565,11 +617,13 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.ResetColor();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
             Console.WriteLine();
             Console.ReadKey();
         }
 
-        private void PerformExcalibur3()
+        private void PerformExcalibur3(int defesaInimigo)
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !";
             LastComment = comment;
@@ -593,7 +647,7 @@ namespace FGO_BSx.CharactersFate
                 else if (c == 'E')
                 {
                     Thread.Sleep(0600);
-                    WriteColored2(ConsoleColor.Yellow);
+                    Controls.SistemaFGO.WriteColored2(ConsoleColor.Yellow);
                     Console.Write(c);
                     Thread.Sleep(42);
                 }
@@ -615,6 +669,8 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.ResetColor();
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
             Console.WriteLine();
             Console.ReadKey();
         }
@@ -685,11 +741,9 @@ namespace FGO_BSx.CharactersFate
             Console.WriteLine();
             Console.ReadKey();
         }
-
-        static void WriteColored2(ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-        }
+        //  =========================================
+        //  FIM DE "FUNCOES ACTIONS".
+        //  =========================================
 
         public static void SkillsArtoria(double sp, double spCost)
         {

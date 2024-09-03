@@ -10,7 +10,7 @@ namespace FGO_BSx.CharactersFate
     {
         private string _name = "Mordred";
         private double _hpMax = 6021;
-        private int _atkMax = 162;
+        private int _atkMax = 702;
         private int _defMax = 590;
         private double _hp = 6021;
         private int _atk = 162;

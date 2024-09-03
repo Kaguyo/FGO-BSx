@@ -10,7 +10,7 @@ namespace FGO_BSx.CharactersFate
     {
         private string _name = "Tristan";
         private double _hpMax = 4551;
-        private int _atkMax = 158;
+        private int _atkMax = 658;
         private int _defMax = 480;
         private double _hp = 4551;
         private int _atk = 158;

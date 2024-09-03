@@ -12,7 +12,6 @@ namespace FGO_BSx.Controls
         static public string escolhaSkill = "";
         static public object inimigoEscolhido;
         static public object personagemEscolhido;
-        static public string pararJogo = "";
         private static IWavePlayer waveOutDevice;
 
         public static string Capitalize(string input)
@@ -167,23 +166,23 @@ namespace FGO_BSx.Controls
                 backgroundAudioFileReader = null;
             }
         }
-        public static void UserAttack(object personagem)
+        public static void UserAttack(object personagem, int defesaInimigo)
         {
             if (personagem is Artoria artoria)
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    artoria.SwordSkill();
+                    artoria.SwordSkill(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    artoria.ManaLoading();
+                    artoria.ManaLoading(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && artoria.SpInitial >= artoria.SpCost)
                 {
-                    artoria.Excalibur();
+                    artoria.Excalibur(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -191,17 +190,17 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    baobhan.RangeAttack();
+                    baobhan.RangeAttack(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    baobhan.FinesseImprovement();
+                    baobhan.FinesseImprovement(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && baobhan.SpInitial >= baobhan.SpCost)
                 {
-                    baobhan.FetchFailnaught();
+                    baobhan.FetchFailnaught(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -209,17 +208,17 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    okada.SwordSkill();
+                    okada.SwordSkill(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    okada.AntiSaberAtkUp();
+                    okada.AntiSaberAtkUp(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && okada.SpInitial >= okada.SpCost)
                 {
-                    okada.Shimatsuken();
+                    okada.Shimatsuken(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -227,22 +226,22 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    jalter.SwordSkill();
+                    jalter.SwordSkill(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    jalter.SelfModificationCritUp();
+                    jalter.SelfModificationCritUp(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
-                    jalter.OblivionCorrectionCritUp();
+                    jalter.OblivionCorrectionCritUp(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && jalter.SpInitial >= jalter.SpCost)
                 {
-                    jalter.LeGrondementdelaHaine();
+                    jalter.LeGrondementdelaHaine(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -250,17 +249,17 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    tristan.RangeAttack();
+                    tristan.RangeAttack(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    tristan.ManaLoading();
+                    tristan.ManaLoading(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && tristan.SpInitial >= tristan.SpCost)
                 {
-                    tristan.Failnaught();
+                    tristan.Failnaught(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -268,25 +267,76 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    mordred.SwordSkill();
+                    mordred.SwordSkill(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    mordred.ManaLoading();
+                    mordred.ManaLoading(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
-                    mordred.KnightofCrimsonThunder();
+                    mordred.KnightofCrimsonThunder(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)
                 {
-                    mordred.ClarentBloodArthur();
+                    mordred.ClarentBloodArthur(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
+        }
+        public static int DefesaInimigo(object Inimigo) 
+        {
+            if (Inimigo is FGO_BSx.EnemiesFate.EnemyArtoria enemyArtoria)
+            {
+                return enemyArtoria.Def;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public static void CauseDamage(Random random, double mainStat, double skillAtk, double critRate, double critDmg, int hits, int defesaInimigo)
+        {
+            int DanoCausado;
+            int[] Danos = new int[hits];
+            for (int i = 0; i < hits; i++)
+            {
+                double RNGcrit = NextDoubleInRange(random, 0, 100.1);
+                if (RNGcrit <= critRate && RNGcrit > 0)
+                {
+                    DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk * (1 + (critDmg / 100)));
+                    Danos[i] = DanoCausado;
+                }
+                else
+                {
+                    DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk);
+                    Danos[i] = DanoCausado;
+                }
+            }
+            for (int i = 0; i < hits; i++)
+            {
+                Console.Write($"\rDano causado: {Danos[i]}.");
+                if (i < (hits - 1))
+                {
+                    Danos[i + 1] += Danos[i];
+                }
+                Thread.Sleep(20);
+            }
+            Console.WriteLine();
+        }
+        public static double NextDoubleInRange(Random random, double minValue, double maxValue)
+        {
+            double randomValue = random.NextDouble();
+            double result = minValue + (randomValue * (maxValue - minValue));
+            return result;
+        }
+        public static double Valor(double value1, double value2)
+        {
+            double value = value2 - value1;
+            return value;
         }
         public static void WriteColored(string text, ConsoleColor color)
         {

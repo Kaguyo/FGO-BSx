@@ -12,7 +12,7 @@ namespace FGO_BSx.CharactersFate
         private static Random random = new Random();
         private string _name = "Jeanne d'Arc (Alter)";
         private double _hpMax = 6551;
-        private int _atkMax = 222;
+        private int _atkMax = 722;
         private int _defMax = 590;
         private double _hp = 6551;
         private int _atk = 222;

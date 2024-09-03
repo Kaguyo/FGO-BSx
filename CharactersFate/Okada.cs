@@ -11,7 +11,7 @@ namespace FGO_BSx.CharactersFate
     {
         private string _name = "Okada";
         private double _hpMax = 5751;
-        private int _atkMax = 152;
+        private int _atkMax = 652;
         private int _defMax = 498;
         private double _hp = 5751;
         private int _atk = 152;

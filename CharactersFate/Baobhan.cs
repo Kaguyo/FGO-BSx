@@ -13,7 +13,7 @@ namespace FGO_BSx.CharactersFate
     {
         private string _name = "Baobhan";
         private double _hpMax = 4929;
-        private int _atkMax = 152;
+        private int _atkMax = 632;
         private int _defMax = 499;
         private double _hp = 4929;
         private int _atk = 152;
@@ -188,26 +188,26 @@ namespace FGO_BSx.CharactersFate
 
         private static Random random = new Random();
 
-        public void FetchFailnaught() 
+        public void FetchFailnaught(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
-            while (true) 
+            while (true)
             {
                 int choice = random.Next(1, 3);
-                if (choice == 1 && LastComment != "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!") 
+                if (choice == 1 && LastComment != "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!")
                 {
-                    PerformFetchFailnaught1();
+                    PerformFetchFailnaught1(defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!")
                 {
-                    PerformFetchFailnaught2();
+                    PerformFetchFailnaught2(defesaInimigo);
                     break;
                 }
             }
         }
-        private void PerformFetchFailnaught1()
+        private void PerformFetchFailnaught1(int defesaInimigo)
         {
             string comment = "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!";
             LastComment = comment;
@@ -236,9 +236,10 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
+            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
             Console.ReadKey();
         }
-        private void PerformFetchFailnaught2()
+        private void PerformFetchFailnaught2(int defesaInimigo)
         {
             string comment = "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!";
             LastComment = comment;
@@ -272,11 +273,11 @@ namespace FGO_BSx.CharactersFate
                         Thread.Sleep(1000);
                         Console.Write(c);
                     }
-                    else if (j == 4) 
+                    else if (j == 4)
                     {
                         Console.Write(c);
                         Thread.Sleep(500);
-                        Controls.SistemaFGO.WriteColored2(ConsoleColor.Red); 
+                        Controls.SistemaFGO.WriteColored2(ConsoleColor.Red);
                     }
                 }
                 else
@@ -287,34 +288,36 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
+            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
             Console.ReadKey();
         }
 
-        public void FinesseImprovement() 
+        public void FinesseImprovement(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
-            while (true) 
+            while (true)
             {
                 int choice = random.Next(1, 4);
 
                 if (choice == 1 && LastComment != "Cruelty. Depravity.")
                 {
-                    PerformComment4();
+                    PerformComment4(defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "Like taking a bath !")
                 {
-                    PerformComment5();
+                    PerformComment5(defesaInimigo);
                     break;
                 }
-                else if (choice == 3 && LastComment != "More, more!") 
+                else if (choice == 3 && LastComment != "More, more!")
                 {
-                    PerformComment6();
+                    PerformComment6(defesaInimigo);
+                    break;
                 }
             }
         }
-        private void PerformComment6()
+        private void PerformComment6(int defesaInimigo)
         {
             string comment = "More, more!";
             LastComment = comment;
@@ -335,10 +338,12 @@ namespace FGO_BSx.CharactersFate
                     Thread.Sleep(15);
                 }
             }
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 3, defesaInimigo);
             Console.WriteLine();
             Console.ReadKey();
         }
-        private void PerformComment5()
+        private void PerformComment5(int defesaInimigo)
         {
             string comment = "Like taking a bath !";
             LastComment = comment;
@@ -362,7 +367,7 @@ namespace FGO_BSx.CharactersFate
             Console.WriteLine();
             Console.ReadKey();
         }
-        private void PerformComment4()
+        private void PerformComment4(int defesaInimigo)
         {
             string comment = "Cruelty. Depravity.";
             LastComment = comment;
@@ -391,7 +396,7 @@ namespace FGO_BSx.CharactersFate
             Console.WriteLine();
             Console.ReadKey();
         }
-        public void RangeAttack() 
+        public void RangeAttack(int defesaInimigo) 
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
@@ -402,22 +407,22 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "You have awful taste!")
                 {
-                    PerformComment1();
+                    PerformComment1(defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "Does it hurt?")
                 {
-                    PerformComment2();
+                    PerformComment2(defesaInimigo);
                     break;
                 }
                 else if (choice == 3 && (Hp / HpMax) <= (HpMax / 0.2) && LastComment != "Why don't you die?")
                 {
-                    PerformComment3();
+                    PerformComment3(defesaInimigo);
                     break;
                 }
             }
         }
-        private void PerformComment1()
+        private void PerformComment1(int defesaInimigo)
         {
             string comment = "You have awful taste!";
             LastComment = comment;
@@ -430,11 +435,13 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(15);
             }
+
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.WriteLine();
             Console.ReadKey();
         }
 
-        private void PerformComment2()
+        private void PerformComment2(int defesaInimigo)
         {
             string comment = "Does it hurt?";
             LastComment = comment;
@@ -447,11 +454,12 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(25);
             }
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.WriteLine();
             Console.ReadKey();
         }
 
-        private void PerformComment3()
+        private void PerformComment3(int defesaInimigo)
         {
             string comment = "Why don't you die?";
             LastComment = comment;
@@ -464,6 +472,7 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(20);
             }
+            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.WriteLine();
             Console.ReadKey();
         }
