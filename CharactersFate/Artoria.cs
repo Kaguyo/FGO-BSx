@@ -48,7 +48,7 @@ namespace FGO_BSx.CharactersFate
         {
             get
             {
-                return _atkMax = 123;
+                return _atkMax;
             }
             set
             {
@@ -260,7 +260,6 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "Sacred sword, release...")
                 {
-
                     PerformManaLoading1();
                     SpInitial += 60;
                     break;
@@ -302,24 +301,28 @@ namespace FGO_BSx.CharactersFate
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformComment1(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 2 && LastComment != "I'll show you my strength!")
                 {
                     PerformComment2(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 3 && LastComment != "I'll cut them down!")
                 {
                     PerformComment3(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 4 && LastComment != "There's still more!")
                 {
                     PerformComment4(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
@@ -347,18 +350,21 @@ namespace FGO_BSx.CharactersFate
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformExtra1(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
                     PerformExtra2(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!") 
                 {
                     PerformExtra3(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
@@ -378,12 +384,10 @@ namespace FGO_BSx.CharactersFate
         //  =========================================
 
         /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
-        specially damage dealt logics, to guarantee damage is generated only if the attack is performed, plus patterns and organization.
+        specially the character comments.
         */
         private void PerformExtra1(int defesaInimigo) 
         {
-            
-            
             string comment = "Got you!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack6.wav";
@@ -396,9 +400,6 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
-            Console.ReadKey();
         }
         private void PerformExtra2(int defesaInimigo)
         {
@@ -422,9 +423,6 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
-            Console.ReadKey();
         }
         private void PerformExtra3(int defesaInimigo)
         {
@@ -440,9 +438,6 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
-            Console.ReadKey();
         }
         private void PerformComment1(int defesaInimigo)
         {
@@ -458,9 +453,6 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
-            Console.ReadKey();
         }
 
         private void PerformComment2(int defesaInimigo)
@@ -477,9 +469,6 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
-            Console.ReadKey();
         }
 
         private void PerformComment3(int defesaInimigo)
@@ -496,9 +485,6 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(10);
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
-            Console.ReadKey();
         }
 
         private void PerformComment4(int defesaInimigo)
@@ -515,9 +501,6 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(10);
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
-            Console.ReadKey();
         }
 
         private void PerformExcalibur1(int defesaInimigo)
@@ -566,9 +549,6 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
-            Console.ReadKey();
         }
 
         private void PerformExcalibur2(int defesaInimigo)
@@ -617,10 +597,6 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.ResetColor();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
-            Console.WriteLine();
-            Console.ReadKey();
         }
 
         private void PerformExcalibur3(int defesaInimigo)
@@ -669,10 +645,6 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.ResetColor();
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
-            Console.WriteLine();
-            Console.ReadKey();
         }
 
         private void PerformManaLoading1()

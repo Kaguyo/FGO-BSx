@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using NAudio.Wave;
-using System.Xml.Linq;
-
-namespace FGO_BSx.CharactersFate
+﻿namespace FGO_BSx.CharactersFate
 {
     internal class Baobhan : Interfaces.IArcher
     {
+        // Fields
         private string _name = "Baobhan";
         private double _hpMax = 4929;
         private int _atkMax = 632;
@@ -21,173 +13,43 @@ namespace FGO_BSx.CharactersFate
         private double _spCost = 100;
         private double _spInitial = 0;
         private double _basicAtk = 1.30;
+        private double _extraAtk = 0.95;
         private double _ultNp = 4.3;
         private int _spd = 100;
         private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 5;
-        internal string? LastComment { get; set; }
-        internal string Name
-        {
-            get { return _name; }
-        }
-        internal double HpMax
-        {
-            get
-            {
-                return _hpMax;
-            }
-            set
-            {
-                _hpMax = value;
-            }
-        }
-        internal int AtkMax
-        {
-            get
-            {
-                return _atkMax;
-            }
-            set
-            {
-                _atkMax = value;
-            }
-        }
-        internal int DefMax
-        {
-            get
-            {
-                return _defMax;
-            }
-            set
-            {
-                _defMax = value;
-            }
-        }
-        internal double Hp
-        {
-            get
-            {
-                return _hp;
-            }
-            set
-            {
-                _hp = value;
-            }
-        }
-        internal int Atk
-        {
-            get
-            {
-                return _atk;
-            }
-            set
-            {
-                _atk = value;
-            }
-        }
-        internal int Def
-        {
-            get
-            {
-                return _def;
-            }
-            set
-            {
-                _def = value;
-            }
-        }
-        internal double SpCost
-        {
-            get
-            {
-                return _spCost;
-            }
-            set
-            {
-                _spCost = value;
-            }
-        }
-        internal double SpInitial
-        {
-            get
-            {
-                return _spInitial;
-            }
-            set
-            {
-                _spInitial = value;
-            }
-        }
-        internal double BasicAttack
-        {
-            get
-            {
-                return _basicAtk;
-            }
-            set
-            {
-                _basicAtk = value;
-            }
-        }
-        internal double UltNp
-        {
-            get
-            {
-                return _ultNp;
-            }
-            set
-            {
-                _ultNp = value;
-            }
-        }
-        internal int SPD
-        {
-            get
-            {
-                return _spd;
-            }
-            set
-            {
-                _spd = value;
-            }
-        }
-        internal int Lvl
-        {
-            get
-            {
-                return _lvl;
-            }
-            set
-            {
-                _lvl = value;
-            }
-        }
-        internal double CritDmg
-        {
-            get
-            {
-                return _critDmg;
-            }
-            set
-            {
-                _critDmg = value;
-            }
-        }
-        internal double CritRate
-        {
-            get
-            {
-                return _critRate;
-            }
-            set
-            {
-                _critRate = value;
-            }
-        }
-
         private static Random random = new Random();
 
+        // Properties
+        internal string? LastComment { get; set; }
+        internal string Name { get => _name; }
+        internal double HpMax { get => _hpMax; set => _hpMax = value; }
+        internal int AtkMax { get => _atkMax; set => _atkMax = value; }
+        internal int DefMax { get => _defMax; set => _defMax = value; }
+        internal double Hp { get => _hp; set => _hp = value; }
+        internal int Atk { get => _atk; set => _atk = value; }
+        internal int Def { get => _def; set => _def = value; }
+        internal double SpCost { get => _spCost; set => _spCost = value; }
+        internal double SpInitial { get => _spInitial; set => _spInitial = value; }
+        internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
+        internal double Extra { get => _extraAtk; set => _extraAtk = value; }
+        internal double UltNp { get => _ultNp; set => _ultNp = value; }
+        internal int SPD { get => _spd; set => _spd = value; }
+        internal int Lvl { get => _lvl; set => _lvl = value; }
+        internal double CritDmg { get => _critDmg; set => _critDmg = value; }
+        internal double CritRate { get => _critRate; set => _critRate = value; }
+        internal int FinnesseImproveDuration { get; set; }
+
+        internal int ExtraAttackCooldown { get; set; }
+
+        //  =========================================
+        //  INICIO DE "FUNCOES GENERICAS".
+        //  =========================================
+
+        /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
+        as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
+        */
         public void FetchFailnaught(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
@@ -198,15 +60,144 @@ namespace FGO_BSx.CharactersFate
                 if (choice == 1 && LastComment != "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!")
                 {
                     PerformFetchFailnaught1(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!")
                 {
                     PerformFetchFailnaught2(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
                     break;
                 }
             }
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                ExtraAttack(defesaInimigo);
+            }
+            FinnesseImproveDuration -= 1;
+            if (FinnesseImproveDuration == 0) 
+            {
+                Atk -= (int)(AtkMax / 3.5);
+            }
         }
+
+        public void FinesseImprovement(int defesaInimigo)
+        {
+            FinnesseImproveDuration = 2;
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
+            Console.WriteLine(":");
+            while (true)
+            {
+                int choice = random.Next(1, 4);
+
+                if (choice == 1 && LastComment != "Cruelty. Depravity.")
+                {
+                    PerformComment4(defesaInimigo);
+                    break;
+                }
+                else if (choice == 2 && LastComment != "Like taking a bath !")
+                {
+                    PerformComment5(defesaInimigo);
+                    break;
+                }
+                else if (choice == 3 && LastComment != "More, more!")
+                {
+                    PerformComment6(defesaInimigo);
+                    break;
+                }
+            }
+            Atk = (int)(Atk + (Atk / 3.5));
+            ExtraAttackCooldown -= 1;
+        }
+
+        public void RangeAttack(int defesaInimigo)
+        {
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
+            Console.WriteLine(":");
+
+            while (true)
+            {
+                int choice = random.Next(1, 4);
+
+                if (choice == 1 && LastComment != "You have awful taste!")
+                {
+                    PerformComment1(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
+                    break;
+                }
+                else if (choice == 2 && LastComment != "Does it hurt?")
+                {
+                    PerformComment2(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
+                    break;
+                }
+                else if (choice == 3 && (Hp / HpMax) <= (HpMax / 0.2) && LastComment != "Why don't you die?")
+                {
+                    PerformComment3(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
+                    break;
+                }
+            }
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                ExtraAttack(defesaInimigo);
+            }
+            FinnesseImproveDuration -= 1;
+            if (FinnesseImproveDuration == 0)
+            {
+                Atk -= (int)(AtkMax / 3.5);
+            }
+        }
+        public void ExtraAttack(int defesaInimigo)
+        {
+            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Console.WriteLine(":");
+            while (true)
+            {
+                int choice = random.Next(1, 4);
+
+                if (choice == 1 && LastComment != "")
+                {
+                    PerformExtra1(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
+                    SpInitial += 5;
+                    break;
+                }
+                else if (choice == 2 && LastComment != "")
+                {
+                    PerformExtra2(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
+                    SpInitial += 5;
+                    break;
+                }
+                else if (choice == 3 && LastComment != "")
+                {
+                    PerformExtra3(defesaInimigo);
+                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
+                    SpInitial += 5;
+                    break;
+                }
+            }
+            ExtraAttackCooldown = 6;
+        }
+
+        //  =========================================
+        //  FIM DE "FUNCOES GENERICAS".
+        //  =========================================
+
+
+        //  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+        //  =========================================
+        //  INICIO DE "FUNCOES ACTIONS".
+        //  =========================================
+
+        /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
+        specially damage dealt logics, to guarantee damage is generated only if the attack is performed, plus patterns and organization.
+        */
         private void PerformFetchFailnaught1(int defesaInimigo)
         {
             string comment = "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!";
@@ -236,92 +227,148 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
-            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
-            Console.ReadKey();
         }
+
         private void PerformFetchFailnaught2(int defesaInimigo)
         {
             string comment = "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_NP2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_NP4.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             byte i = 0;
-            byte j = 0;
             foreach (char c in comment)
             {
-                if (c == 'E')
+                if (c == '!' && i < 1)
                 {
-                    if (i != 1)
-                    {
-                        Thread.Sleep(1100);
-                        Console.Write(c);
-                        i++;
-                    }
+                    Console.Write(c);
+                    Thread.Sleep(1700);
+                    i++;
                 }
-                else if (c == '!')
+                else if (c == '?' && i < 2)
                 {
-                    Thread.Sleep(1100);
-                    j++;
-                    if (j == 2)
-                    {
-                        Thread.Sleep(150);
-                        Console.Write(c);
-                    }
-                    else if (j == 3)
-                    {
-                        Thread.Sleep(1000);
-                        Console.Write(c);
-                    }
-                    else if (j == 4)
-                    {
-                        Console.Write(c);
-                        Thread.Sleep(500);
-                        Controls.SistemaFGO.WriteColored2(ConsoleColor.Red);
-                    }
+                    Console.Write(c);
+                    Thread.Sleep(1000);
+                    i++;
                 }
                 else
                 {
                     Console.Write(c);
-                    Thread.Sleep(35);
-                    Console.ResetColor();
+                    Thread.Sleep(40);
                 }
             }
             Console.WriteLine();
-            Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
-            Console.ReadKey();
         }
 
-        public void FinesseImprovement(int defesaInimigo)
+        private void PerformComment1(int defesaInimigo)
         {
-            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
-            Console.WriteLine(":");
-            while (true)
-            {
-                int choice = random.Next(1, 4);
+            string comment = "You have awful taste!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_BATTLE4.wav";
 
-                if (choice == 1 && LastComment != "Cruelty. Depravity.")
-                {
-                    PerformComment4(defesaInimigo);
-                    break;
-                }
-                else if (choice == 2 && LastComment != "Like taking a bath !")
-                {
-                    PerformComment5(defesaInimigo);
-                    break;
-                }
-                else if (choice == 3 && LastComment != "More, more!")
-                {
-                    PerformComment6(defesaInimigo);
-                    break;
-                }
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(40);
             }
+            Console.WriteLine();
         }
+
+        private void PerformComment2(int defesaInimigo)
+        {
+            string comment = "Does it hurt?";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_BATTLE2.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(40);
+            }
+            Console.WriteLine();
+        }
+
+        private void PerformComment3(int defesaInimigo)
+        {
+            string comment = "Why don't you die?";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_BATTLE3.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(40);
+            }
+            Console.WriteLine();
+        }
+
+        private void PerformComment4(int defesaInimigo)
+        {
+            string comment = "Cruelty. Depravity.";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_SKILL2.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(40);
+            }
+            Console.WriteLine();
+        }
+
+        private void PerformComment5(int defesaInimigo)
+        {
+            string comment = "Like taking a bath !";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_SKILL4.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(40);
+            }
+            Console.WriteLine();
+        }
+
         private void PerformComment6(int defesaInimigo)
         {
             string comment = "More, more!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Skill4.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage3_SKILL3.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(40);
+            }
+            Console.WriteLine();
+        }
+        private void PerformExtra1(int defesaInimigo)
+        {
+            string comment = "Got you!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack6.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(22);
+            }
+            Console.WriteLine();
+        }
+        private void PerformExtra2(int defesaInimigo)
+        {
+            string comment = "O wind, whirl away!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_ExtraAttack1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -330,152 +377,35 @@ namespace FGO_BSx.CharactersFate
                 if (c == ',')
                 {
                     Console.Write(c);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(300);
                 }
                 else
                 {
                     Console.Write(c);
-                    Thread.Sleep(15);
-                }
-            }
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 3, defesaInimigo);
-            Console.WriteLine();
-            Console.ReadKey();
-        }
-        private void PerformComment5(int defesaInimigo)
-        {
-            string comment = "Like taking a bath !";
-            LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Skill3.wav";
-
-            Controls.SistemaFGO.PlaySound(audioFilePath);
-
-            foreach (char c in comment)
-            {
-                if (c == 'h')
-                {
-                    Console.Write(c);
-                    Thread.Sleep(350);
-                }
-                else
-                {
-                    Console.Write(c);
-                    Thread.Sleep(40);
+                    Thread.Sleep(22);
                 }
             }
             Console.WriteLine();
-            Console.ReadKey();
         }
-        private void PerformComment4(int defesaInimigo)
+        private void PerformExtra3(int defesaInimigo)
         {
-            string comment = "Cruelty. Depravity.";
+            string comment = "Strike Air!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Skill2.wav";
-
-            Controls.SistemaFGO.PlaySound(audioFilePath);
-            byte i = 0;
-            foreach (char c in comment)
-            {
-
-                if (c == '.')
-                {
-                    Console.Write(c);
-                    if (i != 1)
-                    {
-                        Thread.Sleep(290);
-                        i++;
-                    }
-                }
-                else
-                {
-                    Console.Write(c);
-                    Thread.Sleep(40);
-                }
-            }
-            Console.WriteLine();
-            Console.ReadKey();
-        }
-        public void RangeAttack(int defesaInimigo) 
-        {
-            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
-            Console.WriteLine(":");
-
-            while (true)
-            {
-                int choice = random.Next(1, 4);
-
-                if (choice == 1 && LastComment != "You have awful taste!")
-                {
-                    PerformComment1(defesaInimigo);
-                    break;
-                }
-                else if (choice == 2 && LastComment != "Does it hurt?")
-                {
-                    PerformComment2(defesaInimigo);
-                    break;
-                }
-                else if (choice == 3 && (Hp / HpMax) <= (HpMax / 0.2) && LastComment != "Why don't you die?")
-                {
-                    PerformComment3(defesaInimigo);
-                    break;
-                }
-            }
-        }
-        private void PerformComment1(int defesaInimigo)
-        {
-            string comment = "You have awful taste!";
-            LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_SelectAttack1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_ExtraAttack2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
                 Console.Write(c);
-                Thread.Sleep(15);
+                Thread.Sleep(22);
             }
-
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
             Console.WriteLine();
-            Console.ReadKey();
         }
+        //  =========================================
+        //  FIM DE "FUNCOES ACTIONS".
+        //  =========================================
 
-        private void PerformComment2(int defesaInimigo)
-        {
-            string comment = "Does it hurt?";
-            LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_Attack3.wav";
-
-            Controls.SistemaFGO.PlaySound(audioFilePath);
-
-            foreach (char c in comment)
-            {
-                Console.Write(c);
-                Thread.Sleep(25);
-            }
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
-            Console.WriteLine();
-            Console.ReadKey();
-        }
-
-        private void PerformComment3(int defesaInimigo)
-        {
-            string comment = "Why don't you die?";
-            LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\S311_Stage1_SelectAttack3.wav";
-
-            Controls.SistemaFGO.PlaySound(audioFilePath);
-
-            foreach (char c in comment)
-            {
-                Console.Write(c);
-                Thread.Sleep(20);
-            }
-            Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
-            Console.WriteLine();
-            Console.ReadKey();
-        }
         public static void SkillsBaobhan(double sp, double spCost)
         {
             Controls.SistemaFGO.WriteColored("Range Attack", ConsoleColor.Red);

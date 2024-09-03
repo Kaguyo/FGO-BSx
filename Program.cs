@@ -9,8 +9,12 @@ namespace FGO_BSx
         public static void Main()
         {
 
+
             while (true)
             {
+                string escolhaPersonagem;
+                string escolhaInimigo;
+                int defInimigo = 0;
                 FGO_BSx.EnemiesFate.EnemyArtoria enemyArtoria = new FGO_BSx.EnemiesFate.EnemyArtoria();
 
                 FGO_BSx.CharactersFate.Artoria artoria = new FGO_BSx.CharactersFate.Artoria();
@@ -51,9 +55,7 @@ namespace FGO_BSx
                                          jalter
                                         };
 
-                string escolhaPersonagem;
-                string escolhaInimigo;
-                int defInimigo = 0;
+                
 
                 List<string> validChoices = new List<string>();
                 List<string> validEnemyChoices = new List<string>();
@@ -200,7 +202,7 @@ namespace FGO_BSx
                 // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                 while (userHp[indexPersonagem] > 0 && (ComHp[indexInimigo] > 0
                 && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop")))
-                {
+                {   
                     while (Controls.SistemaFGO.escolhaSkill != "1" && Controls.SistemaFGO.escolhaSkill != "2" &&
                     Controls.SistemaFGO.escolhaSkill != "3" && Controls.SistemaFGO.escolhaSkill != "4" &&
                     Controls.SistemaFGO.escolhaSkill != "5" && Controls.SistemaFGO.escolhaSkill != "6" &&
@@ -216,8 +218,6 @@ namespace FGO_BSx
                         Console.WriteLine("===============\n");
                         Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
 
-
-                    
                     
                         Console.Write("\n\nSelect a Skill: ");
                         Controls.SistemaFGO.escolhaSkill = Console.ReadLine().ToLower();

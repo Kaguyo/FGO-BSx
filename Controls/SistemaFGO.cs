@@ -326,6 +326,7 @@ namespace FGO_BSx.Controls
                 Thread.Sleep(20);
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
         public static double NextDoubleInRange(Random random, double minValue, double maxValue)
         {
