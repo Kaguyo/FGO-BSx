@@ -62,13 +62,13 @@
                 if (choice == 1 && LastComment != "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!")
                 {
                     PerformFetchFailnaught1(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
+                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!")
                 {
                     PerformFetchFailnaught2(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
+                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
                     break;
                 }
             }
@@ -95,17 +95,20 @@
 
                 if (choice == 1 && LastComment != "Cruelty. Depravity.")
                 {
-                    PerformComment4(defesaInimigo);
+                    PerformComment4();
+                    SpInitial += 25;
                     break;
                 }
                 else if (choice == 2 && LastComment != "Like taking a bath !")
                 {
-                    PerformComment5(defesaInimigo);
+                    PerformComment5();
+                    SpInitial += 25;
                     break;
                 }
                 else if (choice == 3 && LastComment != "More, more!")
                 {
-                    PerformComment6(defesaInimigo);
+                    PerformComment6();
+                    SpInitial += 25;
                     break;
                 }
             }
@@ -124,20 +127,23 @@
 
                 if (choice == 1 && LastComment != "You have awful taste!")
                 {
-                    PerformComment1(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
+                    PerformComment1();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
+                    SpInitial += 10;
                     break;
                 }
                 else if (choice == 2 && LastComment != "Does it hurt?")
                 {
-                    PerformComment2(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
+                    PerformComment2();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
+                    SpInitial += 10;
                     break;
                 }
                 else if (choice == 3 && (Hp / HpMax) <= (HpMax / 0.2) && LastComment != "Why don't you die?")
                 {
-                    PerformComment3(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
+                    PerformComment3();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
+                    SpInitial += 10;
                     break;
                 }
             }
@@ -162,22 +168,22 @@
 
                 if (choice == 1 && LastComment != "Watch closely.")
                 {
-                    PerformExtra1(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
+                    PerformExtra1();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "Look, look!")
                 {
-                    PerformExtra2(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
+                    PerformExtra2();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "How about being reborn as a wretched scapegoat?")
                 {
-                    PerformExtra3(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
+                    PerformExtra3();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
@@ -262,7 +268,7 @@
             Console.WriteLine();
         }
 
-        private void PerformComment1(int defesaInimigo)
+        private void PerformComment1()
         {
             string comment = "You have awful taste!";
             LastComment = comment;
@@ -277,7 +283,7 @@
             Console.WriteLine();
         }
 
-        private void PerformComment2(int defesaInimigo)
+        private void PerformComment2()
         {
             string comment = "Does it hurt?";
             LastComment = comment;
@@ -292,7 +298,7 @@
             Console.WriteLine();
         }
 
-        private void PerformComment3(int defesaInimigo)
+        private void PerformComment3()
         {
             string comment = "Why don't you die?";
             LastComment = comment;
@@ -307,7 +313,7 @@
             Console.WriteLine();
         }
 
-        private void PerformComment4(int defesaInimigo)
+        private void PerformComment4()
         {
             string comment = "Cruelty. Depravity.";
             LastComment = comment;
@@ -322,7 +328,7 @@
             Console.WriteLine();
         }
 
-        private void PerformComment5(int defesaInimigo)
+        private void PerformComment5()
         {
             string comment = "Like taking a bath !";
             LastComment = comment;
@@ -337,7 +343,7 @@
             Console.WriteLine();
         }
 
-        private void PerformComment6(int defesaInimigo)
+        private void PerformComment6()
         {
             string comment = "More, more!";
             LastComment = comment;
@@ -351,7 +357,7 @@
             }
             Console.WriteLine();
         }
-        private void PerformExtra1(int defesaInimigo)
+        private void PerformExtra1()
         {
             string comment = "Watch closely.";
             LastComment = comment;
@@ -366,7 +372,7 @@
             }
             Console.WriteLine();
         }
-        private void PerformExtra2(int defesaInimigo)
+        private void PerformExtra2()
         {
             string comment = "Look, look!";
             LastComment = comment;
@@ -389,7 +395,7 @@
             }
             Console.WriteLine();
         }
-        private void PerformExtra3(int defesaInimigo)
+        private void PerformExtra3()
         {
             string comment = "How about being reborn as a wretched scapegoat?";
             LastComment = comment;

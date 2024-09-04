@@ -66,21 +66,24 @@
                 {
                     CritRate += 20;
                     CritDmg += 40;
-                    PerformExcalibur1(defesaInimigo);
+                    PerformExcalibur1();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !")
                 {
                     CritRate += 20;
                     CritDmg += 40;
-                    PerformExcalibur2(defesaInimigo);
+                    PerformExcalibur2();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
                     break;
                 }
                 else if (choice == 3 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !") 
                 {
                     CritRate += 20;
                     CritDmg += 40;
-                    PerformExcalibur3(defesaInimigo);
+                    PerformExcalibur3();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
                     break;
                 }
             }
@@ -141,29 +144,29 @@
 
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
-                    PerformComment1(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
+                    PerformComment1();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 2 && LastComment != "I'll show you my strength!")
                 {
-                    PerformComment2(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
+                    PerformComment2();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 3 && LastComment != "I'll cut them down!")
                 {
-                    PerformComment3(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
+                    PerformComment3();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 4 && LastComment != "There's still more!")
                 {
-                    PerformComment4(defesaInimigo);
-                    Controls.SistemaFGO.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
+                    PerformComment4();
+                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
@@ -191,21 +194,21 @@
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformExtra1();
-                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
+                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
                     PerformExtra2();
-                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
+                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!") 
                 {
                     PerformExtra3();
-                    Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
+                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
@@ -277,7 +280,7 @@
                 Thread.Sleep(22);
             }
         }
-        private void PerformComment1(int defesaInimigo)
+        private void PerformComment1()
         {
             string comment = "I'll take them myself!";
             LastComment = comment;
@@ -292,7 +295,7 @@
             }
         }
 
-        private void PerformComment2(int defesaInimigo)
+        private void PerformComment2()
         {
             string comment = "I'll show you my strength!";
             LastComment = comment;
@@ -307,7 +310,7 @@
             }
         }
 
-        private void PerformComment3(int defesaInimigo)
+        private void PerformComment3()
         {
             string comment = "I'll cut them down!";
             LastComment = comment;
@@ -322,7 +325,7 @@
             }
         }
 
-        private void PerformComment4(int defesaInimigo)
+        private void PerformComment4()
         {
             string comment = "There's still more!";
             LastComment = comment;
@@ -337,7 +340,7 @@
             }
         }
 
-        private void PerformExcalibur1(int defesaInimigo)
+        private void PerformExcalibur1()
         {
             string comment = "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !";
             LastComment = comment;
@@ -384,7 +387,7 @@
             }
         }
 
-        private void PerformExcalibur2(int defesaInimigo)
+        private void PerformExcalibur2()
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !";
             LastComment = comment;
@@ -432,7 +435,7 @@
             Console.ResetColor();
         }
 
-        private void PerformExcalibur3(int defesaInimigo)
+        private void PerformExcalibur3()
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !";
             LastComment = comment;
