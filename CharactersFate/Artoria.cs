@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using NAudio.Wave;
-using System.Xml.Linq;
-
-namespace FGO_BSx.CharactersFate
+﻿namespace FGO_BSx.CharactersFate
 {
     internal class Artoria : Interfaces.ISaber
     {
@@ -27,183 +18,31 @@ namespace FGO_BSx.CharactersFate
         private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 5;
-        internal int DanoCausado { get; set; }
-        internal string? LastComment { get; set; }
-        internal string Name 
-        {
-            get { return _name; }     
-        }
-        internal double HpMax
-        {
-            get
-            {
-                return _hpMax;
-            }
-            set 
-            {
-                _hpMax = value;
-            }
-        }
-        internal int AtkMax
-        {
-            get
-            {
-                return _atkMax;
-            }
-            set
-            {
-                _atkMax = value;
-            }
-        }
-        internal int DefMax
-        {
-            get
-            {
-                return _defMax;
-            }
-            set
-            {
-                _defMax = value;
-            }
-        }
-        internal double Hp
-        {
-            get
-            {
-                return _hp;
-            }
-            set
-            {
-                _hp = value;
-            }
-        }
-        internal int Atk
-        {
-            get
-            {
-                return _atk;
-            }
-            set
-            {
-                _atk = value;
-            }
-        }
-        internal int Def
-        {
-            get
-            {
-                return _def;
-            }
-            set
-            {
-                _def = value;
-            }
-        }
-        internal double SpCost
-        {
-            get
-            {
-                return _spCost;
-            }
-            set
-            {
-                _spCost = value;
-            }
-        }
-        internal double SpInitial
-        {
-            get
-            {
-                return _spInitial;
-            }
-            set
-            {
-                _spInitial = value;
-            }
-        }
-        internal double BasicAttack
-        {
-            get
-            {
-                return _basicAtk;
-            }
-            set
-            {
-                _basicAtk = value;
-            }
-        }
-        internal double UltNp
-        {
-            get
-            {
-                return _ultNp;
-            }
-            set
-            {
-                _ultNp = value;
-            }
-        }
-        internal int SPD
-        {
-            get
-            {
-                return _spd;
-            }
-            set
-            {
-                _spd = value;
-            }
-        }
-        internal int Lvl
-        {
-            get
-            {
-                return _lvl;
-            }
-            set
-            {
-                _lvl = value;
-            }
-        }
-        internal double CritDmg
-        {
-            get
-            {
-                return _critDmg;
-            }
-            set
-            {
-                _critDmg = value;
-            }
-        }
-        internal double CritRate
-        {
-            get
-            {
-                return _critRate;
-            }
-            set
-            {
-                _critRate = value;
-            }
-        }
-        internal double Extra
-        {
-            get
-            {
-                return _extraAtk;
-            }
-            set
-            {
-                _extraAtk= value;
-            }
-        }
-        internal int ExcaliburBuff { get; set; }
-
-        internal int ExtraAttackCooldown { get; set; }
-
+        private double _classDmgBonus;
 
         private static Random random = new Random();
+
+        internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
+        internal string? LastComment { get; set; }
+        internal string Name { get => _name; }
+        internal double HpMax { get => _hpMax; set => _hpMax = value; }
+        internal int AtkMax { get => _atkMax; set => _atkMax = value; }
+        internal int DefMax { get => _defMax; set => _defMax = value; }
+        internal double Hp { get => _hp; set => _hp = value; }
+        internal int Atk { get => _atk; set => _atk = value; }
+        internal int Def { get => _def; set => _def = value; }
+        internal double SpCost { get => _spCost; set => _spCost = value; }
+        internal double SpInitial { get => _spInitial; set => _spInitial = value; }
+        internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
+        internal double Extra { get => _extraAtk; set => _extraAtk = value; }
+        internal double UltNp { get => _ultNp; set => _ultNp = value; }
+        internal int SPD { get => _spd; set => _spd = value; }
+        internal int Lvl { get => _lvl; set => _lvl = value; }
+        internal double CritDmg { get => _critDmg; set => _critDmg = value; }
+        internal double CritRate { get => _critRate; set => _critRate = value; }
+        internal int ExcaliburBuff { get; set; }
+        internal int ExtraAttackCooldown { get; set; }
+
         //  =========================================
         //  INICIO DE "FUNCOES GENERICAS".
         //  =========================================
@@ -349,21 +188,21 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
-                    PerformExtra1(defesaInimigo);
+                    PerformExtra1();
                     Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
-                    PerformExtra2(defesaInimigo);
+                    PerformExtra2();
                     Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!") 
                 {
-                    PerformExtra3(defesaInimigo);
+                    PerformExtra3();
                     Controls.SistemaFGO.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
@@ -386,7 +225,7 @@ namespace FGO_BSx.CharactersFate
         /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
         specially the character comments.
         */
-        private void PerformExtra1(int defesaInimigo) 
+        private void PerformExtra1() 
         {
             string comment = "Got you!";
             LastComment = comment;
@@ -399,9 +238,8 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(22);
             }
-            Console.WriteLine();
         }
-        private void PerformExtra2(int defesaInimigo)
+        private void PerformExtra2()
         {
             string comment = "O wind, whirl away!";
             LastComment = comment;
@@ -422,9 +260,8 @@ namespace FGO_BSx.CharactersFate
                     Thread.Sleep(22);
                 }
             }
-            Console.WriteLine();
         }
-        private void PerformExtra3(int defesaInimigo)
+        private void PerformExtra3()
         {
             string comment = "Strike Air!";
             LastComment = comment;
@@ -437,7 +274,6 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(22);
             }
-            Console.WriteLine();
         }
         private void PerformComment1(int defesaInimigo)
         {
@@ -452,7 +288,6 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(22);
             }
-            Console.WriteLine();
         }
 
         private void PerformComment2(int defesaInimigo)
@@ -468,7 +303,6 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(22);
             }
-            Console.WriteLine();
         }
 
         private void PerformComment3(int defesaInimigo)
@@ -484,7 +318,6 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(10);
             }
-            Console.WriteLine();
         }
 
         private void PerformComment4(int defesaInimigo)
@@ -500,7 +333,6 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(c);
                 Thread.Sleep(10);
             }
-            Console.WriteLine();
         }
 
         private void PerformExcalibur1(int defesaInimigo)
@@ -548,7 +380,6 @@ namespace FGO_BSx.CharactersFate
                     Thread.Sleep(2000);
                 }
             }
-            Console.WriteLine();
         }
 
         private void PerformExcalibur2(int defesaInimigo)

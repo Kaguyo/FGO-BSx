@@ -218,7 +218,6 @@ namespace FGO_BSx
                         Console.WriteLine("===============\n");
                         Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
 
-                    
                         Console.Write("\n\nSelect a Skill: ");
                         Controls.SistemaFGO.escolhaSkill = Console.ReadLine().ToLower();
                         Console.Clear();

@@ -19,9 +19,12 @@
         private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 5;
+        private double _classDmgBonus;
+
         private static Random random = new Random();
 
         // Properties
+        internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
         internal string? LastComment { get; set; }
         internal string Name { get => _name; }
         internal double HpMax { get => _hpMax; set => _hpMax = value; }
@@ -40,7 +43,6 @@
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
         internal int FinnesseImproveDuration { get; set; }
-
         internal int ExtraAttackCooldown { get; set; }
 
         //  =========================================
@@ -76,9 +78,9 @@
                 ExtraAttack(defesaInimigo);
             }
             FinnesseImproveDuration -= 1;
-            if (FinnesseImproveDuration == 0) 
+            if (FinnesseImproveDuration == 0)
             {
-                Atk -= (int)(AtkMax / 3.5);
+                Atk = (int)(AtkMax / 3.5);
             }
         }
 
@@ -196,7 +198,7 @@
         //  =========================================
 
         /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
-        specially damage dealt logics, to guarantee damage is generated only if the attack is performed, plus patterns and organization.
+        specially character comments logics.
         */
         private void PerformFetchFailnaught1(int defesaInimigo)
         {
@@ -228,7 +230,7 @@
             }
             Console.WriteLine();
         }
-
+        
         private void PerformFetchFailnaught2(int defesaInimigo)
         {
             string comment = "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!";
