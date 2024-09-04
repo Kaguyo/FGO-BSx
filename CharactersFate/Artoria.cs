@@ -2,10 +2,13 @@
 {
     internal class Artoria : Interfaces.ISaber
     {
+        private static readonly Random random = new Random();
+
+        // Fields
         private string _name = "Artoria";
         private double _hpMax = 5629;
         private int _atkMax = 772;
-        private int _defMax = 529;
+        private int _defMax = 629;
         private double _hp = 5629;
         private int _atk = 172;
         private int _def = 529;
@@ -20,8 +23,7 @@
         private double _critRate = 5;
         private double _classDmgBonus;
 
-        private static Random random = new Random();
-
+        // Properties
         internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
         internal string? LastComment { get; set; }
         internal string Name { get => _name; }
@@ -229,7 +231,7 @@
         {
             string comment = "Got you!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack6.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -243,7 +245,7 @@
         {
             string comment = "O wind, whirl away!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_ExtraAttack1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -265,7 +267,7 @@
         {
             string comment = "Strike Air!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_ExtraAttack2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -279,7 +281,7 @@
         {
             string comment = "I'll take them myself!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Skill4.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -294,7 +296,7 @@
         {
             string comment = "I'll show you my strength!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Skill2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -309,7 +311,7 @@
         {
             string comment = "I'll cut them down!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack4.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -324,7 +326,7 @@
         {
             string comment = "There's still more!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_Attack5.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic4.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -339,7 +341,7 @@
         {
             string comment = "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\NP1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -386,7 +388,7 @@
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\NP2.wav";
             string calibur = "CALIBUR ! !";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
@@ -434,7 +436,7 @@
         {
             string comment = "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_NP3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\NP3.wav";
             string calibur = "CALIBUR ! !";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
@@ -482,7 +484,7 @@
         {
             string comment = "Sacred sword, release...";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Mana1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -507,7 +509,7 @@
         {
             string comment = "If that is your decision...";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Mana2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -524,7 +526,7 @@
         {
             string comment = "All right. Let's finish this";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\S002_mana3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Mana3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 

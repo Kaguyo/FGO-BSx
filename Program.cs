@@ -1,8 +1,4 @@
-﻿using NAudio.Wave;
-using System;
-using System.Linq;
-
-namespace FGO_BSx
+﻿namespace FGO_BSx
 {
     public class Program
     {

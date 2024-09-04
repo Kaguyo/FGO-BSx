@@ -9,7 +9,9 @@ namespace FGO_BSx.CharactersFate
 {
     internal class Jalter : Interfaces.IAvenger
     {
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
+
+        // Fields
         private string _name = "Jeanne d'Arc (Alter)";
         private double _hpMax = 6551;
         private int _atkMax = 722;
@@ -17,174 +19,61 @@ namespace FGO_BSx.CharactersFate
         private double _hp = 6551;
         private int _atk = 222;
         private int _def = 590;
-        private double _spCost = 175;
+        private double _spCost = 250;
         private double _spInitial = 0;
-        private double _basicAtk = 1.60;
-        private double _ultNp = 5.9;
+        private double _basicAtk = 0.35; // 2 hits
+        private double _ultNpHit1 = 0.6; // 1 hit
+        private double _ultNpHit2 = 1.1; // 1 hit
+        private double _ultNpHit3 = 1.22; // 1 hit
+        private double _ultNpHit4 = 1.3; // 1 hit
+        private double _ultNpHit5 = 1.5; // 1 hit
+        private double _ultNpHit6 = 1.66; // 1 hit
+        private double _ultNpHit7 = 1.72; // 1 hit
+        private double _ultNpHit8 = 1.92; // 1 hit
+        private double _ultNpHit9 = 2.69; // 1 hit
+        private double _extraAtk = 0.35; // 5 hits
         private int _spd = 100;
         private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 5;
-        internal string? LastComment { get; set; }
-        internal string Name
-        {
-            get { return _name; }
-        }
-        internal double HpMax
-        {
-            get
-            {
-                return _hpMax;
-            }
-            set
-            {
-                _hpMax = value;
-            }
-        }
-        internal int AtkMax
-        {
-            get
-            {
-                return _atkMax;
-            }
-            set
-            {
-                _atkMax = value;
-            }
-        }
-        internal int DefMax
-        {
-            get
-            {
-                return _defMax;
-            }
-            set
-            {
-                _defMax = value;
-            }
-        }
-        internal double Hp
-        {
-            get
-            {
-                return _hp;
-            }
-            set
-            {
-                _hp = value;
-            }
-        }
-        internal int Atk
-        {
-            get
-            {
-                return _atk;
-            }
-            set
-            {
-                _atk = value;
-            }
-        }
-        internal int Def
-        {
-            get
-            {
-                return _def;
-            }
-            set
-            {
-                _def = value;
-            }
-        }
-        internal double SpCost
-        {
-            get
-            {
-                return _spCost;
-            }
-            set
-            {
-                _spCost = value;
-            }
-        }
-        internal double SpInitial
-        {
-            get
-            {
-                return _spInitial;
-            }
-            set
-            {
-                _spInitial = value;
-            }
-        }
-        internal double BasicAttack
-        {
-            get
-            {
-                return _basicAtk;
-            }
-            set
-            {
-                _basicAtk = value;
-            }
-        }
-        internal double UltNp
-        {
-            get
-            {
-                return _ultNp;
-            }
-            set
-            {
-                _ultNp = value;
-            }
-        }
-        internal int SPD
-        {
-            get
-            {
-                return _spd;
-            }
-            set
-            {
-                _spd = value;
-            }
-        }
-        internal int Lvl
-        {
-            get
-            {
-                return _lvl;
-            }
-            set
-            {
-                _lvl = value;
-            }
-        }
-        internal double CritDmg
-        {
-            get
-            {
-                return _critDmg;
-            }
-            set
-            {
-                _critDmg = value;
-            }
-        }
-        internal double CritRate
-        {
-            get
-            {
-                return _critRate;
-            }
-            set
-            {
-                _critRate = value;
-            }
-        }
+        private double _classDmgBonus;
 
+        // Properties
+        internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
+        internal string? LastComment { get; set; }
+        internal string Name { get => _name; }
+        internal double HpMax { get => _hpMax; set => _hpMax = value; }
+        internal int AtkMax { get => _atkMax; set => _atkMax = value; }
+        internal int DefMax { get => _defMax; set => _defMax = value; }
+        internal double Hp { get => _hp; set => _hp = value; }
+        internal int Atk { get => _atk; set => _atk = value; }
+        internal int Def { get => _def; set => _def = value; }
+        internal double SpCost { get => _spCost; set => _spCost = value; }
+        internal double SpInitial { get => _spInitial; set => _spInitial = value; }
+        internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
+        internal double Extra { get => _extraAtk; set => _extraAtk = value; }
+        internal double UltNpHit1 { get => _ultNpHit1; set => _ultNpHit1 = value; }
+        internal double UltNpHit2 { get => _ultNpHit2; set => _ultNpHit2 = value; }
+        internal double UltNpHit3 { get => _ultNpHit3; set => _ultNpHit3 = value; }
+        internal double UltNpHit4 { get => _ultNpHit4; set => _ultNpHit4 = value; }
+        internal double UltNpHit5 { get => _ultNpHit5; set => _ultNpHit5 = value; }
+        internal double UltNpHit6 { get => _ultNpHit6; set => _ultNpHit6 = value; }
+        internal double UltNpHit7 { get => _ultNpHit7; set => _ultNpHit7 = value; }
+        internal double UltNpHit8 { get => _ultNpHit8; set => _ultNpHit8 = value; }
+        internal double UltNpHit9 { get => _ultNpHit9; set => _ultNpHit9 = value; }
+
+        internal int SPD { get => _spd; set => _spd = value; }
+        internal int Lvl { get => _lvl; set => _lvl = value; }
+        internal double CritDmg { get => _critDmg; set => _critDmg = value; }
+        internal double CritRate { get => _critRate; set => _critRate = value; }
+
+        //  =========================================
+        //  INICIO DE "FUNCOES GENERICAS".
+        //  =========================================
+
+        /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
+        as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
+        */
         public void SwordSkill()
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
@@ -192,7 +81,7 @@ namespace FGO_BSx.CharactersFate
 
             while (true)
             {
-                int choice = random.Next(1, 5);
+                int choice = random.Next(1, 4);
 
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
@@ -211,6 +100,48 @@ namespace FGO_BSx.CharactersFate
                 }
             }
         }
+        public void LeGrondementdelaHaine(int defesaInimigo)
+        {
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
+            Console.WriteLine(":");
+
+            while (true)
+            {
+                int choice = random.Next(1, 4);
+
+                if (choice == 1 && LastComment != "I'll take them myself!")
+                {
+                    PerformLeGrondementdelaHaine1();
+                    break;
+                }
+                else if (choice == 2 && LastComment != "I'll show you my strength!")
+                {
+                    PerformLeGrondementdelaHaine2();
+                    Controls.SistemaFGO.JalterNP(random, Atk, UltNpHit1, UltNpHit2, UltNpHit3, UltNpHit4, UltNpHit5, UltNpHit6, UltNpHit7, UltNpHit8, UltNpHit9, CritRate, CritDmg, 9, defesaInimigo);
+                    break;
+                }
+                else if (choice == 3 && LastComment != "I'll cut them down!")
+                {
+                    PerformLeGrondementdelaHaine3();
+                    break;
+                }
+            }
+        }
+        //  =========================================
+        //  FIM DE "FUNCOES GENERICAS".
+        //  =========================================
+
+
+        //  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+        //  =========================================
+        //  INICIO DE "FUNCOES ACTIONS".
+        //  =========================================
+
+        /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
+        specially character comments logics.
+        */
         private void PerformComment1()
         {
             string comment = "I'll cut them down!";
@@ -235,8 +166,11 @@ namespace FGO_BSx.CharactersFate
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
         }
+        //  =========================================
+        //  FIM DE "FUNCOES ACTIONS".
+        //  =========================================
 
-            public static void SkillsJalter(double sp, double spCost) 
+        public static void SkillsJalter(double sp, double spCost) 
         {
             Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.DarkYellow);
             Console.Write(" (");
@@ -250,8 +184,6 @@ namespace FGO_BSx.CharactersFate
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
             Console.WriteLine(")");
-            //passive Self-Replenishment (Magic)
-            //passive Extra Attack Finesse Improvement
             if (sp < spCost)
             {
                 Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);

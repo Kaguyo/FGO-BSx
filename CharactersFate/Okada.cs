@@ -186,7 +186,7 @@ namespace FGO_BSx.CharactersFate
         private static Random random = new Random();
 
 
-        public void Shimatsuken()
+        public void Shimatsuken(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Cyan);
             Console.WriteLine(":");
@@ -225,7 +225,7 @@ namespace FGO_BSx.CharactersFate
            
         }
 
-        public void AntiSaberAtkUp()
+        public void AntiSaberAtkUp(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Cyan);
             Console.WriteLine(":");
@@ -273,7 +273,7 @@ namespace FGO_BSx.CharactersFate
             PlaySound(audioFilePath);
         }
 
-        public void SwordSkill()
+        public void SwordSkill(int defesaInimigo)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Cyan);
             Console.WriteLine(":");

@@ -10,12 +10,21 @@
 
   <ItemGroup>
     <Compile Remove="CharactersFate\NovaPasta\**" />
+    <Compile Remove="EnemiesFate\Track&amp;Sounds\**" />
     <EmbeddedResource Remove="CharactersFate\NovaPasta\**" />
+    <EmbeddedResource Remove="EnemiesFate\Track&amp;Sounds\**" />
     <None Remove="CharactersFate\NovaPasta\**" />
+    <None Remove="EnemiesFate\Track&amp;Sounds\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Track&amp;Sounds\Characters\JalterNoises\" />
+    <Folder Include="Track&amp;Sounds\Characters\OkadaNoises\" />
+    <Folder Include="Track&amp;Sounds\Characters\TristanNoises\" />
   </ItemGroup>
 
 </Project>

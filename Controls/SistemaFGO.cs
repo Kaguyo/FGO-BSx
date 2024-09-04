@@ -1,18 +1,17 @@
 ﻿using FGO_BSx.CharactersFate;
 using NAudio.Wave;
-using System;
 
 namespace FGO_BSx.Controls
 {
     public class SistemaFGO
     {
-        private static WaveStream audioFileReader;
-        private static IWavePlayer backgroundWaveOutDevice;
-        private static WaveStream backgroundAudioFileReader;
-        static public string escolhaSkill = "";
-        static public object inimigoEscolhido;
-        static public object personagemEscolhido;
-        private static IWavePlayer waveOutDevice;
+        private static WaveStream? audioFileReader;
+        private static WaveOutEvent? backgroundWaveOutDevice;
+        private static WaveStream? backgroundAudioFileReader;
+        static internal string escolhaSkill = "";
+        static internal object? inimigoEscolhido;
+        static internal object? personagemEscolhido;
+        private static WaveOutEvent? waveOutDevice;
 
         public static string Capitalize(string input)
         {
@@ -308,23 +307,53 @@ namespace FGO_BSx.Controls
                 if (RNGcrit <= critRate && RNGcrit > 0)
                 {
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk * (1 + (critDmg / 100)));
-                    Danos[i] = DanoCausado;
+                    Danos[i] = Math.Max(1, DanoCausado);
                 }
                 else
                 {
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk);
-                    Danos[i] = DanoCausado;
+                    Danos[i] = Math.Max(1, DanoCausado);
                 }
             }
+            Console.Write("Dano Total: ");
             for (int i = 0; i < hits; i++)
             {
-                Console.Write($"\rDano causado: {Danos[i]}.");
-                if (i < (hits - 1))
-                {
-                    Danos[i + 1] += Danos[i];
-                }
-                Thread.Sleep(20);
+                if (i != (hits - 1)) Danos[i + 1] += Danos[i];
+                Console.Write($"\r{Danos[i]}");
+                Thread.Sleep(15);
             }
+            Console.WriteLine();
+            Console.ReadKey();
+        }
+        public static void JalterNP(Random random, double mainStat, double skillAtk1, double skillAtk2, double skillAtk3, double skillAtk4, double skillAtk5, double skillAtk6,
+        double skillAtk7, double skillAtk8, double skillAtk9, double critRate, double critDmg, int hits, int defesaInimigo)
+        {
+            int DanoCausado;
+            int[] Danos = new int[hits];
+            double[] InstanciasNP = { skillAtk1, skillAtk2, skillAtk3, skillAtk4, skillAtk5, skillAtk6, skillAtk7, skillAtk8, skillAtk9 };
+            int whichHitIsNpAt = 1;
+
+            Console.Write("Dano Total: ");
+            WriteColored2(ConsoleColor.DarkYellow);
+            
+            for (int i = 0; i < hits; i++)
+            {
+                DanoCausado = SpecialControls.CalculateDamage(mainStat, defesaInimigo, InstanciasNP[i], critRate, critDmg, random);
+                if (i > 0)
+                {
+                    DanoCausado += Danos[i - 1];
+                }
+                Danos[i] = DanoCausado;
+
+                Console.Write($"\r{Danos[i]}");
+                if (whichHitIsNpAt <= 3) Thread.Sleep(250);
+                else if (whichHitIsNpAt == 4) Thread.Sleep(150);
+                else if (whichHitIsNpAt < 9) Thread.Sleep(13);
+                else Thread.Sleep(120);
+
+                whichHitIsNpAt += 1;
+            }
+            Console.ResetColor();
             Console.WriteLine();
             Console.ReadKey();
         }
@@ -361,7 +390,6 @@ namespace FGO_BSx.Controls
             Console.Write($"{ansiColor}{text}\x1b[0m");
             Console.ResetColor();
         }
-
         public static void WriteColoredAnsi(int i, string ansiColor)
         {
             Console.Write($"{ansiColor}{i}\x1b[0m");
