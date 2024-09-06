@@ -1,5 +1,6 @@
 ﻿using FGO_BSx.CharactersFate;
 using NAudio.Wave;
+using System;
 
 namespace FGO_BSx.Controls
 {
@@ -165,27 +166,30 @@ namespace FGO_BSx.Controls
                 backgroundAudioFileReader = null;
             }
         }
-        public static void UserAttack(object personagem, int defesaInimigo)
+        public static int UserAttack(object personagem, int defesaInimigo, int danoTotal)
         {
             if (personagem is Artoria artoria)
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    artoria.SwordSkill(defesaInimigo);
+                    danoTotal = artoria.SwordSkill(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    return danoTotal;
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    artoria.ManaLoading(defesaInimigo);
+                    danoTotal = artoria.ManaLoading(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    return danoTotal;
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && artoria.SpInitial >= artoria.SpCost)
                 {
-                    artoria.Excalibur(defesaInimigo);
+                    danoTotal = artoria.Excalibur(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    return danoTotal;
                 }
             }
-            else if (personagem is Baobhan baobhan) 
+            else if (personagem is Baobhan baobhan)
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
@@ -240,7 +244,7 @@ namespace FGO_BSx.Controls
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && jalter.SpInitial >= jalter.SpCost)
                 {
-                    jalter.LeGrondementdelaHaine(defesaInimigo);
+                    danoTotal = jalter.LeGrondementdelaHaine(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -285,6 +289,7 @@ namespace FGO_BSx.Controls
                     SistemaFGO.escolhaSkill = "";
                 }
             }
+            else return 0;
         }
         public static int DefesaInimigo(object Inimigo) 
         {

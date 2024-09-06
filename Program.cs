@@ -194,7 +194,7 @@
                     indexInimigo = 1;
                     defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigos[1]);
                 }
-
+                int danoTotal = 0;
                 // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                 while (userHp[indexPersonagem] > 0 && (ComHp[indexInimigo] > 0
                 && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop")))
@@ -221,7 +221,8 @@
                     }
                     if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
 
-                    Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo);
+                    danoTotal = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, 0);
+                    ComHp[indexInimigo] -= danoTotal;
                     Console.Clear();
                 }
             }

@@ -102,7 +102,7 @@ namespace FGO_BSx.CharactersFate
                 }
             }
         }
-        public void LeGrondementdelaHaine(int defesaInimigo)
+        public int LeGrondementdelaHaine(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.DarkYellow);
             Console.WriteLine(":");
@@ -116,7 +116,6 @@ namespace FGO_BSx.CharactersFate
                     Hp += 300;
                     if (Hp > HpMax) Hp = HpMax;
                     PerformLeGrondementdelaHaine1();
-                    Controls.DamageFormulas.JalterNP(random, Atk, NPInstances, CritRate, CritDmg, 9, defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "I'll show you my strength!")
@@ -124,7 +123,6 @@ namespace FGO_BSx.CharactersFate
                     Hp += 300;
                     if (Hp > HpMax) Hp = HpMax;
                     PerformLeGrondementdelaHaine2();
-                    Controls.DamageFormulas.JalterNP(random, Atk, NPInstances ,CritRate, CritDmg, 9, defesaInimigo);
                     break;
                 }
                 else if (choice == 3 && LastComment != "I'll cut them down!")
@@ -132,17 +130,18 @@ namespace FGO_BSx.CharactersFate
                     Hp += 300;
                     if (Hp > HpMax) Hp = HpMax;
                     PerformLeGrondementdelaHaine3();
-                    Controls.DamageFormulas.JalterNP(random, Atk, NPInstances, CritRate, CritDmg, 9, defesaInimigo);
                     break;
                 }
             }
+            danoTotal += Controls.DamageFormulas.JalterNP(random, Atk, NPInstances, CritRate, CritDmg, 9, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack(defesaInimigo);
+                danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
+            return danoTotal;
         }
-        public void ExtraAttack(int defesaInimigo)
+        public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.DarkYellow);
             Console.WriteLine(":");
@@ -153,26 +152,24 @@ namespace FGO_BSx.CharactersFate
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformExtra1();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo);
                     SpInitial += 8;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
                     PerformExtra2();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo);
                     SpInitial += 8;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!")
                 {
                     PerformExtra3();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo);
                     SpInitial += 8;
                     break;
                 }
             }
             ExtraAttackCooldown = 6;
+            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo, danoTotal);
         }
         //  =========================================
         //  FIM DE "FUNCOES PRIMARIAS".

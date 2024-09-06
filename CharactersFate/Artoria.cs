@@ -2,7 +2,7 @@
 {
     internal class Artoria : Interfaces.ISaber
     {
-        private static readonly Random random = new Random();
+        internal static readonly Random random = new Random();
 
         // Fields
         private string _name = "Artoria";
@@ -52,7 +52,7 @@
         /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
         as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
         */
-        public void Excalibur(int defesaInimigo)
+        public int Excalibur(int defesaInimigo, int danoTotal)
         {
             ExcaliburBuff = 2; // Contador de duração do buff após uso de Excalibur
 
@@ -67,7 +67,6 @@
                     CritRate += 20;
                     CritDmg += 40;
                     PerformExcalibur1();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
                     break;
                 }
                 else if (choice == 2 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !")
@@ -75,7 +74,6 @@
                     CritRate += 20;
                     CritDmg += 40;
                     PerformExcalibur2();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
                     break;
                 }
                 else if (choice == 3 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !") 
@@ -83,18 +81,19 @@
                     CritRate += 20;
                     CritDmg += 40;
                     PerformExcalibur3();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 7, defesaInimigo);
                     break;
                 }
             }
+            danoTotal += Controls.DamageFormulas.ArtoriaNP(random, Atk, UltNp, CritRate, CritDmg, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack(defesaInimigo);
+                danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
+            return danoTotal;
         }
 
-        public void ManaLoading(int defesaInimigo)
+        public int ManaLoading(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
@@ -124,7 +123,7 @@
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack(defesaInimigo);
+                danoTotal = ExtraAttack(defesaInimigo, danoTotal);
             }
             ExcaliburBuff -= 1;
             if (ExcaliburBuff == 0) 
@@ -132,9 +131,10 @@
                 CritRate -= 20;
                 CritDmg -= 40;
             }
+            return danoTotal;
         }
 
-        public void SwordSkill(int defesaInimigo)
+        public int SwordSkill(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
@@ -145,36 +145,33 @@
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformComment1();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 2 && LastComment != "I'll show you my strength!")
                 {
                     PerformComment2();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 3 && LastComment != "I'll cut them down!")
                 {
                     PerformComment3();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
                 else if (choice == 4 && LastComment != "There's still more!")
                 {
                     PerformComment4();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo);
                     SpInitial += 15;
                     break;
                 }
             }
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack(defesaInimigo);
+                danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
             ExcaliburBuff -= 1;
             if (ExcaliburBuff == 0)
@@ -182,8 +179,9 @@
                 CritRate -= 20;
                 CritDmg -= 40;
             }
+            return danoTotal;
         }
-        public void ExtraAttack(int defesaInimigo) 
+        public int ExtraAttack(int defesaInimigo, int danoTotal) 
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
@@ -194,26 +192,24 @@
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformExtra1();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
                     PerformExtra2();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!") 
                 {
                     PerformExtra3();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo);
                     SpInitial += 5;
                     break;
                 }
             }
             ExtraAttackCooldown = 6;
+            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo, danoTotal);
         }
         //  =========================================
         //  FIM DE "FUNCOES PRIMARIAS".
@@ -243,6 +239,7 @@
                 Console.Write(c);
                 Thread.Sleep(22);
             }
+            Console.WriteLine();
         }
         private void PerformExtra2()
         {
@@ -265,6 +262,7 @@
                     Thread.Sleep(22);
                 }
             }
+            Console.WriteLine();
         }
         private void PerformExtra3()
         {
@@ -279,6 +277,7 @@
                 Console.Write(c);
                 Thread.Sleep(22);
             }
+            Console.WriteLine();
         }
         private void PerformComment1()
         {
@@ -293,6 +292,7 @@
                 Console.Write(c);
                 Thread.Sleep(22);
             }
+            Console.WriteLine();
         }
 
         private void PerformComment2()
@@ -308,6 +308,7 @@
                 Console.Write(c);
                 Thread.Sleep(22);
             }
+            Console.WriteLine();
         }
 
         private void PerformComment3()
@@ -323,6 +324,7 @@
                 Console.Write(c);
                 Thread.Sleep(10);
             }
+            Console.WriteLine();
         }
 
         private void PerformComment4()
@@ -338,6 +340,7 @@
                 Console.Write(c);
                 Thread.Sleep(10);
             }
+            Console.WriteLine();
         }
 
         private void PerformExcalibur1()
@@ -385,6 +388,7 @@
                     Thread.Sleep(2000);
                 }
             }
+            Console.WriteLine();
         }
 
         private void PerformExcalibur2()
@@ -433,6 +437,7 @@
                 }
             }
             Console.ResetColor();
+            Console.WriteLine();
         }
 
         private void PerformExcalibur3()
@@ -481,6 +486,7 @@
                 }
             }
             Console.ResetColor();
+            Console.WriteLine();
         }
 
         private void PerformManaLoading1()

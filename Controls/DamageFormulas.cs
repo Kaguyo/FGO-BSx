@@ -5,8 +5,9 @@
         //  ======================
         //  GENERIC DAMAGE FORMULA
         //  ======================
-        public static void CauseDamage(Random random, double mainStat, double[] skillAtk, double critRate, double critDmg, int hits, int defesaInimigo)
+        public static int CauseDamage(Random random, double mainStat, double[] skillAtk, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal)
         {
+            Console.Clear();
             int DanoCausado;
             int[] Danos = new int[hits];
             for (int i = 0; i < hits; i++)
@@ -16,11 +17,13 @@
                 {
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk[i] * (1 + (critDmg / 100)));
                     Danos[i] = Math.Max(1, DanoCausado);
+                    danoTotal += Danos[i];
                 }
                 else
                 {
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk[i]);
                     Danos[i] = Math.Max(1, DanoCausado);
+                    danoTotal += Danos[i];
                 }
             }
             Console.Write("Dano Total: ");
@@ -31,13 +34,15 @@
                     Danos[i + 1] += Danos[i];
                 }
                 Console.Write($"\r{Danos[i]}");
-                Thread.Sleep(25);
+                Thread.Sleep(15);
             }
             Console.WriteLine();
             Console.ReadKey();
+            return danoTotal;
         }
-        public static void CauseDamage(Random random, double mainStat, double skillAtk, double critRate, double critDmg, int hits, int defesaInimigo)
+        public static int CauseDamage(Random random, double mainStat, double skillAtk, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal)
         {
+            Console.Clear();
             int DanoCausado;
             int[] Danos = new int[hits];
             for (int i = 0; i < hits; i++)
@@ -47,11 +52,13 @@
                 {
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk * (1 + (critDmg / 100)));
                     Danos[i] = Math.Max(1, DanoCausado);
+                    danoTotal += Danos[i];
                 }
                 else
                 {
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk);
                     Danos[i] = Math.Max(1, DanoCausado);
+                    danoTotal += Danos[i];
                 }
             }
             Console.Write("Dano Total: ");
@@ -62,17 +69,19 @@
                     Danos[i + 1] += Danos[i];
                 }
                 Console.Write($"\r{Danos[i]}");
-                Thread.Sleep(25);
+                Thread.Sleep(15);
             }
             Console.WriteLine();
             Console.ReadKey();
+            return danoTotal;
         }
 
         //  ====================
         //  JALTER NP FORMULA
         //  ====================
-        public static void JalterNP(Random random, double mainStat, double[] NPInstances, double critRate, double critDmg, int hits, int defesaInimigo)
+        public static int JalterNP(Random random, double mainStat, double[] NPInstances, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal)
         {
+            Console.Clear();
             int DanoCausado;
             int[] Danos = new int[hits];
             int whichHitIsNpAt = 1;
@@ -98,7 +107,6 @@
                     DanoCausado += Danos[i - 1];
                 }
                 Danos[i] = DanoCausado;
-
                 Console.Write($"\r{Danos[i]}");
                 if (whichHitIsNpAt <= 3) Thread.Sleep(250);
                 else if (whichHitIsNpAt == 4) Thread.Sleep(150);
@@ -106,20 +114,23 @@
                 else Thread.Sleep(120);
 
                 whichHitIsNpAt += 1;
+                if (whichHitIsNpAt == 9) danoTotal += Danos[i];
             }
             Console.ResetColor();
             Console.WriteLine();
             Console.ReadKey();
+            return danoTotal;
         }
 
 
         //  ====================
         //  ARTORIA NP FORMULA
         //  ====================
-        public static void ArtoriaNP(Random random, double Atk, double NPSkill, double critRate, double critDmg, int defesaInimigo)
+        public static int ArtoriaNP(Random random, double Atk, double NPSkill, double critRate, double critDmg, int defesaInimigo, int danoTotal)
         {
+            Console.Clear();
             int DanoCausado;
-            Console.Write("Dano Causado: \n");
+            Console.Write("Dano Causado: ");
             SistemaFGO.WriteColored2(ConsoleColor.Yellow);
 
             double RNGcrit = NextDoubleInRange(random, 0, 100.1);
@@ -127,6 +138,7 @@
             {
                 DanoCausado = (int)((Atk - defesaInimigo) * NPSkill * (1 + (critDmg / 100)));
                 DanoCausado = Math.Max(1, DanoCausado);
+                danoTotal += DanoCausado;
 
                 Console.WriteLine($"\r{DanoCausado}");
                 Console.ResetColor();
@@ -136,12 +148,13 @@
             {
                 DanoCausado = (int)((Atk - defesaInimigo) * NPSkill);
                 DanoCausado = Math.Max(1, DanoCausado);
+                danoTotal += DanoCausado;
 
-                Console.Write($"\r{DanoCausado}");
+                Console.WriteLine($"\r{DanoCausado}");
                 Console.ResetColor();
-                Console.WriteLine();
             }
             Console.ReadKey();
+            return danoTotal;
         }
 
 
