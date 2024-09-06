@@ -46,7 +46,7 @@
         internal int ExtraAttackCooldown { get; set; }
 
         //  =========================================
-        //  INICIO DE "FUNCOES GENERICAS".
+        //  INICIO DE "FUNCOES PRIMARIAS".
         //  =========================================
 
         /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
@@ -192,7 +192,7 @@
         }
 
         //  =========================================
-        //  FIM DE "FUNCOES GENERICAS".
+        //  FIM DE "FUNCOES PRIMARIAS".
         //  =========================================
 
 

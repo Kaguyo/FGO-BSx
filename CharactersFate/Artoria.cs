@@ -15,7 +15,7 @@
         private double _spCost = 140;
         private double _spInitial = 0;
         private double _basicAtk = 1.70; // single hit
-        private double _ultNp = 1.23; // 7 hits
+        private double _ultNp = 10.63; // single hit
         private double _extraAtk = 0.73; // 3 hits
         private int _spd = 110;
         private int _lvl = 1;
@@ -46,7 +46,7 @@
         internal int ExtraAttackCooldown { get; set; }
 
         //  =========================================
-        //  INICIO DE "FUNCOES GENERICAS".
+        //  INICIO DE "FUNCOES PRIMARIAS".
         //  =========================================
 
         /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
@@ -216,7 +216,7 @@
             ExtraAttackCooldown = 6;
         }
         //  =========================================
-        //  FIM DE "FUNCOES GENERICAS".
+        //  FIM DE "FUNCOES PRIMARIAS".
         //  =========================================
 
 
