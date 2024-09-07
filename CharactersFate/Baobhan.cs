@@ -43,7 +43,7 @@
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
         internal int FinnesseImproveDuration { get; set; } = -1;
-        internal int ExtraAttackCooldown { get; set; } = 5;
+        internal static int ExtraAttackCooldown { get; set; } = 5;
 
         //  =========================================
         //  INICIO DE "FUNCOES PRIMARIAS".
@@ -52,7 +52,7 @@
         /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
         as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
         */
-        public void FetchFailnaught(int defesaInimigo)
+        public void FetchFailnaught(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
@@ -61,33 +61,32 @@
                 int choice = random.Next(1, 3);
                 if (choice == 1 && LastComment != "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!")
                 {
-                    PerformFetchFailnaught1(defesaInimigo);
-                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
+                    PerformFetchFailnaught1();
                     break;
                 }
                 else if (choice == 2 && LastComment != "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!")
                 {
-                    PerformFetchFailnaught2(defesaInimigo);
-                    Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo);
+                    PerformFetchFailnaught2();
                     break;
                 }
             }
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
             SpInitial = 0;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack(defesaInimigo);
+               danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
             FinnesseImproveDuration -= 1;
             if (FinnesseImproveDuration == 0)
             {
-                Atk = (int)(AtkMax / 3.5);
+                Atk = AtkMax;
             }
         }
 
-        public void FinesseImprovement(int defesaInimigo)
+        public void FinesseImprovement(int defesaInimigo, int danoTotal)
         {
-            FinnesseImproveDuration = 2;
+            FinnesseImproveDuration = 3;
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
             while (true)
@@ -97,27 +96,29 @@
                 if (choice == 1 && LastComment != "Cruelty. Depravity.")
                 {
                     PerformComment4();
-                    SpInitial += 25;
                     break;
                 }
                 else if (choice == 2 && LastComment != "Like taking a bath !")
                 {
                     PerformComment5();
-                    SpInitial += 25;
                     break;
                 }
                 else if (choice == 3 && LastComment != "More, more!")
                 {
                     PerformComment6();
-                    SpInitial += 25;
                     break;
                 }
             }
-            Atk = (int)(Atk + (Atk / 3.5));
+            Atk = (int)(Atk * 1.35);
             ExtraAttackCooldown -= 1;
+            SpInitial += 25;
+            if (ExtraAttackCooldown <= 0)
+            {
+                danoTotal += ExtraAttack(defesaInimigo, danoTotal);
+            }
         }
 
-        public void RangeAttack(int defesaInimigo)
+        public void RangeAttack(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
@@ -129,37 +130,33 @@
                 if (choice == 1 && LastComment != "You have awful taste!")
                 {
                     PerformComment1();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
-                    SpInitial += 10;
                     break;
                 }
                 else if (choice == 2 && LastComment != "Does it hurt?")
                 {
                     PerformComment2();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
-                    SpInitial += 10;
                     break;
                 }
                 else if (choice == 3 && (Hp / HpMax) <= (HpMax / 0.2) && LastComment != "Why don't you die?")
                 {
                     PerformComment3();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo);
-                    SpInitial += 10;
                     break;
                 }
             }
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
+            SpInitial += 10;
             if (ExtraAttackCooldown <= 0)
             {
-                ExtraAttack(defesaInimigo);
+               danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
             FinnesseImproveDuration -= 1;
             if (FinnesseImproveDuration == 0)
             {
-                Atk -= (int)(AtkMax / 3.5);
+                Atk = AtkMax;
             }
         }
-        public void ExtraAttack(int defesaInimigo)
+        public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
@@ -170,26 +167,23 @@
                 if (choice == 1 && LastComment != "Watch closely.")
                 {
                     PerformExtra1();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
-                    SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "Look, look!")
                 {
                     PerformExtra2();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
-                    SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "How about being reborn as a wretched scapegoat?")
                 {
                     PerformExtra3();
-                    Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo);
-                    SpInitial += 5;
                     break;
                 }
             }
-            ExtraAttackCooldown = 6;
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo, danoTotal);
+            SpInitial += 5;
+            ExtraAttackCooldown = 5;
+            return danoTotal;
         }
 
         //  =========================================
@@ -207,7 +201,7 @@
         /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
         specially character comments logics.
         */
-        private void PerformFetchFailnaught1(int defesaInimigo)
+        private void PerformFetchFailnaught1()
         {
             string comment = "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!";
             LastComment = comment;
@@ -238,7 +232,7 @@
             Console.WriteLine();
         }
         
-        private void PerformFetchFailnaught2(int defesaInimigo)
+        private void PerformFetchFailnaught2()
         {
             string comment = "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!";
             LastComment = comment;
