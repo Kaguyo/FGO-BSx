@@ -42,8 +42,8 @@
         internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
-        internal int ExcaliburBuff { get; set; }
-        internal int ExtraAttackCooldown { get; set; }
+        internal int ExcaliburBuff { get; set; } = -1;
+        internal static int ExtraAttackCooldown { get; set; } = 6;
 
         //  =========================================
         //  INICIO DE "FUNCOES PRIMARIAS".
@@ -64,28 +64,25 @@
 
                 if (choice == 1 && LastComment != "Sheathed in the breath of the planet,\na torrent of shining life.\nFeel its wrath.\nEXCALIBUR ! !")
                 {
-                    CritRate += 20;
-                    CritDmg += 40;
                     PerformExcalibur1();
                     break;
                 }
                 else if (choice == 2 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nBehold!\nEXCALIBUR ! !")
                 {
-                    CritRate += 20;
-                    CritDmg += 40;
                     PerformExcalibur2();
                     break;
                 }
                 else if (choice == 3 && LastComment != "This light is the planet's hope...\nproof of the life that illuminates this world!\nLet us end this!\nEXCALIBUR ! !") 
                 {
-                    CritRate += 20;
-                    CritDmg += 40;
                     PerformExcalibur3();
                     break;
                 }
             }
             danoTotal += Controls.DamageFormulas.ArtoriaNP(random, Atk, UltNp, CritRate, CritDmg, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
+            CritRate += 20;
+            CritDmg += 40;
+            SpInitial = 0;
             if (ExtraAttackCooldown <= 0)
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
@@ -104,22 +101,20 @@
                 if (choice == 1 && LastComment != "Sacred sword, release...")
                 {
                     PerformManaLoading1();
-                    SpInitial += 60;
                     break;
                 }
                 else if (choice == 2 && LastComment != "If that is your decision...")
                 {
                     PerformManaLoading2();
-                    SpInitial += 60;
                     break;
                 }
                 else if (choice == 3 && LastComment != "All right. Let's finish this") 
                 {
                     PerformManaLoading3();
-                    SpInitial += 60;
                     break;
                 }
             }
+            SpInitial += 60;
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
@@ -145,29 +140,26 @@
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformComment1();
-                    SpInitial += 15;
                     break;
                 }
                 else if (choice == 2 && LastComment != "I'll show you my strength!")
                 {
                     PerformComment2();
-                    SpInitial += 15;
                     break;
                 }
                 else if (choice == 3 && LastComment != "I'll cut them down!")
                 {
                     PerformComment3();
-                    SpInitial += 15;
                     break;
                 }
                 else if (choice == 4 && LastComment != "There's still more!")
                 {
                     PerformComment4();
-                    SpInitial += 15;
                     break;
                 }
             }
             danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo, danoTotal);
+            SpInitial += 15;
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
@@ -192,23 +184,21 @@
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformExtra1();
-                    SpInitial += 5;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
                     PerformExtra2();
-                    SpInitial += 5;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!") 
                 {
                     PerformExtra3();
-                    SpInitial += 5;
                     break;
                 }
             }
             ExtraAttackCooldown = 6;
+            SpInitial += 5;
             return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo, danoTotal);
         }
         //  =========================================
@@ -561,6 +551,10 @@
 
         public static void SkillsArtoria(double sp, double spCost)
         {
+            Controls.SistemaFGO.WriteColored("Extra Attack", ConsoleColor.Yellow);
+            Console.Write(" Cooldown (");
+            Controls.SistemaFGO.WriteColored(ExtraAttackCooldown, ConsoleColor.Yellow);
+            Console.WriteLine(")\n");
             Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.Yellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);

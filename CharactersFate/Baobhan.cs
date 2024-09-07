@@ -42,8 +42,8 @@
         internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
-        internal int FinnesseImproveDuration { get; set; }
-        internal int ExtraAttackCooldown { get; set; }
+        internal int FinnesseImproveDuration { get; set; } = -1;
+        internal int ExtraAttackCooldown { get; set; } = 5;
 
         //  =========================================
         //  INICIO DE "FUNCOES PRIMARIAS".
@@ -73,6 +73,7 @@
                 }
             }
             ExtraAttackCooldown -= 1;
+            SpInitial = 0;
             if (ExtraAttackCooldown <= 0)
             {
                 ExtraAttack(defesaInimigo);
@@ -416,6 +417,10 @@
 
         public static void SkillsBaobhan(double sp, double spCost)
         {
+            Controls.SistemaFGO.WriteColored("Extra Attack", ConsoleColor.Red);
+            Console.Write(" Cooldown (");
+            Controls.SistemaFGO.WriteColored(ExtraAttackCooldown, ConsoleColor.Red);
+            Console.WriteLine(")\n");
             Controls.SistemaFGO.WriteColored("Range Attack", ConsoleColor.Red);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);

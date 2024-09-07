@@ -61,7 +61,7 @@ namespace FGO_BSx.CharactersFate
         internal static double UltNpHit7 { get => _ultNpHit7; set => _ultNpHit7 = value; }
         internal static double UltNpHit8 { get => _ultNpHit8; set => _ultNpHit8 = value; }
         internal static double UltNpHit9 { get => _ultNpHit9; set => _ultNpHit9 = value; }
-        internal int ExtraAttackCooldown { get; set; }
+        internal static int ExtraAttackCooldown { get; set; } = 5;
 
         internal int SPD { get => _spd; set => _spd = value; }
         internal int Lvl { get => _lvl; set => _lvl = value; }
@@ -76,7 +76,7 @@ namespace FGO_BSx.CharactersFate
         /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
         as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
         */
-        public void SwordSkill()
+        public int SwordSkill(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.DarkYellow);
             Console.WriteLine(":");
@@ -101,6 +101,12 @@ namespace FGO_BSx.CharactersFate
                     break;
                 }
             }
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                danoTotal += ExtraAttack(defesaInimigo, danoTotal);
+            }
+            return danoTotal;
         }
         public int LeGrondementdelaHaine(int defesaInimigo, int danoTotal)
         {
@@ -113,28 +119,25 @@ namespace FGO_BSx.CharactersFate
 
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
-                    Hp += 300;
-                    if (Hp > HpMax) Hp = HpMax;
                     PerformLeGrondementdelaHaine1();
                     break;
                 }
                 else if (choice == 2 && LastComment != "I'll show you my strength!")
                 {
-                    Hp += 300;
-                    if (Hp > HpMax) Hp = HpMax;
                     PerformLeGrondementdelaHaine2();
                     break;
                 }
                 else if (choice == 3 && LastComment != "I'll cut them down!")
                 {
-                    Hp += 300;
-                    if (Hp > HpMax) Hp = HpMax;
                     PerformLeGrondementdelaHaine3();
                     break;
                 }
             }
             danoTotal += Controls.DamageFormulas.JalterNP(random, Atk, NPInstances, CritRate, CritDmg, 9, defesaInimigo, danoTotal);
+            Hp += 300;
+            if (Hp > HpMax) Hp = HpMax;
             ExtraAttackCooldown -= 1;
+            SpInitial = 0;
             if (ExtraAttackCooldown <= 0)
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
@@ -152,23 +155,21 @@ namespace FGO_BSx.CharactersFate
                 if (choice == 1 && LastComment != "I'll take them myself!")
                 {
                     PerformExtra1();
-                    SpInitial += 8;
                     break;
                 }
                 else if (choice == 2 && LastComment != "O wind, whirl away!")
                 {
                     PerformExtra2();
-                    SpInitial += 8;
                     break;
                 }
                 else if (choice == 3 && LastComment != "Strike Air!")
                 {
                     PerformExtra3();
-                    SpInitial += 8;
                     break;
                 }
             }
-            ExtraAttackCooldown = 6;
+            SpInitial += 8;
+            ExtraAttackCooldown = 5;
             return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo, danoTotal);
         }
         //  =========================================
@@ -186,6 +187,59 @@ namespace FGO_BSx.CharactersFate
         /* This comment serves to mark the beginning or end of functions that are designed to perform actions in the game,
         specially character comments logics.
         */
+        private void PerformExtra1()
+        {
+            string comment = "Got you!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra1.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(22);
+            }
+            Console.WriteLine();
+        }
+        private void PerformExtra2()
+        {
+            string comment = "O wind, whirl away!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra2.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                if (c == ',')
+                {
+                    Console.Write(c);
+                    Thread.Sleep(300);
+                }
+                else
+                {
+                    Console.Write(c);
+                    Thread.Sleep(22);
+                }
+            }
+            Console.WriteLine();
+        }
+        private void PerformExtra3()
+        {
+            string comment = "Strike Air!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra3.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(22);
+            }
+            Console.WriteLine();
+        }
         private void PerformLeGrondementdelaHaine1()
         {
             string comment = "I'll cut them down!";
@@ -210,12 +264,63 @@ namespace FGO_BSx.CharactersFate
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
         }
+        private void PerformComment1()
+        {
+            string comment = "I'll take them myself!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic1.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(22);
+            }
+            Console.WriteLine();
+        }
+
+        private void PerformComment2()
+        {
+            string comment = "I'll show you my strength!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic2.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(22);
+            }
+            Console.WriteLine();
+        }
+
+        private void PerformComment3()
+        {
+            string comment = "I'll cut them down!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic3.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(10);
+            }
+            Console.WriteLine();
+        }
         //  =========================================
         //  FIM DE "FUNCOES ACTIONS".
         //  =========================================
 
         public static void SkillsJalter(double sp, double spCost) 
         {
+            Controls.SistemaFGO.WriteColored("Extra Attack", ConsoleColor.DarkYellow);
+            Console.Write(" Cooldown (");
+            Controls.SistemaFGO.WriteColored(ExtraAttackCooldown, ConsoleColor.DarkYellow);
+            Console.WriteLine(")\n");
             Controls.SistemaFGO.WriteColored("Sword Attack", ConsoleColor.DarkYellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);
