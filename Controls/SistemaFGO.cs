@@ -26,11 +26,11 @@ namespace FGO_BSx.Controls
 
         public static void DisplayHP(int hp, int hpMax)
         {
-            if ((double)hp / hpMax <= 0.2)
+            if (hp / hpMax <= 0.2)
             {
                 WriteColoredAnsi(hp, "\x1b[38;5;124m");
             }
-            else if ((double)hp / hpMax < 0.6)
+            else if (hp / hpMax < 0.6)
             {
                 WriteColoredAnsi(hp, "\x1b[38;5;226m");
             }
@@ -41,56 +41,102 @@ namespace FGO_BSx.Controls
             Console.Write("/");
             WriteColoredAnsi(hpMax, "\x1b[38;5;46m");
         }
-
-        public static void MyServant(object personagemEscolhido)
+        public static void DisplayEnemyInfo(object inimigoEscolhido, int vidaInimigo, double sp, double spCost) 
+        {
+            if (inimigoEscolhido is EnemiesFate.EnemyArtoria enemyArtoria) 
+            {
+                
+                Console.Write("(");
+                WriteColored("Enemy", ConsoleColor.Red);
+                Console.Write(")");
+                WriteColored("Artoria", ConsoleColor.Yellow);
+                Console.Write(" [");
+                WriteColored("HP", ConsoleColor.Green);
+                Console.Write("]: ");
+                DisplayHP(vidaInimigo, (int)enemyArtoria.Hp);
+                Console.Write("\n                                   "); // pula a quantidade de posições necessarias para melhor leitura visual no terminal
+                WriteColored("NP Energy", ConsoleColor.Yellow);
+                Console.Write(": ");
+                if (sp >= spCost)
+                {
+                    sp = spCost;
+                    sp /= spCost;
+                    sp *= 100;
+                    WriteColored((int)sp, ConsoleColor.Green);
+                    WriteColored("/", ConsoleColor.White);
+                    WriteColored("100", ConsoleColor.Green);
+                }
+                else 
+                {
+                    sp /= spCost;
+                    sp *= 100;
+                    WriteColored((int)sp, ConsoleColor.Red);
+                    WriteColored("/", ConsoleColor.White);
+                    WriteColored("100", ConsoleColor.Green);
+                }
+            }
+        }
+        public static void MyServantAndEnemy(object personagemEscolhido, int vidaUsuario, object inimigoEscolhido, int vidaInimigo, double spEnemy, double spCostEnemy)
         {
             if (personagemEscolhido is Artoria artoria)
             {
                 WriteColored("Artoria", ConsoleColor.Yellow);
-                Console.Write("[");
+                Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)artoria.Hp, (int)artoria.HpMax);
+                DisplayHP(vidaUsuario, (int)artoria.Hp);
+                Console.Write("      |      ");
+                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Baobhan baobhan)
             {
                 WriteColored("Baobhan", ConsoleColor.Red);
-                Console.Write("[");
+                Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)baobhan.Hp, (int)baobhan.HpMax);
+                DisplayHP(vidaUsuario, (int)baobhan.Hp);
+                Console.Write("      |      ");
+                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
-            else if (personagemEscolhido is Jalter firstHassan)
+            else if (personagemEscolhido is Jalter jalter)
             {
-                WriteColored("Hassan", ConsoleColor.DarkMagenta);
-                Console.Write("[");
+                WriteColored("Jeanne D'arc", ConsoleColor.DarkYellow);
+                Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)firstHassan.Hp, (int)firstHassan.HpMax);
+                DisplayHP(vidaUsuario, (int)jalter.Hp);
+                Console.Write("      |      ");
+                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Mordred mordred)
             {
                 WriteColored("Mordred", ConsoleColor.Yellow);
-                Console.Write("[");
+                Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)mordred.Hp, (int)mordred.HpMax);
+                DisplayHP(vidaUsuario, (int)mordred.Hp);
+                Console.Write("      |      ");
+                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Tristan tristan)
             {
                 WriteColored("Tristan", ConsoleColor.DarkRed);
-                Console.Write("[");
+                Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)tristan.Hp, (int)tristan.HpMax);
+                DisplayHP(vidaUsuario, (int)tristan.Hp);
+                Console.Write("      |      ");
+                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Okada okada)
             {
                 WriteColored("Okada", ConsoleColor.DarkGray);
-                Console.Write("[");
+                Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP((int)okada.Hp, (int)okada.HpMax);
+                DisplayHP(vidaUsuario, (int)okada.Hp);
+                Console.Write("      |      ");
+                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
         }
 
@@ -190,17 +236,17 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = baobhan.RangeAttack(defesaInimigo);
+                    danoTotal = baobhan.RangeAttack(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = baobhan.FinesseImprovement(defesaInimigo);
+                    danoTotal = baobhan.FinesseImprovement(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && baobhan.SpInitial >= baobhan.SpCost)
                 {
-                    danoTotal = baobhan.FetchFailnaught(defesaInimigo);
+                    danoTotal = baobhan.FetchFailnaught(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
             }

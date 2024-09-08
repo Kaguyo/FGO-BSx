@@ -16,7 +16,11 @@
         private double _spInitial = 0;
         private double _basicAtk = 0.65; // 2 hits
         private double _extraAtk = 0.55; // 4 hits
-        private double _ultNp = 2.3; // 3 hits
+        private static double _ultNpHit1 = 0.9; // 1 hit
+        private static double _ultNpHit2 = 1.2; // 1 hit
+        private static double _ultNpHit3 = 2.1; // 1 hit
+        private static double _ultNpHit4 = 3.02; // 1 hit
+        private static double _ultNpHit5 = 3.5; // 1 hit
         private int _spd = 100;
         private int _lvl = 1;
         private double _critDmg = 10;
@@ -37,22 +41,27 @@
         internal double SpInitial { get => _spInitial; set => _spInitial = value; }
         internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
         internal double Extra { get => _extraAtk; set => _extraAtk = value; }
-        internal double UltNp { get => _ultNp; set => _ultNp = value; }
+        internal static double UltNpHit1 { get => _ultNpHit1; set => _ultNpHit1 = value; }
+        internal static double UltNpHit2 { get => _ultNpHit2; set => _ultNpHit2 = value; }
+        internal static double UltNpHit3 { get => _ultNpHit3; set => _ultNpHit3 = value; }
+        internal static double UltNpHit4 { get => _ultNpHit4; set => _ultNpHit4 = value; }
+        internal static double UltNpHit5 { get => _ultNpHit5; set => _ultNpHit5 = value; }
         internal int SPD { get => _spd; set => _spd = value; }
         internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
         internal int FinnesseImproveDuration { get; set; } = -1;
         internal static int ExtraAttackCooldown { get; set; } = 5;
+        internal double[] NPInstances = { UltNpHit1, UltNpHit2, UltNpHit3, UltNpHit4, UltNpHit5 };
 
         //  =========================================
         //  INICIO DE "FUNCOES PRIMARIAS".
         //  =========================================
 
-        /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
-        as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
-        */
-        public void FetchFailnaught(int defesaInimigo, int danoTotal)
+            /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
+            as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
+            */
+        public int FetchFailnaught(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
@@ -70,8 +79,8 @@
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, UltNp, CritRate, CritDmg, 3, defesaInimigo, danoTotal);
-            ExtraAttackCooldown -= 1;
+            danoTotal += Controls.DamageFormulas.BaobhanNP(random, Atk, NPInstances, CritRate, CritDmg, 5, defesaInimigo, danoTotal);
+            ExtraAttackCooldown -= 2;
             SpInitial = 0;
             if (ExtraAttackCooldown <= 0)
             {
@@ -82,9 +91,10 @@
             {
                 Atk = AtkMax;
             }
+            return danoTotal;
         }
 
-        public void FinesseImprovement(int defesaInimigo, int danoTotal)
+        public int FinesseImprovement(int defesaInimigo, int danoTotal)
         {
             FinnesseImproveDuration = 3;
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
@@ -116,9 +126,10 @@
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
+            return danoTotal;
         }
 
-        public void RangeAttack(int defesaInimigo, int danoTotal)
+        public int RangeAttack(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
@@ -155,10 +166,11 @@
             {
                 Atk = AtkMax;
             }
+            return danoTotal;
         }
         public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Red);
             Console.WriteLine(":");
             while (true)
             {
@@ -185,7 +197,6 @@
             ExtraAttackCooldown = 5;
             return danoTotal;
         }
-
         //  =========================================
         //  FIM DE "FUNCOES PRIMARIAS".
         //  =========================================

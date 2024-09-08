@@ -598,7 +598,7 @@
                 Console.Write(": ");
                 sp /= spCost;
                 sp *= 100;
-                Controls.SistemaFGO.WriteColored(((int)sp), ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored((int)sp, ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("/", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);

@@ -154,6 +154,64 @@
 
             return danoTotal;
         }
+        public static int BaobhanNP(Random random, double mainStat, double[] NPInstances, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal)
+        {
+            Console.Clear();
+            int DanoCausado;
+            int[] Danos = new int[hits];
+            int whichHitIsNpAt = 1;
+            int initialCursorTop = Console.CursorTop;
+
+            for (int i = 0; i < hits; i++)
+            {
+                double RNGcrit = NextDoubleInRange(random, 0, 100.1);
+
+                if (RNGcrit <= critRate)
+                {
+                    DanoCausado = (int)((mainStat - defesaInimigo) * NPInstances[i] * (1 + (critDmg / 100)));
+                    Danos[i] = Math.Max(1, DanoCausado);
+                }
+                else
+                {
+                    DanoCausado = (int)((mainStat - defesaInimigo) * NPInstances[i]);
+                    Danos[i] = Math.Max(1, DanoCausado);
+                }
+
+                Console.SetCursorPosition(0, initialCursorTop);
+                Console.Write("Dano Causado: ");
+                SistemaFGO.WriteColored(Danos[i], ConsoleColor.Red);
+
+                if (RNGcrit <= critRate)
+                {
+                    Console.SetCursorPosition(0, initialCursorTop + 1);
+                    Console.Write("CRITICAL HIT!");
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, initialCursorTop + 1);
+                    Console.Write(new string(' ', Console.WindowWidth));
+                }
+
+                if (i > 0)
+                {
+                    DanoCausado += Danos[i - 1];
+                }
+                Danos[i] = DanoCausado;
+                Console.SetCursorPosition(0, initialCursorTop + 2);
+                Console.Write("Dano Total: ");
+                SistemaFGO.WriteColored(Danos[i], ConsoleColor.Red);
+
+                if (whichHitIsNpAt == 1) Thread.Sleep(850);
+                else Thread.Sleep(6);
+
+                if (whichHitIsNpAt == 5) danoTotal += Danos[4];
+                whichHitIsNpAt += 1;
+            }
+            Console.WriteLine();
+            Console.ReadKey();
+
+            return danoTotal;
+        }
 
 
         //  ====================

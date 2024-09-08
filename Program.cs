@@ -20,36 +20,53 @@
                 FGO_BSx.CharactersFate.Jalter jalter = new FGO_BSx.CharactersFate.Jalter();
                 FGO_BSx.CharactersFate.Okada okada = new FGO_BSx.CharactersFate.Okada();
 
-                double[] ComHp = { enemyArtoria.Hp };
-                //  Apenas para exibicao ao console.
-                string[] inimigosNome = { enemyArtoria.Name };
-                //  Lista de objetos necessaria para logica de atributos.
-                object[] inimigos = { enemyArtoria };
+                //  Lista de propriedades necessaria para lógica de combate
+
+                //  Propriedades dos inimigos
+
+                double[] inimigosHp = [enemyArtoria.Hp];
+
+                double[] inimigosSp = [enemyArtoria.SpInitial];
+
+                double[] inimigosSpCost = [enemyArtoria.SpCost];
+
+                int[] inimigosSpeed = [enemyArtoria.SPD];
+                                   
+                string[] inimigosNome = [enemyArtoria.Name];
+
+                object[] inimigos = [enemyArtoria];
 
 
-                //  Apenas para exibicao ao console.t
-                double[] userHp = { artoria.Hp,
+                //  Propriedades personagens do usuario
+
+                double[] userHp = [ artoria.Hp,
                                     baobhan.Hp,
                                     okada.Hp,
                                     mordred.Hp,
                                     tristan.Hp,
                                     jalter.Hp
-                                  };
-                string[] personagensNome = { artoria.Name,
-                                         baobhan.Name,
-                                         okada.Name,
-                                         mordred.Name,
-                                         tristan.Name,
-                                         jalter.Name
-                                        };
-                //  Lista de objetos necessaria para logica de atributos.
-                object[] personagens = { artoria,
+                                   ];
+                int[] userSpeed = [ artoria.SPD,
+                                    baobhan.SPD,
+                                    okada.SPD,
+                                    mordred.SPD,
+                                    tristan.SPD,
+                                    jalter.SPD
+                                  ];
+                string[] personagensNome = [ artoria.Name,
+                                             baobhan.Name,
+                                             okada.Name,
+                                             mordred.Name,
+                                             tristan.Name,
+                                             jalter.Name
+                                            ];
+                object[] personagens = [ artoria,
                                          baobhan,
                                          okada,
                                          mordred,
                                          tristan,
                                          jalter
-                                        };
+                                        ];
 
                 
 
@@ -196,7 +213,11 @@
                 }
                 int danoTotal = 0;
                 int vidaUsuario = (int)userHp[indexPersonagem];
-                int vidaInimigo = (int)ComHp[indexInimigo];
+                int velocidadeUsuario = userSpeed[indexPersonagem];
+                int vidaInimigo = (int)inimigosHp[indexInimigo];
+                int velocidadeInimigo = inimigosSpeed[indexInimigo];
+                double spInimigo, spCostInimigo;
+
                 // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                 while (vidaUsuario > 0 && vidaInimigo > 0 && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop"))
                 {   
@@ -206,18 +227,23 @@
                     Controls.SistemaFGO.escolhaSkill != "7" && Controls.SistemaFGO.escolhaSkill != "8" &&
                     Controls.SistemaFGO.escolhaSkill != "9") 
                     {
-                        Console.WriteLine("\n");
-                        Controls.SistemaFGO.MyServant(Controls.SistemaFGO.personagemEscolhido);
+                        spInimigo = inimigosSp[indexInimigo];
+                        spCostInimigo = inimigosSpCost[indexInimigo];
 
-                        Console.WriteLine("\n\n===============");
-                        Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
-                        Console.WriteLine(":");
-                        Console.WriteLine("===============\n");
-                        Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
+                        if (velocidadeUsuario >= velocidadeInimigo)
+                        {
+                            Console.WriteLine("\n");
+                            Controls.SistemaFGO.MyServantAndEnemy(Controls.SistemaFGO.personagemEscolhido, vidaUsuario, Controls.SistemaFGO.inimigoEscolhido, vidaInimigo, spInimigo, spCostInimigo);
+                            Console.WriteLine("\n===============");
+                            Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
+                            Console.WriteLine(":");
+                            Console.WriteLine("===============\n");
+                            Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
 
-                        Console.Write("\n\nSelect a Skill: ");
-                        Controls.SistemaFGO.escolhaSkill = Console.ReadLine().ToLower();
-                        Console.Clear();
+                            Console.Write("\n\nSelect a Skill: ");
+                            Controls.SistemaFGO.escolhaSkill = Console.ReadLine().ToLower();
+                            Console.Clear();
+                        }
                         if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
                     }
                     if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
