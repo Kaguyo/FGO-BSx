@@ -62,7 +62,8 @@ namespace FGO_BSx.CharactersFate
         internal static double UltNpHit8 { get => _ultNpHit8; set => _ultNpHit8 = value; }
         internal static double UltNpHit9 { get => _ultNpHit9; set => _ultNpHit9 = value; }
         internal static int ExtraAttackCooldown { get; set; } = 5;
-
+        internal static int SelfModDuration { get; set; } = -1;
+        internal static int OblivionDuration { get; set; } = -1;
         internal int SPD { get => _spd; set => _spd = value; }
         internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
@@ -108,9 +109,143 @@ namespace FGO_BSx.CharactersFate
             }
             danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
+            SelfModDuration -= 1;
             if (ExtraAttackCooldown <= 0)
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
+            }
+            if (SelfModDuration == 0) CritRate -= 35;
+            OblivionDuration -= 1;
+            if (OblivionDuration == 0) CritDmg -= 90;
+            return danoTotal;
+        }
+        public int SelfModificationCritUp(int defesaInimigo, int danoTotal)
+        {
+            while (true) 
+            {
+                int choice = random.Next(1, 4);
+                if (choice == 1 && LastComment != "Right choice.")
+                {
+                    string comment = "Right choice.";
+                    LastComment = comment;
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Skill1.wav";
+
+                    Controls.SistemaFGO.PlaySound(audioFilePath);
+
+                    foreach (char c in comment) 
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(20);
+                    }
+                    break;
+                }
+                else if (choice == 2 && LastComment != "Just leave it to me.")
+                {
+                    string comment = "Just leave it to me.";
+                    LastComment = comment;
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Skill2.wav";
+
+                    Controls.SistemaFGO.PlaySound(audioFilePath);
+
+                    foreach (char c in comment)
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(20);
+                    }
+                    break;
+                }
+                else if (choice == 3 && LastComment != "Okay, okay.") 
+                {
+                    string comment = "Okay, okay.";
+                    LastComment = comment;
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Skill3.wav";
+
+                    Controls.SistemaFGO.PlaySound(audioFilePath);
+
+                    foreach (char c in comment)
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(20);
+                    }
+                    break;
+                }
+            }
+            SelfModDuration = 2;
+            CritRate += 35;
+            Hp += 150;
+            SpInitial += 10;
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                danoTotal += ExtraAttack(defesaInimigo, danoTotal);
+            }
+            OblivionDuration -= 1;
+            if (OblivionDuration == 0) CritDmg -= 90;
+            return danoTotal;
+        }
+        public int OblivionCorrectionCritUp(int defesaInimigo, int danoTotal)
+        {
+            while (true)
+            {
+                int choice = random.Next(1, 4);
+                if (choice == 1 && LastComment != "Howl, Fafnir!")
+                {
+                    string comment = "Howl, Fafnir!.";
+                    LastComment = comment;
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Obv1.wav";
+
+                    Controls.SistemaFGO.PlaySound(audioFilePath);
+
+                    foreach (char c in comment)
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(20);
+                    }
+                    break;
+                }
+                else if (choice == 2 && LastComment != "How's that!")
+                {
+                    string comment = "How's that!";
+                    LastComment = comment;
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Obv2.wav";
+
+                    Controls.SistemaFGO.PlaySound(audioFilePath);
+
+                    foreach (char c in comment)
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(20);
+                    }
+                    break;
+                }
+                else if (choice == 3 && LastComment != "Come, dragon of mine.")
+                {
+                    string comment = "Come, dragon of mine.";
+                    LastComment = comment;
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Obv3.wav";
+
+                    Controls.SistemaFGO.PlaySound(audioFilePath);
+
+                    foreach (char c in comment)
+                    {
+                        Console.Write(c);
+                        Thread.Sleep(20);
+                    }
+                    break;
+                }
+            }
+            OblivionDuration = 2;
+            SpInitial += 15;
+            CritDmg += 90;
+            ExtraAttackCooldown -= 1;
+            if (ExtraAttackCooldown <= 0)
+            {
+                danoTotal += ExtraAttack(defesaInimigo, danoTotal);
+            }
+            SelfModDuration -= 1;
+            if (SelfModDuration == 0)
+            {
+                CritRate -= 35;
             }
             return danoTotal;
         }
@@ -148,6 +283,13 @@ namespace FGO_BSx.CharactersFate
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
+            SelfModDuration -= 1;
+            if (SelfModDuration == 0)
+            {
+                CritRate -= 35;
+            }
+            OblivionDuration -= 1;
+            if (OblivionDuration == 0) CritDmg -= 90;
             return danoTotal;
         }
         public int ExtraAttack(int defesaInimigo, int danoTotal)
@@ -197,7 +339,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Thy path has long since come to an end!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Extra1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -212,7 +354,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Thou shalt be punished by flame.";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Extra2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -227,7 +369,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Ramble amidst the flames!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Extra3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
