@@ -6,10 +6,10 @@
 
         // Fields
         private string _name = "Baobhan";
-        private double _hpMax = 4929;
+        private int _hpMax = 4929;
         private int _atkMax = 632;
         private int _defMax = 499;
-        private double _hp = 4929;
+        private int _hp = 4929;
         private int _atk = 152;
         private int _def = 499;
         private double _spCost = 100;
@@ -31,10 +31,10 @@
         internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
         internal string? LastComment { get; set; }
         internal string Name { get => _name; }
-        internal double HpMax { get => _hpMax; set => _hpMax = value; }
+        internal int HpMax { get => _hpMax; set => _hpMax = value; }
         internal int AtkMax { get => _atkMax; set => _atkMax = value; }
         internal int DefMax { get => _defMax; set => _defMax = value; }
-        internal double Hp { get => _hp; set => _hp = value; }
+        internal int Hp { get => _hp; set => _hp = value; }
         internal int Atk { get => _atk; set => _atk = value; }
         internal int Def { get => _def; set => _def = value; }
         internal double SpCost { get => _spCost; set => _spCost = value; }

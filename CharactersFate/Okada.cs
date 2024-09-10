@@ -10,10 +10,10 @@ namespace FGO_BSx.CharactersFate
     internal class Okada : Interfaces.IAssassin
     {
         private string _name = "Okada";
-        private double _hpMax = 5751;
+        private int _hpMax = 5751;
         private int _atkMax = 652;
         private int _defMax = 498;
-        private double _hp = 5751;
+        private int _hp = 5751;
         private int _atk = 152;
         private int _def = 498;
         private double _spCost = 130;
@@ -29,7 +29,7 @@ namespace FGO_BSx.CharactersFate
         {
             get { return _name; }
         }
-        internal double HpMax
+        internal int HpMax
         {
             get
             {
@@ -62,7 +62,7 @@ namespace FGO_BSx.CharactersFate
                 _defMax = value;
             }
         }
-        internal double Hp
+        internal int Hp
         {
             get
             {

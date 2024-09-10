@@ -45,7 +45,6 @@ namespace FGO_BSx.Controls
         {
             if (inimigoEscolhido is EnemiesFate.EnemyArtoria enemyArtoria) 
             {
-                
                 Console.Write("(");
                 WriteColored("Enemy", ConsoleColor.Red);
                 Console.Write(")");
@@ -53,8 +52,8 @@ namespace FGO_BSx.Controls
                 Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP(vidaInimigo, (int)enemyArtoria.Hp);
-                Console.Write("\n                                   "); // pula a quantidade de posições necessarias para melhor leitura visual no terminal
+                DisplayHP(vidaInimigo, enemyArtoria.Hp);
+                Console.Write("\n                                            "); // pula a quantidade de posições necessarias para melhor leitura visual no terminal
                 WriteColored("NP Energy", ConsoleColor.Yellow);
                 Console.Write(": ");
                 if (sp >= spCost)
@@ -84,7 +83,7 @@ namespace FGO_BSx.Controls
                 Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP(vidaUsuario, (int)artoria.Hp);
+                DisplayHP(vidaUsuario, artoria.Hp);
                 Console.Write("      |      ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
@@ -94,18 +93,18 @@ namespace FGO_BSx.Controls
                 Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP(vidaUsuario, (int)baobhan.Hp);
+                DisplayHP(vidaUsuario, baobhan.Hp);
                 Console.Write("      |      ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Jalter jalter)
             {
-                WriteColored("Jeanne D'arc", ConsoleColor.DarkYellow);
+                WriteColored("Jeanne D'arc (Alter)", ConsoleColor.DarkYellow);
                 Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP(vidaUsuario, (int)jalter.Hp);
-                Console.Write("      |      ");
+                DisplayHP(vidaUsuario, jalter.Hp);
+                Console.Write("  |      ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Mordred mordred)
@@ -114,7 +113,7 @@ namespace FGO_BSx.Controls
                 Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP(vidaUsuario, (int)mordred.Hp);
+                DisplayHP(vidaUsuario, mordred.Hp);
                 Console.Write("      |      ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
@@ -124,7 +123,7 @@ namespace FGO_BSx.Controls
                 Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP(vidaUsuario, (int)tristan.Hp);
+                DisplayHP(vidaUsuario, tristan.Hp);
                 Console.Write("      |      ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
@@ -134,7 +133,7 @@ namespace FGO_BSx.Controls
                 Console.Write(" [");
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
-                DisplayHP(vidaUsuario, (int)okada.Hp);
+                DisplayHP(vidaUsuario, okada.Hp);
                 Console.Write("      |      ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
@@ -323,7 +322,7 @@ namespace FGO_BSx.Controls
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
-                    mdanoTotal = ordred.KnightofCrimsonThunder(defesaInimigo);
+                    danoTotal = mordred.KnightofCrimsonThunder(defesaInimigo);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)

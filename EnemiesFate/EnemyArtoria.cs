@@ -10,11 +10,11 @@ namespace FGO_BSx.EnemiesFate
     internal class EnemyArtoria : Interfaces.IEnemySwordsman
     {
         private string _name = "Artoria";
-        private double _hpMax = 265629;
-        private int _atkMax = 140;
-        private int _defMax = 115;
-        private double _hp = 265629;
-        private int _atk = 140;
+        private int _hpMax = 265629;
+        private int _atkMax = 940;
+        private int _defMax = 215;
+        private int _hp = 265629;
+        private int _atk = 940;
         private int _def = 315;
         private double _spCost = 200;
         private double _spInitial = 0;
@@ -30,10 +30,10 @@ namespace FGO_BSx.EnemiesFate
 
         internal string? LastComment { get; set; }
         internal string Name { get => _name; }
-        internal double HpMax { get => _hpMax; set => _hpMax = value; }
+        internal int HpMax { get => _hpMax; set => _hpMax = value; }
         internal int AtkMax { get => _atkMax; set => _atkMax = value; }
         internal int DefMax { get => _defMax; set => _defMax = value; }
-        internal double Hp { get => _hp; set => _hp = value; }
+        internal int Hp { get => _hp; set => _hp = value; }
         internal int Atk { get => _atk; set => _atk = value; }
         internal int Def { get => _def; set => _def = value; }
         internal double SpCost { get => _spCost; set => _spCost = value; }

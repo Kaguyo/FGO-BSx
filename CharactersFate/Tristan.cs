@@ -9,10 +9,10 @@ namespace FGO_BSx.CharactersFate
     internal class Tristan : Interfaces.IArcher
     {
         private string _name = "Tristan";
-        private double _hpMax = 4551;
+        private int _hpMax = 4551;
         private int _atkMax = 658;
         private int _defMax = 480;
-        private double _hp = 4551;
+        private int _hp = 4551;
         private int _atk = 158;
         private int _def = 480;
         private double _spCost = 160;
@@ -28,7 +28,7 @@ namespace FGO_BSx.CharactersFate
         {
             get { return _name; }
         }
-        internal double HpMax
+        internal int HpMax
         {
             get
             {
@@ -61,7 +61,7 @@ namespace FGO_BSx.CharactersFate
                 _defMax = value;
             }
         }
-        internal double Hp
+        internal int Hp
         {
             get
             {

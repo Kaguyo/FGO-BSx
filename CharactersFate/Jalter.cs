@@ -13,15 +13,15 @@ namespace FGO_BSx.CharactersFate
 
         // Fields
         private string _name = "Jeanne d'Arc (Alter)";
-        private double _hpMax = 6551;
+        private int _hpMax = 6551;
         private int _atkMax = 722;
         private int _defMax = 590;
-        private double _hp = 6551;
+        private int _hp = 6551;
         private int _atk = 222;
         private int _def = 590;
         private double _spCost = 250;
         private double _spInitial = 0;
-        private double _basicAtk = 0.35; // 2 hits
+        private double _basicAtk = 0.55; // 2 hits
         private static double _ultNpHit1 = 0.6; // 1 hit
         private static double _ultNpHit2 = 1.1; // 1 hit
         private static double _ultNpHit3 = 1.22; // 1 hit
@@ -42,10 +42,10 @@ namespace FGO_BSx.CharactersFate
         internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
         internal string? LastComment { get; set; }
         internal string Name { get => _name; }
-        internal double HpMax { get => _hpMax; set => _hpMax = value; }
+        internal int HpMax { get => _hpMax; set => _hpMax = value; }
         internal int AtkMax { get => _atkMax; set => _atkMax = value; }
         internal int DefMax { get => _defMax; set => _defMax = value; }
-        internal double Hp { get => _hp; set => _hp = value; }
+        internal int Hp { get => _hp; set => _hp = value; }
         internal int Atk { get => _atk; set => _atk = value; }
         internal int Def { get => _def; set => _def = value; }
         internal double SpCost { get => _spCost; set => _spCost = value; }
@@ -83,24 +83,30 @@ namespace FGO_BSx.CharactersFate
 
             while (true)
             {
-                int choice = random.Next(1, 4);
+                int choice = random.Next(1, 5);
 
-                if (choice == 1 && LastComment != "I'll take them myself!")
+                if (choice == 1 && LastComment != "Ahahaha!")
                 {
                     PerformComment1();
                     break;
                 }
-                else if (choice == 2 && LastComment != "I'll show you my strength!")
+                else if (choice == 2 && LastComment != "Well!?")
                 {
                     PerformComment2();
                     break;
                 }
-                else if (choice == 3 && LastComment != "I'll cut them down!")
+                else if (choice == 3 && LastComment != "Pathetic!")
                 {
                     PerformComment3();
                     break;
                 }
+                else if (choice == 4 && LastComment != "Burn away!")
+                {
+                    PerformComment4();
+                    break;
+                }
             }
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
@@ -117,17 +123,17 @@ namespace FGO_BSx.CharactersFate
             {
                 int choice = random.Next(1, 4);
 
-                if (choice == 1 && LastComment != "I'll take them myself!")
+                if (choice == 1 && LastComment != "This is the howl of a soul filled with hatred!\nLa Grondement Du Haine!")
                 {
                     PerformLeGrondementdelaHaine1();
                     break;
                 }
-                else if (choice == 2 && LastComment != "I'll show you my strength!")
+                else if (choice == 2 && LastComment != "My flames of vengeance. My flames of retribution. I'll skewer you with my festering hatred!\nLa Grondement du Haine!! Ahahahahahahahaha!!")
                 {
                     PerformLeGrondementdelaHaine2();
                     break;
                 }
-                else if (choice == 3 && LastComment != "I'll cut them down!")
+                else if (choice == 3 && LastComment != "My sword is hatred! My dragon is vengeance! My flames are retribution! Everything will be pierced!\nLa Grondement du Haine!!")
                 {
                     PerformLeGrondementdelaHaine3();
                     break;
@@ -189,7 +195,7 @@ namespace FGO_BSx.CharactersFate
         */
         private void PerformExtra1()
         {
-            string comment = "Got you!";
+            string comment = "Thy path has long since come to an end!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra1.wav";
 
@@ -204,7 +210,7 @@ namespace FGO_BSx.CharactersFate
         }
         private void PerformExtra2()
         {
-            string comment = "O wind, whirl away!";
+            string comment = "Thou shalt be punished by flame.";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra2.wav";
 
@@ -212,22 +218,14 @@ namespace FGO_BSx.CharactersFate
 
             foreach (char c in comment)
             {
-                if (c == ',')
-                {
-                    Console.Write(c);
-                    Thread.Sleep(300);
-                }
-                else
-                {
-                    Console.Write(c);
-                    Thread.Sleep(22);
-                }
+                Console.Write(c);
+                Thread.Sleep(22);
             }
             Console.WriteLine();
         }
         private void PerformExtra3()
         {
-            string comment = "Strike Air!";
+            string comment = "Ramble amidst the flames!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Extra3.wav";
 
@@ -242,33 +240,107 @@ namespace FGO_BSx.CharactersFate
         }
         private void PerformLeGrondementdelaHaine1()
         {
-            string comment = "I'll cut them down!";
+            string comment = "This is the howl of a soul filled with hatred!\r\nLa Grondement Du Haine!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\NP1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
+            int x = 1;
+            foreach (char c in comment)
+            {
+                if (c == '!' && x == 1)
+                {
+                    Console.Write(c);
+                    Controls.SistemaFGO.WriteColored2(ConsoleColor.DarkYellow);
+                    Thread.Sleep(300);
+                    x++;
+                }
+                else
+                {
+                    Console.Write(c);
+                    Thread.Sleep(20);
+                }
+            }
+            Console.ResetColor();
+            Console.WriteLine();
         }
         private void PerformLeGrondementdelaHaine2()
         {
-            string comment = "I'll cut them down!";
+            string comment = "My flames of vengeance. My flames of retribution. I'll skewer you with my festering hatred!\nLa Grondement du Haine!! Ahahahahahahahaha!!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\NP2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
+            int x = 1;
+            foreach (char c in comment)
+            {
+                if (c == '.')
+                {
+                    Console.Write(c);
+                    Thread.Sleep(150);
+                }
+                else if (c == '!' && x == 1)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(100);
+                    Controls.SistemaFGO.WriteColored2(ConsoleColor.DarkYellow);
+                    x++;
+                }
+                else if (c == '!' && x <= 3)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(20);
+                    x++;
+                }
+                else if (c == 'A' && x > 3) 
+                {
+                    Console.ResetColor();
+                    Console.Write(c) ; Thread.Sleep(20);
+                }
+                else
+                {
+                    Console.Write(c);
+                    Thread.Sleep(20);
+                }
+            }
+            Console.WriteLine();
         }
         private void PerformLeGrondementdelaHaine3()
         {
-            string comment = "I'll cut them down!";
+            string comment = "My sword is hatred! My dragon is vengeance! My flames are retribution! Everything will be pierced!\nLa Grondement du Haine!!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\NP3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            int x = 1;
+            foreach (char c in comment)
+            {
+                if (c == '!' && x <= 4)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(90);
+                    x++;
+                }
+                else if (x > 4)
+                {
+                    Controls.SistemaFGO.WriteColored(c, ConsoleColor.DarkYellow);
+                    Thread.Sleep(20);
+                }
+                else
+                {
+                    Console.Write(c);
+                    Thread.Sleep(20);
+                }
+            }
+            Console.WriteLine();
         }
+
         private void PerformComment1()
         {
-            string comment = "I'll take them myself!";
+            string comment = "Ahahaha!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic1.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -282,9 +354,9 @@ namespace FGO_BSx.CharactersFate
 
         private void PerformComment2()
         {
-            string comment = "I'll show you my strength!";
+            string comment = "Well!?";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic2.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -298,16 +370,31 @@ namespace FGO_BSx.CharactersFate
 
         private void PerformComment3()
         {
-            string comment = "I'll cut them down!";
+            string comment = "Pathetic!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\ArtoriasNoises\Basic3.wav";
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
             foreach (char c in comment)
             {
                 Console.Write(c);
-                Thread.Sleep(10);
+                Thread.Sleep(15);
+            }
+            Console.WriteLine();
+        }
+        private void PerformComment4()
+        {
+            string comment = "Burn away!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk4.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+
+            foreach (char c in comment)
+            {
+                Console.Write(c);
+                Thread.Sleep(15);
             }
             Console.WriteLine();
         }

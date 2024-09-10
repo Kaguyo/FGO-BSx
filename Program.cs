@@ -24,29 +24,29 @@
 
                 //  Propriedades dos inimigos
 
-                double[] inimigosHp = [enemyArtoria.Hp];
+                int[] inimigoHp = [enemyArtoria.Hp];
 
-                double[] inimigosSp = [enemyArtoria.SpInitial];
+                double[] inimigoSp = [enemyArtoria.SpInitial];
 
-                double[] inimigosSpCost = [enemyArtoria.SpCost];
+                double[] inimigoSpCost = [enemyArtoria.SpCost];
 
-                int[] inimigosSpeed = [enemyArtoria.SPD];
+                int[] inimigoSpeed = [enemyArtoria.SPD];
                                    
-                string[] inimigosNome = [enemyArtoria.Name];
+                string[] inimigoNome = [enemyArtoria.Name];
 
-                object[] inimigos = [enemyArtoria];
+                object[] inimigo = [enemyArtoria];
 
 
                 //  Propriedades personagens do usuario
 
-                double[] userHp = [ artoria.Hp,
+                int[] personagensHp = [ artoria.Hp,
                                     baobhan.Hp,
                                     okada.Hp,
                                     mordred.Hp,
                                     tristan.Hp,
                                     jalter.Hp
-                                   ];
-                int[] userSpeed = [ artoria.SPD,
+                                  ];
+                int[] personagensSpeed = [ artoria.SPD,
                                     baobhan.SPD,
                                     okada.SPD,
                                     mordred.SPD,
@@ -59,14 +59,14 @@
                                              mordred.Name,
                                              tristan.Name,
                                              jalter.Name
-                                            ];
+                                           ];
                 object[] personagens = [ artoria,
                                          baobhan,
                                          okada,
                                          mordred,
                                          tristan,
                                          jalter
-                                        ];
+                                       ];
 
                 
 
@@ -127,9 +127,9 @@
                     Console.WriteLine(":");
                     Console.WriteLine("===============\n");
 
-                    for (int i = 0; i < inimigos.Length; i++)
+                    for (int i = 0; i < inimigo.Length; i++)
                     {
-                        Controls.SistemaFGO.WriteColored(inimigosNome[i], ConsoleColor.White);
+                        Controls.SistemaFGO.WriteColored(inimigoNome[i], ConsoleColor.White);
                         Console.Write(" (");
                         Controls.SistemaFGO.WriteColored((i + 1).ToString(), ConsoleColor.DarkRed);
                         Console.WriteLine(")");
@@ -199,27 +199,23 @@
                 {
                     break;
                 }
-                else if (escolhaInimigo == "1" || escolhaInimigo == inimigosNome[0])
+                else if (escolhaInimigo == "1" || escolhaInimigo == inimigoNome[0])
                 {
-                    Controls.SistemaFGO.inimigoEscolhido = inimigos[0];
+                    Controls.SistemaFGO.inimigoEscolhido = inimigo[0];
                     indexInimigo = 0;
-                    defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigos[0]);
+                    defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigo[0]);
                 }
-                else if (escolhaInimigo == "2" || escolhaInimigo == inimigosNome[1])
+                else if (escolhaInimigo == "2" || escolhaInimigo == inimigoNome[1])
                 {
-                    Controls.SistemaFGO.inimigoEscolhido = inimigos[1];
+                    Controls.SistemaFGO.inimigoEscolhido = inimigo[1];
                     indexInimigo = 1;
-                    defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigos[1]);
+                    defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigo[1]);
                 }
                 int danoTotal = 0;
-                int vidaUsuario = (int)userHp[indexPersonagem];
-                int velocidadeUsuario = userSpeed[indexPersonagem];
-                int vidaInimigo = (int)inimigosHp[indexInimigo];
-                int velocidadeInimigo = inimigosSpeed[indexInimigo];
                 double spInimigo, spCostInimigo;
 
                 // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
-                while (vidaUsuario > 0 && vidaInimigo > 0 && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop"))
+                while (personagensHp[indexPersonagem] > 0 && inimigoHp[indexInimigo] > 0 && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop"))
                 {   
                     while (Controls.SistemaFGO.escolhaSkill != "1" && Controls.SistemaFGO.escolhaSkill != "2" &&
                     Controls.SistemaFGO.escolhaSkill != "3" && Controls.SistemaFGO.escolhaSkill != "4" &&
@@ -227,13 +223,13 @@
                     Controls.SistemaFGO.escolhaSkill != "7" && Controls.SistemaFGO.escolhaSkill != "8" &&
                     Controls.SistemaFGO.escolhaSkill != "9") 
                     {
-                        spInimigo = inimigosSp[indexInimigo];
-                        spCostInimigo = inimigosSpCost[indexInimigo];
+                        spInimigo = inimigoSp[indexInimigo];
+                        spCostInimigo = inimigoSpCost[indexInimigo];
 
-                        if (velocidadeUsuario >= velocidadeInimigo)
+                        if (personagensSpeed[indexPersonagem] >= inimigoSpeed[indexInimigo])
                         {
                             Console.WriteLine("\n");
-                            Controls.SistemaFGO.MyServantAndEnemy(Controls.SistemaFGO.personagemEscolhido, vidaUsuario, Controls.SistemaFGO.inimigoEscolhido, vidaInimigo, spInimigo, spCostInimigo);
+                            Controls.SistemaFGO.MyServantAndEnemy(Controls.SistemaFGO.personagemEscolhido, personagensHp[indexPersonagem], Controls.SistemaFGO.inimigoEscolhido, inimigoHp[indexInimigo], spInimigo, spCostInimigo);
                             Console.WriteLine("\n===============");
                             Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
                             Console.WriteLine(":");
@@ -249,7 +245,7 @@
                     if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
 
                     danoTotal = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotal);
-                    vidaInimigo -= danoTotal;
+                    personagensHp[indexPersonagem] -= danoTotal;
                     Console.Clear();
                 }
             }

@@ -9,10 +9,10 @@ namespace FGO_BSx.CharactersFate
     internal class Mordred : FGO_BSx.Interfaces.ISaber
     {
         private string _name = "Mordred";
-        private double _hpMax = 6021;
+        private int _hpMax = 6021;
         private int _atkMax = 702;
         private int _defMax = 590;
-        private double _hp = 6021;
+        private int _hp = 6021;
         private int _atk = 162;
         private int _def = 590;
         private double _spCost = 140;
@@ -28,7 +28,7 @@ namespace FGO_BSx.CharactersFate
         {
             get { return _name; }
         }
-        internal double HpMax
+        internal int HpMax
         {
             get
             {
@@ -61,7 +61,7 @@ namespace FGO_BSx.CharactersFate
                 _defMax = value;
             }
         }
-        internal double Hp
+        internal int Hp
         {
             get
             {
