@@ -79,7 +79,7 @@
                 }
             }
             danoTotal += Controls.DamageFormulas.ArtoriaNP(random, Atk, UltNp, CritRate, CritDmg, defesaInimigo, danoTotal);
-            ExtraAttackCooldown -= 1;
+            ExtraAttackCooldown -= 2;
             CritRate += 20;
             CritDmg += 40;
             SpInitial = 0;

@@ -245,7 +245,7 @@
                     if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
 
                     danoTotal = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotal);
-                    personagensHp[indexPersonagem] -= danoTotal;
+                    inimigoHp[indexInimigo] -= danoTotal;
                     Console.Clear();
                 }
             }
