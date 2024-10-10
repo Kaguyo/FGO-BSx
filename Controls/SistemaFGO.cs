@@ -84,7 +84,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, artoria.Hp);
-                Console.Write("      |      ");
+                Console.Write("  |  ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Baobhan baobhan)
@@ -94,7 +94,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, baobhan.Hp);
-                Console.Write("      |      ");
+                Console.Write("   |   ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Jalter jalter)
@@ -104,7 +104,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, jalter.Hp);
-                Console.Write("  |      ");
+                Console.Write("  |    ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Mordred mordred)
@@ -114,7 +114,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, mordred.Hp);
-                Console.Write("      |      ");
+                Console.Write("    |    ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Tristan tristan)
@@ -124,7 +124,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, tristan.Hp);
-                Console.Write("      |      ");
+                Console.Write("    |    ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Okada okada)
@@ -134,7 +134,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, okada.Hp);
-                Console.Write("      |      ");
+                Console.Write("    |    ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
         }
