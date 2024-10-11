@@ -253,17 +253,17 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = okada.SwordSkill(defesaInimigo);
+                    danoTotal = okada.SwordSkill(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = okada.AntiSaberAtkUp(defesaInimigo);
+                    danoTotal = okada.AntiSaberAtkUp(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && okada.SpInitial >= okada.SpCost)
                 {
-                    danoTotal = okada.Shimatsuken(defesaInimigo);
+                    danoTotal = okada.Shimatsuken(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -294,17 +294,17 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = tristan.RangeAttack(defesaInimigo);
+                    danoTotal = tristan.RangeAttack(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = tristan.ManaLoading(defesaInimigo);
+                    danoTotal = tristan.ManaLoading(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && tristan.SpInitial >= tristan.SpCost)
                 {
-                    danoTotal = tristan.Failnaught(defesaInimigo);
+                    danoTotal = tristan.Failnaught(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
             }
@@ -312,22 +312,22 @@ namespace FGO_BSx.Controls
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = mordred.SwordSkill(defesaInimigo);
+                    danoTotal = mordred.SwordSkill(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = mordred.ManaLoading(defesaInimigo);
+                    danoTotal = mordred.ManaLoading(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
-                    danoTotal = mordred.KnightofCrimsonThunder(defesaInimigo);
+                    danoTotal = mordred.KnightofCrimsonThunder(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)
                 {
-                    danoTotal = mordred.ClarentBloodArthur(defesaInimigo);
+                    danoTotal = mordred.ClarentBloodArthur(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
                 }
             }

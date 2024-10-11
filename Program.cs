@@ -39,7 +39,7 @@
 
                 //  Propriedades personagens do usuario
 
-                int[] personagensHp = [ artoria.Hp,
+                int[] personagensHp = [artoria.Hp,
                                     baobhan.Hp,
                                     okada.Hp,
                                     mordred.Hp,
@@ -112,8 +112,6 @@
                         Console.Clear();
                         break;
                     }
-
-                    Console.Clear();
                 }
                 if (escolhaPersonagem == "0" || escolhaPersonagem == "Stop")
                 {
