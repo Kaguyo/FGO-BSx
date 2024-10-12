@@ -23,7 +23,7 @@ namespace FGO_BSx.CharactersFate
         private double _extraAtk = 0.73; // 3 hits
         private static double _ultNpHit1 = 0.9; // 1 hit
         private static double _ultNpHit2 = 1.9; // 1 hit
-        private static double _ultNpHit3 = 3.5; // 1 hit
+        private static double _ultNpHit3 = 3; // 1 hit
         private static double _ultNpHit4 = 3.9; // 1 hit
         private static double _ultNpHit5 = 5.2; // 1 hit
         private int _spd = 100;
@@ -54,15 +54,21 @@ namespace FGO_BSx.CharactersFate
         internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
-        internal int BuffMordred { get; set; } = -1;
+        internal int KnightofCrimsonThunderBuff { get; set; } = -1;
         internal static int ExtraAttackCooldown { get; set; } = 5;
+        internal double[] NPInstances = { UltNpHit1, UltNpHit2, UltNpHit3, UltNpHit4, UltNpHit5 };
         //  =========================================
         //  INICIO DE "FUNCOES PRIMARIAS".
         //  =========================================
 
-        /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
-        as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
-        */
+            /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
+            as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
+            */
+        internal static double temp1 { get; set; }
+        internal static double temp2 { get; set; }
+        internal static double temp3 { get; set; }
+        internal static double temp4 { get; set; }
+        internal static double temp5 { get; set; }
         public int SwordSkill(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
@@ -95,17 +101,20 @@ namespace FGO_BSx.CharactersFate
             }
             danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal);
             ExtraAttackCooldown -= 1;
-            SelfModDuration -= 1;
+            KnightofCrimsonThunderBuff -= 1;
+            SpInitial += 10;
             if (ExtraAttackCooldown <= 0)
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
-            if (SelfModDuration == 0) CritRate -= 35;
-            OblivionDuration -= 1;
-            if (OblivionDuration == 0) CritDmg -= 90;
+            if (KnightofCrimsonThunderBuff == 0) 
+            {
+                CritRate -= 35;
+            }
+
             return danoTotal;
         }
-        public int SelfModificationCritUp(int defesaInimigo, int danoTotal)
+        public int KnightofCrimsonThunder(int defesaInimigo, int danoTotal)
         {
             while (true)
             {
@@ -156,20 +165,22 @@ namespace FGO_BSx.CharactersFate
                     break;
                 }
             }
-            SelfModDuration = 2;
+            if (KnightofCrimsonThunderBuff > 0)
+            {
+                CritRate -= 35;
+            }
+            KnightofCrimsonThunderBuff = 2;
             CritRate += 35;
-            Hp += 150;
-            SpInitial += 10;
+            SpInitial += 5;
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
-            OblivionDuration -= 1;
-            if (OblivionDuration == 0) CritDmg -= 90;
+            
             return danoTotal;
         }
-        public int OblivionCorrectionCritUp(int defesaInimigo, int danoTotal)
+        public int ManaLoading(int defesaInimigo, int danoTotal)
         {
             while (true)
             {
@@ -220,22 +231,23 @@ namespace FGO_BSx.CharactersFate
                     break;
                 }
             }
-            OblivionDuration = 2;
-            SpInitial += 15;
-            CritDmg += 90;
+            Hp += 150;
+            if (Hp > HpMax) Hp = HpMax;
+            SpInitial += 55;
             ExtraAttackCooldown -= 1;
+            KnightofCrimsonThunderBuff -= 1;
             if (ExtraAttackCooldown <= 0)
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
-            SelfModDuration -= 1;
-            if (SelfModDuration == 0)
+            if (KnightofCrimsonThunderBuff == 0)
             {
                 CritRate -= 35;
             }
+
             return danoTotal;
         }
-        public int LeGrondementdelaHaine(int defesaInimigo, int danoTotal)
+        public int ClarentBloodArthur(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.DarkYellow);
             Console.WriteLine(":");
@@ -244,38 +256,44 @@ namespace FGO_BSx.CharactersFate
             {
                 int choice = random.Next(1, 4);
 
-                if (choice == 1 && LastComment != "This is the howl of a soul filled with hatred!\nLa Grondement Du Haine!")
+                if (choice == 1 && LastComment != "So it's time for some overkill!")
                 {
-                    PerformLeGrondementdelaHaine1();
+                    PerformClarentBloodArthur1();
                     break;
                 }
-                else if (choice == 2 && LastComment != "My flames of vengeance. My flames of retribution. I'll skewer you with my festering hatred!\nLa Grondement du Haine!! Ahahahahahahahaha!!")
+                else if (choice == 2 && LastComment != "This is the evil sword that destroyed my father...\n Clarent Blood Arthur!")
                 {
-                    PerformLeGrondementdelaHaine2();
+                    PerformClarentBloodArthur2();
                     break;
                 }
-                else if (choice == 3 && LastComment != "My sword is hatred! My dragon is vengeance! My flames are retribution! Everything will be pierced!\nLa Grondement du Haine!!")
+                else if (choice == 3 && LastComment != "I am no king, but I follow in the king's path.\r\nI will destroy all that I must to bring the king peace!\r\nClarent Blood Arthur!")
                 {
-                    PerformLeGrondementdelaHaine3();
+                    PerformClarentBloodArthur3();
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.JalterNP(random, Atk, NPInstances, CritRate, CritDmg, 9, defesaInimigo, danoTotal);
             Hp += 300;
             if (Hp > HpMax) Hp = HpMax;
             ExtraAttackCooldown -= 1;
             SpInitial = 0;
+            if (KnightofCrimsonThunderBuff > 0)
+            {
+                danoTotal += Controls.DamageFormulas.MordredNP(random, Atk, NPInstances, CritRate, CritDmg, 5, defesaInimigo, danoTotal, 1.4);
+            }
+            else 
+            {
+                danoTotal += Controls.DamageFormulas.MordredNP(random, Atk, NPInstances, CritRate, CritDmg, 5, defesaInimigo, danoTotal, 1);
+            }
             if (ExtraAttackCooldown <= 0)
             {
                 danoTotal += ExtraAttack(defesaInimigo, danoTotal);
             }
-            SelfModDuration -= 1;
-            if (SelfModDuration == 0)
+            KnightofCrimsonThunderBuff -= 1;
+            if (KnightofCrimsonThunderBuff == 0) 
             {
                 CritRate -= 35;
             }
-            OblivionDuration -= 1;
-            if (OblivionDuration == 0) CritDmg -= 90;
+            
             return danoTotal;
         }
         public int ExtraAttack(int defesaInimigo, int danoTotal)
@@ -304,7 +322,7 @@ namespace FGO_BSx.CharactersFate
             }
             SpInitial += 8;
             ExtraAttackCooldown = 5;
-            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo, danoTotal);
+            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo, danoTotal);
         }
         //  =========================================
         //  FIM DE "FUNCOES PRIMARIAS".
@@ -366,22 +384,43 @@ namespace FGO_BSx.CharactersFate
             }
             Console.WriteLine();
         }
-        private void PerformLeGrondementdelaHaine1()
+        private void PerformClarentBloodArthur1()
         {
-            string comment = "This is the howl of a soul filled with hatred!\r\nLa Grondement Du Haine!";
+            string comment = "So it's time for some overkill!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\NP1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
-            int x = 1;
             foreach (char c in comment)
             {
-                if (c == '!' && x == 1)
-                {
                     Console.Write(c);
-                    Controls.SistemaFGO.WriteColored2(ConsoleColor.DarkYellow);
-                    Thread.Sleep(300);
+                    Thread.Sleep(20);
+            }
+            Console.WriteLine();
+        }
+        private void PerformClarentBloodArthur2()
+        {
+            string comment = "This is the evil sword that destroyed my father...\nClarent Blood Arthur!";
+            LastComment = comment;
+            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\NP2.wav";
+
+            Controls.SistemaFGO.PlaySound(audioFilePath);
+            int x = 0;
+            foreach (char c in comment)
+            {
+                if (c == '.')
+                {
                     x++;
+                    Console.Write(c);
+                    if (x != 3) 
+                    {
+                        Thread.Sleep(20);
+                    }
+                    else 
+                    { 
+                        Thread.Sleep(500);
+                        Controls.SistemaFGO.WriteColored2(ConsoleColor.Yellow);
+                    }
                 }
                 else
                 {
@@ -392,68 +431,31 @@ namespace FGO_BSx.CharactersFate
             Console.ResetColor();
             Console.WriteLine();
         }
-        private void PerformLeGrondementdelaHaine2()
+        private void PerformClarentBloodArthur3()
         {
-            string comment = "My flames of vengeance. My flames of retribution. I'll skewer you with my festering hatred!\nLa Grondement du Haine!! Ahahahahahahahaha!!";
-            LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\NP2.wav";
-
-            Controls.SistemaFGO.PlaySound(audioFilePath);
-            int x = 1;
-            foreach (char c in comment)
-            {
-                if (c == '.')
-                {
-                    Console.Write(c);
-                    Thread.Sleep(150);
-                }
-                else if (c == '!' && x == 1)
-                {
-                    Console.Write(c);
-                    Thread.Sleep(100);
-                    Controls.SistemaFGO.WriteColored2(ConsoleColor.DarkYellow);
-                    x++;
-                }
-                else if (c == '!' && x <= 3)
-                {
-                    Console.Write(c);
-                    Thread.Sleep(20);
-                    x++;
-                }
-                else if (c == 'A' && x > 3)
-                {
-                    Console.ResetColor();
-                    Console.Write(c); Thread.Sleep(20);
-                }
-                else
-                {
-                    Console.Write(c);
-                    Thread.Sleep(20);
-                }
-            }
-            Console.WriteLine();
-        }
-        private void PerformLeGrondementdelaHaine3()
-        {
-            string comment = "My sword is hatred! My dragon is vengeance! My flames are retribution! Everything will be pierced!\nLa Grondement du Haine!!";
+            string comment = "I am no king, but I follow in the king's path.\nI will destroy all that I must to bring the king peace!\nClarent Blood Arthur!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\NP3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
-            int x = 1;
             foreach (char c in comment)
             {
-                if (c == '!' && x <= 4)
+                if (c == ',')
                 {
                     Console.Write(c);
-                    Thread.Sleep(90);
-                    x++;
+                    Thread.Sleep(40);
                 }
-                else if (x > 4)
+                else if (c == '.') 
                 {
-                    Controls.SistemaFGO.WriteColored(c, ConsoleColor.DarkYellow);
-                    Thread.Sleep(20);
+                    Console.Write(c);
+                    Thread.Sleep(120);
+                }
+                else if (c == '!')
+                {
+                    Console.Write(c);
+                    Thread.Sleep(220);
+                    Controls.SistemaFGO.WriteColored2(ConsoleColor.Yellow);
                 }
                 else
                 {
@@ -463,7 +465,7 @@ namespace FGO_BSx.CharactersFate
             }
             Console.WriteLine();
         }
-
+      
         private void PerformComment1()
         {
             string comment = "Ahahaha!";
