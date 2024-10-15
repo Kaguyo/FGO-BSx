@@ -22,15 +22,15 @@ namespace FGO_BSx.CharactersFate
         private double _spCost = 250;
         private double _spInitial = 0;
         private double _basicAtk = 0.55; // 2 hits
-        private static double _ultNpHit1 = 0.6; // 1 hit
-        private static double _ultNpHit2 = 1.1; // 1 hit
-        private static double _ultNpHit3 = 1.22; // 1 hit
-        private static double _ultNpHit4 = 1.3; // 1 hit
-        private static double _ultNpHit5 = 1.5; // 1 hit
-        private static double _ultNpHit6 = 1.66; // 1 hit
-        private static double _ultNpHit7 = 1.72; // 1 hit
-        private static double _ultNpHit8 = 1.92; // 1 hit
-        private static double _ultNpHit9 = 2.69; // 1 hit
+        private static double _ultNpHit1 = 0.8; // 1 hit
+        private static double _ultNpHit2 = 1.2; // 1 hit
+        private static double _ultNpHit3 = 1.35; // 1 hit
+        private static double _ultNpHit4 = 1.5; // 1 hit
+        private static double _ultNpHit5 = 1.7; // 1 hit
+        private static double _ultNpHit6 = 1.86; // 1 hit
+        private static double _ultNpHit7 = 1.92; // 1 hit
+        private static double _ultNpHit8 = 2.02; // 1 hit
+        private static double _ultNpHit9 = 2.95; // 1 hit
         private double _extraAtk = 0.35; // 5 hits
         private int _spd = 100;
         private int _lvl = 1;
@@ -564,7 +564,7 @@ namespace FGO_BSx.CharactersFate
             Console.WriteLine(")");
             if (sp < spCost)
             {
-                Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.DarkYellow);
                 Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored(" (", ConsoleColor.DarkGray);
                 Controls.SistemaFGO.WriteColored("Le Grondement de la Haine", ConsoleColor.DarkYellow);
@@ -580,12 +580,12 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored("/", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("  NOT READY", ConsoleColor.DarkRed);
-                Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.DarkYellow);
             }
             else if (sp >= spCost)
             {
                 sp = spCost;
-                Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.DarkYellow);
                 Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored(" (", ConsoleColor.DarkGray);
                 Controls.SistemaFGO.WriteColored("Le Grondement de la Haine", ConsoleColor.DarkYellow);
@@ -601,7 +601,7 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored("/", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);
-                Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.Yellow);
+                Controls.SistemaFGO.WriteColored("\n-------------------------------", ConsoleColor.DarkYellow);
             }
         }
     }

@@ -15,7 +15,7 @@
         private double _spCost = 140;
         private double _spInitial = 0;
         private double _basicAtk = 1.70; // single hit
-        private double _ultNp = 10.63; // single hit
+        private double _ultNp = 13.2; // single hit
         private double _extraAtk = 0.73; // 3 hits
         private int _spd = 110;
         private int _lvl = 1;

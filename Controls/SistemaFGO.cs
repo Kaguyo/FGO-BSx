@@ -2,6 +2,7 @@
 using NAudio.Wave;
 using System;
 
+
 namespace FGO_BSx.Controls
 {
     public class SistemaFGO

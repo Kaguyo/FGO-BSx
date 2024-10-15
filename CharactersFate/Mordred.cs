@@ -61,14 +61,10 @@ namespace FGO_BSx.CharactersFate
         //  INICIO DE "FUNCOES PRIMARIAS".
         //  =========================================
 
-            /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
-            as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
-            */
-        internal static double temp1 { get; set; }
-        internal static double temp2 { get; set; }
-        internal static double temp3 { get; set; }
-        internal static double temp4 { get; set; }
-        internal static double temp5 { get; set; }
+        /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
+        as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
+        */
+       
         public int SwordSkill(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
@@ -78,22 +74,22 @@ namespace FGO_BSx.CharactersFate
             {
                 int choice = random.Next(1, 5);
 
-                if (choice == 1 && LastComment != "Ahahaha!")
+                if (choice == 1 && LastComment != "Shut up!")
                 {
                     PerformComment1();
                     break;
                 }
-                else if (choice == 2 && LastComment != "Well!?")
+                else if (choice == 2 && LastComment != "Silence!")
                 {
                     PerformComment2();
                     break;
                 }
-                else if (choice == 3 && LastComment != "Pathetic!")
+                else if (choice == 3 && LastComment != "Drop dead!")
                 {
                     PerformComment3();
                     break;
                 }
-                else if (choice == 4 && LastComment != "Burn away!")
+                else if (choice == 4 && LastComment != "What's the matter!?")
                 {
                     PerformComment4();
                     break;
@@ -119,11 +115,11 @@ namespace FGO_BSx.CharactersFate
             while (true)
             {
                 int choice = random.Next(1, 4);
-                if (choice == 1 && LastComment != "Right choice.")
+                if (choice == 1 && LastComment != "This feels awesome!")
                 {
-                    string comment = "Right choice.";
+                    string comment = "This feels awesome!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill1.wav";
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\KoCT1.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -134,11 +130,11 @@ namespace FGO_BSx.CharactersFate
                     }
                     break;
                 }
-                else if (choice == 2 && LastComment != "Just leave it to me.")
+                else if (choice == 2 && LastComment != "Yeah!")
                 {
-                    string comment = "Just leave it to me.";
+                    string comment = "Yeah!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill2.wav";
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\KoCT2.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -149,11 +145,11 @@ namespace FGO_BSx.CharactersFate
                     }
                     break;
                 }
-                else if (choice == 3 && LastComment != "Okay, okay.")
+                else if (choice == 3 && LastComment != "Got it!")
                 {
-                    string comment = "Okay, okay.";
+                    string comment = "Got it!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill3.wav";
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\KoCT3.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -185,11 +181,11 @@ namespace FGO_BSx.CharactersFate
             while (true)
             {
                 int choice = random.Next(1, 4);
-                if (choice == 1 && LastComment != "Howl, Fafnir!")
+                if (choice == 1 && LastComment != "Okay!")
                 {
-                    string comment = "Howl, Fafnir!.";
+                    string comment = "Okay!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Obv1.wav";
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill1.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -200,11 +196,11 @@ namespace FGO_BSx.CharactersFate
                     }
                     break;
                 }
-                else if (choice == 2 && LastComment != "How's that!")
+                else if (choice == 2 && LastComment != "Leave it to me!")
                 {
-                    string comment = "How's that!";
+                    string comment = "Leave it to me!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Obv2.wav";
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill2.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -215,11 +211,11 @@ namespace FGO_BSx.CharactersFate
                     }
                     break;
                 }
-                else if (choice == 3 && LastComment != "Come, dragon of mine.")
+                else if (choice == 3 && LastComment != "All right!")
                 {
-                    string comment = "Come, dragon of mine.";
+                    string comment = "All right!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Obv3.wav";
+                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill3.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -304,17 +300,17 @@ namespace FGO_BSx.CharactersFate
             {
                 int choice = random.Next(1, 4);
 
-                if (choice == 1 && LastComment != "I'll take them myself!")
+                if (choice == 1 && LastComment != "Take that, you fiend!")
                 {
                     PerformExtra1();
                     break;
                 }
-                else if (choice == 2 && LastComment != "O wind, whirl away!")
+                else if (choice == 2 && LastComment != "I'm gonna teach you a lesson!")
                 {
                     PerformExtra2();
                     break;
                 }
-                else if (choice == 3 && LastComment != "Strike Air!")
+                else if (choice == 3 && LastComment != "Crush!")
                 {
                     PerformExtra3();
                     break;
@@ -341,7 +337,7 @@ namespace FGO_BSx.CharactersFate
         */
         private void PerformExtra1()
         {
-            string comment = "Thy path has long since come to an end!";
+            string comment = "Take that, you fiend!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Extra1.wav";
 
@@ -356,7 +352,7 @@ namespace FGO_BSx.CharactersFate
         }
         private void PerformExtra2()
         {
-            string comment = "Thou shalt be punished by flame.";
+            string comment = "I'm gonna teach you a lesson!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Extra2.wav";
 
@@ -371,7 +367,7 @@ namespace FGO_BSx.CharactersFate
         }
         private void PerformExtra3()
         {
-            string comment = "Ramble amidst the flames!";
+            string comment = "Crush!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Extra3.wav";
 
@@ -468,7 +464,7 @@ namespace FGO_BSx.CharactersFate
       
         private void PerformComment1()
         {
-            string comment = "Ahahaha!";
+            string comment = "Shut up!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk1.wav";
 
@@ -484,7 +480,7 @@ namespace FGO_BSx.CharactersFate
 
         private void PerformComment2()
         {
-            string comment = "Well!?";
+            string comment = "Silence!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk2.wav";
 
@@ -500,7 +496,7 @@ namespace FGO_BSx.CharactersFate
 
         private void PerformComment3()
         {
-            string comment = "Pathetic!";
+            string comment = "Drop dead!";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk3.wav";
 
@@ -515,7 +511,7 @@ namespace FGO_BSx.CharactersFate
         }
         private void PerformComment4()
         {
-            string comment = "Burn away!";
+            string comment = "What's the matter!?";
             LastComment = comment;
             string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk4.wav";
 
@@ -541,11 +537,11 @@ namespace FGO_BSx.CharactersFate
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);
             Console.WriteLine(")");
-            Controls.SistemaFGO.WriteColored("Self Modification", ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored("Mana Loading", ConsoleColor.Yellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("2", ConsoleColor.Green);
             Console.WriteLine(")");
-            Controls.SistemaFGO.WriteColored("Ephemeral Dream", ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored("Knights of Crimson Thunder", ConsoleColor.Yellow);
             Console.Write(" (");
             Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
             Console.WriteLine(")");
@@ -554,7 +550,7 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
                 Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored(" (", ConsoleColor.DarkGray);
-                Controls.SistemaFGO.WriteColored("Le Grondement de la Haine", ConsoleColor.DarkYellow);
+                Controls.SistemaFGO.WriteColored("Clarent Blood Arthur", ConsoleColor.Yellow);
                 Console.Write(" (");
                 Controls.SistemaFGO.WriteColored("4", ConsoleColor.Green);
                 Console.Write(")");
@@ -575,7 +571,7 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored("-------------------------------\n", ConsoleColor.Yellow);
                 Controls.SistemaFGO.WriteColored("Noble Phantasm", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored(" (", ConsoleColor.DarkGray);
-                Controls.SistemaFGO.WriteColored("Le Grondement de la Haine", ConsoleColor.DarkYellow);
+                Controls.SistemaFGO.WriteColored("Clarent Blood Arthur", ConsoleColor.Yellow);
                 Console.Write(" (");
                 Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
                 Console.Write(")");
