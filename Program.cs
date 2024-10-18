@@ -215,12 +215,14 @@
                 // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                 while (personagensHp[indexPersonagem] > 0 && inimigoHp[indexInimigo] > 0 && !(Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop"))
                 {   
-                    while (Controls.SistemaFGO.escolhaSkill != "1" && Controls.SistemaFGO.escolhaSkill != "2" &&
+                    while ((Controls.SistemaFGO.escolhaSkill != "1" && Controls.SistemaFGO.escolhaSkill != "2" &&
                     Controls.SistemaFGO.escolhaSkill != "3" && Controls.SistemaFGO.escolhaSkill != "4" &&
                     Controls.SistemaFGO.escolhaSkill != "5" && Controls.SistemaFGO.escolhaSkill != "6" &&
                     Controls.SistemaFGO.escolhaSkill != "7" && Controls.SistemaFGO.escolhaSkill != "8" &&
-                    Controls.SistemaFGO.escolhaSkill != "9") 
+                    Controls.SistemaFGO.escolhaSkill != "9") || (! Controls.SistemaFGO.SuccessToAttack )) 
                     {
+                        danoTotal = 0;
+                        Controls.SistemaFGO.SuccessToAttack = false;
                         spInimigo = inimigoSp[indexInimigo];
                         spCostInimigo = inimigoSpCost[indexInimigo];
 
@@ -237,12 +239,11 @@
                             Console.Write("\n\nSelect a Skill: ");
                             Controls.SistemaFGO.escolhaSkill = Console.ReadLine().ToLower();
                             Console.Clear();
+                            danoTotal = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotal);
                         }
                         if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
                     }
                     if (Controls.SistemaFGO.escolhaSkill == "0" || Controls.SistemaFGO.escolhaSkill == "stop") { break; }
-
-                    danoTotal = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotal);
                     inimigoHp[indexInimigo] -= danoTotal;
                     Console.Clear();
                 }

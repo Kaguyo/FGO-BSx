@@ -14,6 +14,7 @@ namespace FGO_BSx.Controls
         static internal object? inimigoEscolhido;
         static internal object? personagemEscolhido;
         private static WaveOutEvent? waveOutDevice;
+        internal static bool SuccessToAttack { get; set; }
 
         public static string Capitalize(string input)
         {
@@ -220,16 +221,20 @@ namespace FGO_BSx.Controls
                 {
                     danoTotal = artoria.SwordSkill(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
+
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
                     danoTotal = artoria.ManaLoading(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && artoria.SpInitial >= artoria.SpCost)
                 {
                     danoTotal = artoria.Excalibur(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
             }
             else if (personagem is Baobhan baobhan)
@@ -238,16 +243,19 @@ namespace FGO_BSx.Controls
                 {
                     danoTotal = baobhan.RangeAttack(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
                     danoTotal = baobhan.FinesseImprovement(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && baobhan.SpInitial >= baobhan.SpCost)
                 {
                     danoTotal = baobhan.FetchFailnaught(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
             }
             else if (personagem is Okada okada)
@@ -256,16 +264,19 @@ namespace FGO_BSx.Controls
                 {
                     danoTotal = okada.SwordSkill(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
                     danoTotal = okada.AntiSaberAtkUp(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && okada.SpInitial >= okada.SpCost)
                 {
                     danoTotal = okada.Shimatsuken(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
             }
             else if (personagem is Jalter jalter)
@@ -274,21 +285,25 @@ namespace FGO_BSx.Controls
                 {
                     danoTotal = jalter.SwordSkill(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
                     danoTotal = jalter.SelfModificationCritUp(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
                     danoTotal = jalter.OblivionCorrectionCritUp(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && jalter.SpInitial >= jalter.SpCost)
                 {
                     danoTotal = jalter.LeGrondementdelaHaine(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
             }
             else if (personagem is Tristan tristan)
@@ -297,16 +312,19 @@ namespace FGO_BSx.Controls
                 {
                     danoTotal = tristan.RangeAttack(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
                     danoTotal = tristan.ManaLoading(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && tristan.SpInitial >= tristan.SpCost)
                 {
                     danoTotal = tristan.Failnaught(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
             }
             else if (personagem is Mordred mordred)
@@ -315,21 +333,25 @@ namespace FGO_BSx.Controls
                 {
                     danoTotal = mordred.SwordSkill(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
                     danoTotal = mordred.ManaLoading(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
                     danoTotal = mordred.KnightofCrimsonThunder(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)
                 {
                     danoTotal = mordred.ClarentBloodArthur(defesaInimigo, danoTotal);
                     SistemaFGO.escolhaSkill = "";
+                    SuccessToAttack = true;
                 }
             }
             return danoTotal;
