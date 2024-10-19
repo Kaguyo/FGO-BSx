@@ -10,12 +10,12 @@ namespace FGO_BSx.EnemiesFate
     internal class EnemyArtoria : Interfaces.IEnemySwordsman
     {
         private string _name = "Artoria";
-        private int _hpMax = 265629;
+        private int _hpMax = 465629;
         private int _atkMax = 940;
         private int _defMax = 215;
-        private int _hp = 265629;
+        private int _hp = 465629;
         private int _atk = 940;
-        private int _def = 315;
+        private int _def = 215;
         private double _spCost = 200;
         private double _spInitial = 0;
         private double _basicAtk = 4;

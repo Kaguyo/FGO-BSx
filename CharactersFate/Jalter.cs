@@ -14,10 +14,10 @@ namespace FGO_BSx.CharactersFate
         // Fields
         private string _name = "Jeanne d'Arc (Alter)";
         private int _hpMax = 6551;
-        private int _atkMax = 722;
+        private int _atkMax = 7220;
         private int _defMax = 590;
         private int _hp = 6551;
-        private int _atk = 222;
+        private int _atk = 7220;
         private int _def = 590;
         private double _spCost = 250;
         private double _spInitial = 0;

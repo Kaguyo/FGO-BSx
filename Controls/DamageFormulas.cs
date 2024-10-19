@@ -85,9 +85,11 @@
 
                 Thread.Sleep(15);
             }
+            danoTotal = totalDano;
 
             Console.WriteLine();
             Console.ReadKey();
+
             return danoTotal;
         }
 

@@ -12,10 +12,10 @@ namespace FGO_BSx.CharactersFate
 
         private string _name = "Mordred";
         private int _hpMax = 6021;
-        private int _atkMax = 702;
+        private int _atkMax = 7020;
         private int _defMax = 590;
         private int _hp = 6021;
-        private int _atk = 702;
+        private int _atk = 7020;
         private int _def = 590;
         private double _spCost = 160;
         private double _spInitial = 0;
@@ -245,7 +245,7 @@ namespace FGO_BSx.CharactersFate
         }
         public int ClarentBloodArthur(int defesaInimigo, int danoTotal)
         {
-            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.DarkYellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
 
             while (true)
@@ -294,7 +294,7 @@ namespace FGO_BSx.CharactersFate
         }
         public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.DarkYellow);
+            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {

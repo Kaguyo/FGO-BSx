@@ -7,6 +7,7 @@ namespace FGO_BSx.Controls
 {
     public class SistemaFGO
     {
+        private static readonly Random random = new Random();
         private static WaveStream? audioFileReader;
         private static WaveOutEvent? backgroundWaveOutDevice;
         private static WaveStream? backgroundAudioFileReader;
@@ -28,11 +29,11 @@ namespace FGO_BSx.Controls
 
         public static void DisplayHP(int hp, int hpMax)
         {
-            if (hp / hpMax <= 0.2)
+            if ((hp / hpMax) < 0.2)
             {
                 WriteColoredAnsi(hp, "\x1b[38;5;124m");
             }
-            else if (hp / hpMax < 0.6)
+            else if ((hp / hpMax) < 0.6)
             {
                 WriteColoredAnsi(hp, "\x1b[38;5;226m");
             }
@@ -119,26 +120,6 @@ namespace FGO_BSx.Controls
                 Console.Write("    |    ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
-            else if (personagemEscolhido is Tristan tristan)
-            {
-                WriteColored("Tristan", ConsoleColor.DarkRed);
-                Console.Write(" [");
-                WriteColored("HP", ConsoleColor.Green);
-                Console.Write("]: ");
-                DisplayHP(vidaUsuario, tristan.Hp);
-                Console.Write("    |    ");
-                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
-            }
-            else if (personagemEscolhido is Okada okada)
-            {
-                WriteColored("Okada", ConsoleColor.DarkGray);
-                Console.Write(" [");
-                WriteColored("HP", ConsoleColor.Green);
-                Console.Write("]: ");
-                DisplayHP(vidaUsuario, okada.Hp);
-                Console.Write("    |    ");
-                DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
-            }
         }
 
         public static void PlayBackgroundSound(string backgroundAudioFilePath)
@@ -175,14 +156,6 @@ namespace FGO_BSx.Controls
             {
                 Mordred.SkillsMordred(mordred.SpInitial, mordred.SpCost);
             }
-            else if (Personagem is Tristan tristan)
-            {
-                Tristan.SkillsTristan(tristan.SpInitial, tristan.SpCost);
-            }
-            else if (Personagem is Okada okada)
-            {
-                Okada.SkillsOkada(okada.SpInitial, okada.SpCost);
-            }
         }
         internal static void PlaySound(string audioFilePath)
         {
@@ -213,152 +186,157 @@ namespace FGO_BSx.Controls
                 backgroundAudioFileReader = null;
             }
         }
-        public static int UserAttack(object personagem, int defesaInimigo, int danoTotal)
+        public static int EnemyAttack(object inimigo, int defesaUsuario, int danoTotalEnemy) 
+        {
+            if (inimigo is EnemiesFate.EnemyArtoria enemyArtoria) 
+            {
+                while (true)
+                {
+                    int choice = random.Next(1, 4);
+                }
+            }
+            return danoTotalEnemy;
+        }
+        public static int UserAttack(object personagem, int defesaInimigo, int danoTotalUser)
         {
             if (personagem is Artoria artoria)
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = artoria.SwordSkill(defesaInimigo, danoTotal);
+                    danoTotalUser = artoria.SwordSkill(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
-
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = artoria.ManaLoading(defesaInimigo, danoTotal);
+                    danoTotalUser = artoria.ManaLoading(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && artoria.SpInitial >= artoria.SpCost)
                 {
-                    danoTotal = artoria.Excalibur(defesaInimigo, danoTotal);
+                    danoTotalUser = artoria.Excalibur(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
             }
             else if (personagem is Baobhan baobhan)
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = baobhan.RangeAttack(defesaInimigo, danoTotal);
+                    danoTotalUser = baobhan.RangeAttack(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = baobhan.FinesseImprovement(defesaInimigo, danoTotal);
+                    danoTotalUser = baobhan.FinesseImprovement(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "3" && baobhan.SpInitial >= baobhan.SpCost)
                 {
-                    danoTotal = baobhan.FetchFailnaught(defesaInimigo, danoTotal);
+                    danoTotalUser = baobhan.FetchFailnaught(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
-                }
-            }
-            else if (personagem is Okada okada)
-            {
-                if (SistemaFGO.escolhaSkill == "1")
-                {
-                    danoTotal = okada.SwordSkill(defesaInimigo, danoTotal);
-                    SistemaFGO.escolhaSkill = "";
-                    SuccessToAttack = true;
-                }
-                else if (SistemaFGO.escolhaSkill == "2")
-                {
-                    danoTotal = okada.AntiSaberAtkUp(defesaInimigo, danoTotal);
-                    SistemaFGO.escolhaSkill = "";
-                    SuccessToAttack = true;
-                }
-                else if (SistemaFGO.escolhaSkill == "3" && okada.SpInitial >= okada.SpCost)
-                {
-                    danoTotal = okada.Shimatsuken(defesaInimigo, danoTotal);
-                    SistemaFGO.escolhaSkill = "";
-                    SuccessToAttack = true;
+                    Console.Clear();
                 }
             }
             else if (personagem is Jalter jalter)
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = jalter.SwordSkill(defesaInimigo, danoTotal);
+                    danoTotalUser = jalter.SwordSkill(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = jalter.SelfModificationCritUp(defesaInimigo, danoTotal);
+                    danoTotalUser = jalter.SelfModificationCritUp(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
-                    danoTotal = jalter.OblivionCorrectionCritUp(defesaInimigo, danoTotal);
+                    danoTotalUser = jalter.OblivionCorrectionCritUp(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && jalter.SpInitial >= jalter.SpCost)
                 {
-                    danoTotal = jalter.LeGrondementdelaHaine(defesaInimigo, danoTotal);
+                    danoTotalUser = jalter.LeGrondementdelaHaine(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
-                }
-            }
-            else if (personagem is Tristan tristan)
-            {
-                if (SistemaFGO.escolhaSkill == "1")
-                {
-                    danoTotal = tristan.RangeAttack(defesaInimigo, danoTotal);
-                    SistemaFGO.escolhaSkill = "";
-                    SuccessToAttack = true;
-                }
-                else if (SistemaFGO.escolhaSkill == "2")
-                {
-                    danoTotal = tristan.ManaLoading(defesaInimigo, danoTotal);
-                    SistemaFGO.escolhaSkill = "";
-                    SuccessToAttack = true;
-                }
-                else if (SistemaFGO.escolhaSkill == "3" && tristan.SpInitial >= tristan.SpCost)
-                {
-                    danoTotal = tristan.Failnaught(defesaInimigo, danoTotal);
-                    SistemaFGO.escolhaSkill = "";
-                    SuccessToAttack = true;
+                    Console.Clear();
                 }
             }
             else if (personagem is Mordred mordred)
             {
                 if (SistemaFGO.escolhaSkill == "1")
                 {
-                    danoTotal = mordred.SwordSkill(defesaInimigo, danoTotal);
+                    danoTotalUser = mordred.SwordSkill(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "2")
                 {
-                    danoTotal = mordred.ManaLoading(defesaInimigo, danoTotal);
+                    danoTotalUser = mordred.ManaLoading(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "3")
                 {
-                    danoTotal = mordred.KnightofCrimsonThunder(defesaInimigo, danoTotal);
+                    danoTotalUser = mordred.KnightofCrimsonThunder(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
                 else if (SistemaFGO.escolhaSkill == "4" && mordred.SpInitial >= mordred.SpCost)
                 {
-                    danoTotal = mordred.ClarentBloodArthur(defesaInimigo, danoTotal);
+                    danoTotalUser = mordred.ClarentBloodArthur(defesaInimigo, danoTotalUser);
                     SistemaFGO.escolhaSkill = "";
                     SuccessToAttack = true;
+                    Console.Clear();
                 }
             }
-            return danoTotal;
+            return danoTotalUser;
+        }
+        public static int DefesaUsuario(object Usuario)
+        {
+            if (Usuario is Artoria artoria)
+            {
+                return artoria.Def;
+            }
+            else if (Usuario is Jalter jalter) 
+            {
+                return jalter.Def;
+            }
+            else if (Usuario is Mordred mordred)
+            {
+                return mordred.Def;
+            }
+            else if (Usuario is Baobhan baobhan)
+            {
+                return baobhan.Def;
+            }
+            else
+            {
+                return 0;
+            }
         }
         public static int DefesaInimigo(object Inimigo) 
         {
-            if (Inimigo is FGO_BSx.EnemiesFate.EnemyArtoria enemyArtoria)
+            if (Inimigo is EnemiesFate.EnemyArtoria enemyArtoria)
             {
                 return enemyArtoria.Def;
             }

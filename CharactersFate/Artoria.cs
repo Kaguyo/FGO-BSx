@@ -7,10 +7,10 @@
         // Fields
         private string _name = "Artoria";
         private int _hpMax = 5629;
-        private int _atkMax = 772;
+        private int _atkMax = 7720;
         private int _defMax = 629;
         private int _hp = 5629;
-        private int _atk = 172;
+        private int _atk = 7720;
         private int _def = 529;
         private double _spCost = 140;
         private double _spInitial = 0;
@@ -230,6 +230,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
         private void PerformExtra2()
         {
@@ -253,6 +254,7 @@
                 }
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
         private void PerformExtra3()
         {
@@ -268,6 +270,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
         private void PerformComment1()
         {
@@ -283,6 +286,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
 
         private void PerformComment2()
@@ -299,6 +303,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
 
         private void PerformComment3()
@@ -315,6 +320,7 @@
                 Thread.Sleep(10);
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
 
         private void PerformComment4()
@@ -331,6 +337,7 @@
                 Thread.Sleep(10);
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
 
         private void PerformExcalibur1()
@@ -379,6 +386,7 @@
                 }
             }
             Console.WriteLine();
+            Console.ReadKey();
         }
 
         private void PerformExcalibur2()
@@ -428,6 +436,7 @@
             }
             Console.ResetColor();
             Console.WriteLine();
+            Console.ReadKey();
         }
 
         private void PerformExcalibur3()
@@ -477,6 +486,7 @@
             }
             Console.ResetColor();
             Console.WriteLine();
+            Console.ReadKey();
         }
 
         private void PerformManaLoading1()

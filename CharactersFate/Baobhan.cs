@@ -7,10 +7,10 @@
         // Fields
         private string _name = "Baobhan";
         private int _hpMax = 4929;
-        private int _atkMax = 632;
+        private int _atkMax = 6320;
         private int _defMax = 499;
         private int _hp = 4929;
-        private int _atk = 152;
+        private int _atk = 6320;
         private int _def = 499;
         private double _spCost = 100;
         private double _spInitial = 0;
@@ -231,7 +231,13 @@
                 else if (c == '?' && i < 2)
                 {
                     Console.Write(c);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(1800);
+                    i++;
+                }
+                else if (c == '?' && i < 3)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(1800);
                     i++;
                 }
                 else
@@ -256,13 +262,7 @@
                 if (c == '!' && i < 1)
                 {
                     Console.Write(c);
-                    Thread.Sleep(1700);
-                    i++;
-                }
-                else if (c == '?' && i < 2)
-                {
-                    Console.Write(c);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2400);
                     i++;
                 }
                 else
