@@ -137,6 +137,9 @@ namespace FGO_BSx.CharactersFate
                         Console.Write(c);
                         Thread.Sleep(20);
                     }
+                    Console.WriteLine();
+                    Console.ReadKey();
+                    
                     break;
                 }
                 else if (choice == 2 && LastComment != "Just leave it to me.")
@@ -152,6 +155,9 @@ namespace FGO_BSx.CharactersFate
                         Console.Write(c);
                         Thread.Sleep(20);
                     }
+                    Console.WriteLine();
+                    Console.ReadKey();
+                    
                     break;
                 }
                 else if (choice == 3 && LastComment != "Okay, okay.") 
@@ -167,6 +173,9 @@ namespace FGO_BSx.CharactersFate
                         Console.Write(c);
                         Thread.Sleep(20);
                     }
+                    Console.WriteLine();
+                    Console.ReadKey();
+
                     break;
                 }
             }
@@ -201,6 +210,9 @@ namespace FGO_BSx.CharactersFate
                         Console.Write(c);
                         Thread.Sleep(20);
                     }
+                    Console.WriteLine();
+                    Console.ReadKey();
+
                     break;
                 }
                 else if (choice == 2 && LastComment != "How's that!")
@@ -216,6 +228,9 @@ namespace FGO_BSx.CharactersFate
                         Console.Write(c);
                         Thread.Sleep(20);
                     }
+                    Console.WriteLine();
+                    Console.ReadKey();
+                    
                     break;
                 }
                 else if (choice == 3 && LastComment != "Come, dragon of mine.")
@@ -231,6 +246,9 @@ namespace FGO_BSx.CharactersFate
                         Console.Write(c);
                         Thread.Sleep(20);
                     }
+                    Console.WriteLine();
+                    Console.ReadKey();
+
                     break;
                 }
             }
@@ -349,6 +367,9 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
+
         }
         private void PerformExtra2()
         {
@@ -364,6 +385,8 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
         }
         private void PerformExtra3()
         {
@@ -379,6 +402,8 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
         }
         private void PerformLeGrondementdelaHaine1()
         {
@@ -405,6 +430,8 @@ namespace FGO_BSx.CharactersFate
             }
             Console.ResetColor();
             Console.WriteLine();
+            Console.ReadKey();
+            
         }
         private void PerformLeGrondementdelaHaine2()
         {
@@ -446,6 +473,8 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
+            Console.ReadKey();
+            
         }
         private void PerformLeGrondementdelaHaine3()
         {
@@ -476,6 +505,9 @@ namespace FGO_BSx.CharactersFate
                 }
             }
             Console.WriteLine();
+            Console.WriteLine();
+            Console.ReadKey();
+            
         }
 
         private void PerformComment1()
@@ -492,6 +524,8 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
 
         private void PerformComment2()
@@ -508,6 +542,8 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
 
         private void PerformComment3()
@@ -524,6 +560,8 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(15);
             }
             Console.WriteLine();
+            Console.ReadKey();
+ 
         }
         private void PerformComment4()
         {
@@ -539,6 +577,8 @@ namespace FGO_BSx.CharactersFate
                 Thread.Sleep(15);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
         //  =========================================
         //  FIM DE "FUNCOES ACTIONS".

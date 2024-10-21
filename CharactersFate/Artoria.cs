@@ -231,6 +231,7 @@
             }
             Console.WriteLine();
             Console.ReadKey();
+            Console.Clear();
         }
         private void PerformExtra2()
         {
@@ -255,6 +256,7 @@
             }
             Console.WriteLine();
             Console.ReadKey();
+            Console.Clear();
         }
         private void PerformExtra3()
         {
@@ -271,6 +273,7 @@
             }
             Console.WriteLine();
             Console.ReadKey();
+            Console.Clear();
         }
         private void PerformComment1()
         {

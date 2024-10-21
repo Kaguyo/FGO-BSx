@@ -247,6 +247,8 @@
                 }
             }
             Console.WriteLine();
+            Console.ReadKey();
+            
         }
         
         private void PerformFetchFailnaught2()
@@ -272,6 +274,8 @@
                 }
             }
             Console.WriteLine();
+            Console.ReadKey();
+            
         }
 
         private void PerformComment1()
@@ -287,6 +291,8 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
 
         private void PerformComment2()
@@ -302,6 +308,8 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
 
         private void PerformComment3()
@@ -317,6 +325,8 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
+            Console.ReadKey();
+            
         }
 
         private void PerformComment4()
@@ -332,6 +342,8 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
 
         private void PerformComment5()
@@ -347,6 +359,8 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
 
         private void PerformComment6()
@@ -362,6 +376,8 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
+            Console.ReadKey();
+
         }
         private void PerformExtra1()
         {
@@ -377,6 +393,8 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
         }
         private void PerformExtra2()
         {
@@ -400,6 +418,8 @@
                 }
             }
             Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
         }
         private void PerformExtra3()
         {
@@ -415,6 +435,8 @@
                 Thread.Sleep(12);
             }
             Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
         }
         //  =========================================
         //  FIM DE "FUNCOES ACTIONS".

@@ -27,22 +27,23 @@ namespace FGO_BSx.Controls
             return char.ToUpper(input[0]) + input.Substring(1);
         }
 
-        public static void DisplayHP(int hp, int hpMax)
+        public static void DisplayHP(int hp, double hpMax)
         {
-            if ((hp / hpMax) < 0.2)
+            double fraction = hp / hpMax;
+            if (fraction <= 0.2)
             {
-                WriteColoredAnsi(hp, "\x1b[38;5;124m");
+                WriteColored(hp, ConsoleColor.Red);
             }
-            else if ((hp / hpMax) < 0.6)
+            else if (fraction < 0.6)
             {
-                WriteColoredAnsi(hp, "\x1b[38;5;226m");
+                WriteColored(hp, ConsoleColor.Yellow);
             }
             else
             {
-                WriteColoredAnsi(hp, "\x1b[38;5;46m");
+                WriteColored(hp, ConsoleColor.Green);
             }
             Console.Write("/");
-            WriteColoredAnsi(hpMax, "\x1b[38;5;46m");
+            WriteColored(hpMax, ConsoleColor.Green);
         }
         public static void DisplayEnemyInfo(object inimigoEscolhido, int vidaInimigo, double sp, double spCost) 
         {
@@ -97,7 +98,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, baobhan.Hp);
-                Console.Write("   |   ");
+                Console.Write("  |  ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Jalter jalter)
@@ -107,7 +108,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, jalter.Hp);
-                Console.Write("  |    ");
+                Console.Write("  |  ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
             else if (personagemEscolhido is Mordred mordred)
@@ -117,7 +118,7 @@ namespace FGO_BSx.Controls
                 WriteColored("HP", ConsoleColor.Green);
                 Console.Write("]: ");
                 DisplayHP(vidaUsuario, mordred.Hp);
-                Console.Write("    |    ");
+                Console.Write("  |  ");
                 DisplayEnemyInfo(inimigoEscolhido, vidaInimigo, spEnemy, spCostEnemy);
             }
         }
@@ -346,6 +347,12 @@ namespace FGO_BSx.Controls
             }
         }
         public static void WriteColored(string text, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ResetColor();
+        }
+        public static void WriteColored(double text, ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.Write(text);
