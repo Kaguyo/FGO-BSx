@@ -60,8 +60,6 @@
                                          jalter
                                        ];
 
-                
-
                 List<string> validChoices = new List<string>();
                 List<string> validEnemyChoices = new List<string>();
 
@@ -108,6 +106,8 @@
                     }
                     else if (validChoices.Contains(personagemFiltrado))     // GameLine goes on
                     {
+                        string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                        Controls.SistemaFGO.PlaySound(audioFilePath);
                         Console.Clear();
                         while (true)
                         {
@@ -134,19 +134,33 @@
                             inimigoFiltrado = Controls.SistemaFGO.FiltroEscolha(escolhaInimigo);
                             if (inimigoFiltrado == "stop")
                             {
+                                audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                                Controls.SistemaFGO.PlaySound(audioFilePath);
                                 Console.Clear();
                                 break;
                             }
                             else if (validEnemyChoices.Contains(inimigoFiltrado))
                             {
+                                audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                                Controls.SistemaFGO.PlaySound(audioFilePath);
                                 faseDeJogo = "combat";
                                 Console.Clear();
                                 break;
                             }
+                            else
+                            {
+                                audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav";
+                                Controls.SistemaFGO.PlaySound(audioFilePath);
+                            }
                         }
                         if (faseDeJogo == "combat")
                             break;
-                    }   
+                    }
+                    else 
+                    {
+                        string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav";
+                        Controls.SistemaFGO.PlaySound(audioFilePath);
+                    }
                 }
                 if (faseDeJogo == "combat") 
                 {
@@ -249,9 +263,7 @@
                                 Controls.SistemaFGO.escolhaSkill = Console.ReadKey().Key;
                                 Console.Clear();
                                 danoTotalUser = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotalUser);
-                                if (!Controls.SistemaFGO.SuccessToAttack)
-                                    Console.Clear();
-                                else
+                                if (Controls.SistemaFGO.SuccessToAttack)
                                     enemyHealth -= danoTotalUser;
                                 danoTotalUser = 0;
                                 if (Controls.SistemaFGO.escolhaSkill == ConsoleKey.Escape) { break; }
@@ -301,6 +313,8 @@
                         Console.Clear();
                     }
                 }
+                if (faseDeJogo == "end")
+                    break;
             }
         }
     }

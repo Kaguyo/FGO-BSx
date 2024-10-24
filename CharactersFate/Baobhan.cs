@@ -119,7 +119,11 @@
                     break;
                 }
             }
-            Atk = (int)(Atk * 1.35);
+            if (Atk > AtkMax) { }
+            else
+            {
+                Atk = (int)(Atk * 1.35);
+            }
             ExtraAttackCooldown -= 1;
             SpInitial += 25;
             if (ExtraAttackCooldown <= 0)

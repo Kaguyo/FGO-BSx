@@ -1,6 +1,5 @@
 ﻿using FGO_BSx.CharactersFate;
 using NAudio.Wave;
-using System;
 
 
 namespace FGO_BSx.Controls
@@ -57,6 +56,8 @@ namespace FGO_BSx.Controls
             double fraction = hp / hpMax;
             if (fraction <= 0.2)
             {
+                if (hp < 0)
+                    hp = 0;
                 WriteColored(hp, ConsoleColor.Red);
             }
             else if (fraction < 0.6)
