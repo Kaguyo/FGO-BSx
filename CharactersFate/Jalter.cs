@@ -107,7 +107,7 @@ namespace FGO_BSx.CharactersFate
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal);
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal, Name);
             ExtraAttackCooldown -= 1;
             SelfModDuration -= 1;
             if (ExtraAttackCooldown <= 0)
@@ -336,7 +336,7 @@ namespace FGO_BSx.CharactersFate
             }
             SpInitial += 8;
             ExtraAttackCooldown = 5;
-            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo, danoTotal);
+            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 5, defesaInimigo, danoTotal, Name);
         }
         //  =========================================
         //  FIM DE "FUNCOES PRIMARIAS".

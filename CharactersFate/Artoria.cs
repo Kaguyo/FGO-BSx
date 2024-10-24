@@ -20,7 +20,7 @@
         private int _spd = 110;
         private int _lvl = 1;
         private double _critDmg = 10;
-        private double _critRate = 5;
+        private double _critRate = 15;
         private double _classDmgBonus;
 
         // Properties
@@ -78,10 +78,10 @@
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.ArtoriaNP(random, Atk, UltNp, CritRate, CritDmg, defesaInimigo, danoTotal);
-            ExtraAttackCooldown -= 2;
             CritRate += 20;
             CritDmg += 40;
+            danoTotal += Controls.DamageFormulas.ArtoriaNP(random, Atk, UltNp, CritRate, CritDmg, defesaInimigo, danoTotal);
+            ExtraAttackCooldown -= 2;
             SpInitial = 0;
             if (ExtraAttackCooldown <= 0)
             {
@@ -158,7 +158,7 @@
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo, danoTotal);
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 1, defesaInimigo, danoTotal, Name);
             SpInitial += 15;
             ExtraAttackCooldown -= 1;
             if (ExtraAttackCooldown <= 0)
@@ -175,6 +175,7 @@
         }
         public int ExtraAttack(int defesaInimigo, int danoTotal) 
         {
+            Console.Clear();
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
@@ -199,7 +200,7 @@
             }
             ExtraAttackCooldown = 6;
             SpInitial += 5;
-            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo, danoTotal);
+            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo, danoTotal, Name);
         }
         //  =========================================
         //  FIM DE "FUNCOES PRIMARIAS".

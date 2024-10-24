@@ -154,7 +154,7 @@
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal);
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal, Name);
             ExtraAttackCooldown -= 1;
             SpInitial += 10;
             if (ExtraAttackCooldown <= 0)
@@ -192,7 +192,7 @@
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo, danoTotal);
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 4, defesaInimigo, danoTotal, Name);
             SpInitial += 5;
             ExtraAttackCooldown = 5;
             return danoTotal;

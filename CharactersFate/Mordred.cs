@@ -95,7 +95,7 @@ namespace FGO_BSx.CharactersFate
                     break;
                 }
             }
-            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal);
+            danoTotal += Controls.DamageFormulas.CauseDamage(random, Atk, BasicAttack, CritRate, CritDmg, 2, defesaInimigo, danoTotal, Name);
             ExtraAttackCooldown -= 1;
             KnightofCrimsonThunderBuff -= 1;
             SpInitial += 10;
@@ -336,7 +336,7 @@ namespace FGO_BSx.CharactersFate
             }
             SpInitial += 8;
             ExtraAttackCooldown = 5;
-            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo, danoTotal);
+            return Controls.DamageFormulas.CauseDamage(random, Atk, Extra, CritRate, CritDmg, 3, defesaInimigo, danoTotal, Name);
         }
         //  =========================================
         //  FIM DE "FUNCOES PRIMARIAS".

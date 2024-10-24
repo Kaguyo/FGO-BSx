@@ -5,7 +5,7 @@
         //  ======================
         //  GENERIC DAMAGE FORMULA
         //  ======================
-        public static int CauseDamage(Random random, double mainStat, double[] skillAtk, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal)
+        public static int CauseDamage(Random random, double mainStat, double[] skillAtk, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal, string name)
         {
             Console.Clear();
             int DanoCausado;
@@ -21,9 +21,16 @@
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk[i] * (1 + (critDmg / 100)));
                     Danos[i] = Math.Max(1, DanoCausado);
                     Console.SetCursorPosition(0, 0);
-                    Console.Write($"Dano Causado: {Danos[i]}");
-                    Console.SetCursorPosition(0, 1);
-                    Console.Write("CRITICAL HIT!");
+                    Console.Write($"Dano Causado: ");
+                    if (name == "Artoria" || name == "Mordred" || name == "Jeanne d'Arc (Alter)")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
+                    else if (name == "Baobhan")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Red);
+                    Console.Write($" HITS x{i + 1} ");
+                    if (name == "Artoria" || name == "Mordred" || name == "Jeanne d'Arc (Alter)")
+                        SistemaFGO.WriteColored("CRITICAL HIT!", ConsoleColor.Yellow);
+                    else if (name == "Baobhan")
+                        SistemaFGO.WriteColored("CRITICAL HIT!", ConsoleColor.Red);
                     totalDano += Danos[i];
                 }
                 else
@@ -31,16 +38,25 @@
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk[i]);
                     Danos[i] = Math.Max(1, DanoCausado);
                     Console.SetCursorPosition(0, 0);
-                    Console.Write($"Dano Causado: {Danos[i]}");
-                    Console.SetCursorPosition(0, 1);
-                    Console.Write(new string(' ', Console.WindowWidth)); // Limpa linha do "CRITICAL HIT!"
+                    Console.Write($"Dano Causado: ");
+                    if (name == "Artoria" || name == "Mordred" || name == "Jeanne d'Arc (Alter)")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
+                    else if (name == "Baobhan")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Red);
+                    Console.Write($" HITS x{i + 1}");
                     totalDano += Danos[i];
                 }
 
                 Console.SetCursorPosition(0, 2);
-                Console.Write($"Dano Total: {totalDano}");
+                Console.Write($"Dano Total: ");
+                SistemaFGO.WriteColored(totalDano, (name == "Mordred" ||
+                                                    name == "Artoria" ||
+                                                    name == "Jeanne d'Arc (Alter)") ?
+                                                   ConsoleColor.Yellow :
+                                                   ConsoleColor.Red
+                );
 
-                Thread.Sleep(15);
+                Thread.Sleep(40);
             }
 
             Console.WriteLine();
@@ -48,7 +64,7 @@
             return danoTotal;
         }
 
-        public static int CauseDamage(Random random, double mainStat, double skillAtk, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal)
+        public static int CauseDamage(Random random, double mainStat, double skillAtk, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal, string name)
         {
             Console.Clear();
             int DanoCausado;
@@ -64,9 +80,16 @@
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk * (1 + (critDmg / 100)));
                     Danos[i] = Math.Max(1, DanoCausado);
                     Console.SetCursorPosition(0, 0);
-                    Console.Write($"Dano Causado: {Danos[i]}");
-                    Console.SetCursorPosition(0, 1);
-                    Console.Write("CRITICAL HIT!");
+                    Console.Write($"Dano Causado: ");
+                    if (name == "Artoria" || name == "Mordred" || name == "Jeanne d'Arc (Alter)")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
+                    else if (name == "Baobhan")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Red);
+                    Console.Write($" HITS x{i + 1} ");
+                    if (name == "Artoria" || name == "Mordred" || name == "Jeanne d'Arc (Alter)")
+                        SistemaFGO.WriteColored("CRITICAL HIT!", ConsoleColor.Yellow);
+                    else if (name == "Baobhan")
+                        SistemaFGO.WriteColored("CRITICAL HIT!", ConsoleColor.Red);
                     totalDano += Danos[i];
                 }
                 else
@@ -74,16 +97,25 @@
                     DanoCausado = (int)((mainStat - defesaInimigo) * skillAtk);
                     Danos[i] = Math.Max(1, DanoCausado);
                     Console.SetCursorPosition(0, 0);
-                    Console.Write($"Dano Causado: {Danos[i]}");
-                    Console.SetCursorPosition(0, 1);
-                    Console.Write(new string(' ', Console.WindowWidth)); // Limpa linha do "CRITICAL HIT!"
+                    Console.Write($"Dano Causado: ");
+                    if (name == "Artoria" || name == "Mordred" || name == "Jeanne d'Arc (Alter)")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
+                    else if (name == "Baobhan")
+                        SistemaFGO.WriteColored(Danos[i], ConsoleColor.Red);
+                    Console.Write($" HITS x{i + 1}");
                     totalDano += Danos[i];
                 }
 
                 Console.SetCursorPosition(0, 2);
-                Console.Write($"Dano Total: {totalDano}");
+                Console.Write($"Dano Total: ");
+                SistemaFGO.WriteColored(totalDano, (name == "Mordred" || 
+                                                    name == "Artoria" || 
+                                                    name == "Jeanne d'Arc (Alter)") ? 
+                                                   ConsoleColor.Yellow :
+                                                   ConsoleColor.Red
+                );
 
-                Thread.Sleep(15);
+                Thread.Sleep(60);
             }
             danoTotal = totalDano;
 
@@ -121,8 +153,8 @@
 
                 Console.SetCursorPosition(0, initialCursorTop);
                 Console.Write("Dano Causado: ");
-                SistemaFGO.WriteColored(Danos[i], ConsoleColor.DarkYellow);
-
+                SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
+                Console.Write($" HITS x{i + 1}");
                 if (RNGcrit <= critRate)
                 {
                     Console.SetCursorPosition(0, initialCursorTop + 1);
@@ -141,11 +173,11 @@
                 Danos[i] = DanoCausado;
                 Console.SetCursorPosition(0, initialCursorTop + 2);
                 Console.Write("Dano Total: ");
-                SistemaFGO.WriteColored(Danos[i], ConsoleColor.DarkYellow);
+                SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
 
                 if (whichHitIsNpAt <= 3) Thread.Sleep(250);
                 else if (whichHitIsNpAt == 4) Thread.Sleep(150);
-                else if (whichHitIsNpAt < 9) Thread.Sleep(13);
+                else if (whichHitIsNpAt < 9) Thread.Sleep(70);
                 else Thread.Sleep(120);
 
                 if (whichHitIsNpAt == 9) danoTotal += Danos[8];
@@ -182,6 +214,7 @@
                 Console.SetCursorPosition(0, initialCursorTop);
                 Console.Write("Dano Causado: ");
                 SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
+                Console.Write($" HITS x{i + 1}");
 
                 if (RNGcrit <= critRate)
                 {
@@ -201,7 +234,7 @@
                 Danos[i] = DanoCausado;
                 Console.SetCursorPosition(0, initialCursorTop + 2);
                 Console.Write("Dano Total: ");
-                SistemaFGO.WriteColored(Danos[i], ConsoleColor.DarkYellow);
+                SistemaFGO.WriteColored(Danos[i], ConsoleColor.Yellow);
 
                 if (whichHitIsNpAt < 3) Thread.Sleep(150);
                 else Thread.Sleep(100);
@@ -240,6 +273,7 @@
                 Console.SetCursorPosition(0, initialCursorTop);
                 Console.Write("Dano Causado: ");
                 SistemaFGO.WriteColored(Danos[i], ConsoleColor.Red);
+                Console.Write($" HITS x{i + 1}");
 
                 if (RNGcrit <= critRate)
                 {
@@ -281,8 +315,6 @@
         {
             Console.Clear();
             int DanoCausado;
-            Console.Write("Dano Causado: ");
-            SistemaFGO.WriteColored2(ConsoleColor.Yellow);
 
             double RNGcrit = NextDoubleInRange(random, 0, 100.1);
             if (RNGcrit <= critRate)
@@ -291,11 +323,12 @@
                 DanoCausado = Math.Max(1, DanoCausado);
                 danoTotal += DanoCausado;
 
-                Console.WriteLine($"\r{DanoCausado}");
-                Console.ResetColor();
-                Console.WriteLine("CRITICAL HIT!");
-                Console.Write("\nDano Total: ");
-                Controls.SistemaFGO.WriteColored(DanoCausado, ConsoleColor.Yellow);
+                Console.Write("Dano Causado: ");
+                SistemaFGO.WriteColored(DanoCausado, ConsoleColor.Yellow);
+                Console.Write(" HITS x1");
+                SistemaFGO.WriteColored(" CRITICAL HIT!", ConsoleColor.Yellow);
+                Console.Write("\n\nDano Total: ");
+                SistemaFGO.WriteColored(DanoCausado, ConsoleColor.Yellow);
 
             }
             else
@@ -304,12 +337,14 @@
                 DanoCausado = Math.Max(1, DanoCausado);
                 danoTotal += DanoCausado;
 
-                Console.WriteLine($"\r{DanoCausado}");
-                Console.ResetColor();
-                Console.Write("\nDano Total: ");
-                Controls.SistemaFGO.WriteColored(DanoCausado, ConsoleColor.Yellow);
+                Console.Write("Dano Causado: ");
+                SistemaFGO.WriteColored(DanoCausado, ConsoleColor.Yellow);
+                Console.Write(" HITS x1");
+                Console.Write("\n\nDano Total: ");
+                SistemaFGO.WriteColored(DanoCausado, ConsoleColor.Yellow);
             }
             Console.ReadKey();
+
             return danoTotal;
         }
 
