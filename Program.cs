@@ -4,6 +4,7 @@
     {
         public static void Main()
         {
+           
             while (true)
             {
                 string faseDeJogo = "";
@@ -262,14 +263,15 @@
                                 Console.Write("\n\nSelect a Skill: ");
                                 Controls.SistemaFGO.escolhaSkill = Console.ReadKey().Key;
                                 Console.Clear();
+                                Controls.SistemaFGO.SuccessToAttack = false;
                                 danoTotalUser = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotalUser);
                                 if (Controls.SistemaFGO.SuccessToAttack)
+                                {
                                     enemyHealth -= danoTotalUser;
+                                }
                                 danoTotalUser = 0;
-                                if (Controls.SistemaFGO.escolhaSkill == ConsoleKey.Escape) { break; }
                             }
                             Thread.Sleep(1000);
-                            Controls.SistemaFGO.SuccessToAttack = false;
                             Console.Clear();
                             danoTotalEnemy = Controls.SistemaFGO.EnemyAttack(Controls.SistemaFGO.inimigoEscolhido, defUsuario, danoTotalEnemy);
                             Thread.Sleep(1000);
@@ -300,21 +302,18 @@
                                 Controls.SistemaFGO.escolhaSkill = Console.ReadKey().Key;
                                 Console.Clear();
                                 danoTotalUser = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotalUser);
-                                if (!Controls.SistemaFGO.SuccessToAttack)
-                                    Console.Clear();
-                                if (Controls.SistemaFGO.escolhaSkill == ConsoleKey.Escape) { break; }
+                                if (Controls.SistemaFGO.SuccessToAttack)
+                                {
+                                    enemyHealth -= danoTotalUser;
+                                }
                             }
                             enemyHealth -= danoTotalUser;
                             Thread.Sleep(1000);
                             Controls.SistemaFGO.SuccessToAttack = false;
                             Console.Clear();
                         }
-                        if (Controls.SistemaFGO.escolhaSkill == ConsoleKey.Escape) { break; }
-                        Console.Clear();
                     }
                 }
-                if (faseDeJogo == "end")
-                    break;
             }
         }
     }

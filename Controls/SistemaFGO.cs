@@ -1,7 +1,6 @@
 ﻿using FGO_BSx.CharactersFate;
 using NAudio.Wave;
 
-
 namespace FGO_BSx.Controls
 {
     public class SistemaFGO
@@ -14,6 +13,7 @@ namespace FGO_BSx.Controls
         static internal object? inimigoEscolhido;
         static internal object? personagemEscolhido;
         private static WaveOutEvent? waveOutDevice;
+
         internal static bool SuccessToAttack { get; set; }
 
         public static string FiltroEscolha(ConsoleKey escolhaPersonagem)
@@ -149,22 +149,6 @@ namespace FGO_BSx.Controls
             }
         }
 
-        public static void PlayBackgroundSound(string backgroundAudioFilePath)
-        {
-            StopBackgroundSound();
-            try
-            {
-                backgroundWaveOutDevice = new WaveOutEvent();
-                backgroundAudioFileReader = new AudioFileReader(backgroundAudioFilePath);
-                backgroundWaveOutDevice.Init(backgroundAudioFileReader);
-                backgroundWaveOutDevice.Play();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error playing background sound: " + ex.Message);
-            }
-        }
-
         public static void SkillsCharacterX(object Personagem)
         {
             if (Personagem is Artoria artoria)
@@ -184,7 +168,13 @@ namespace FGO_BSx.Controls
                 Mordred.SkillsMordred(mordred.SpInitial, mordred.SpCost);
             }
         }
+
         internal static void PlaySound(string audioFilePath)
+        {
+            PlaySound(audioFilePath, waveOutDevice);
+        }
+
+        internal static void PlaySound(string audioFilePath, WaveOutEvent waveOutDevice)
         {
             if (waveOutDevice != null)
             {
@@ -198,20 +188,6 @@ namespace FGO_BSx.Controls
             waveOutDevice = new WaveOutEvent();
             waveOutDevice.Init(audioFileReader);
             waveOutDevice.Play();
-        }
-        public static void StopBackgroundSound()
-        {
-            if (backgroundWaveOutDevice != null)
-            {
-                backgroundWaveOutDevice.Stop();
-                backgroundWaveOutDevice.Dispose();
-                backgroundWaveOutDevice = null;
-            }
-            if (backgroundAudioFileReader != null)
-            {
-                backgroundAudioFileReader.Dispose();
-                backgroundAudioFileReader = null;
-            }
         }
         public static int EnemyAttack(object inimigo, int defesaUsuario, int danoTotalEnemy) 
         {
@@ -227,124 +203,126 @@ namespace FGO_BSx.Controls
         public static int UserAttack(object personagem, int defesaInimigo, int danoTotalUser)
         {
             if (personagem is Artoria artoria)
-{
-    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+            {
+                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
     
-    if (escolhaSkill == ConsoleKey.D1)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = artoria.SwordSkill(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D2)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = artoria.ManaLoading(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D3 && artoria.SpInitial >= artoria.SpCost)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = artoria.Excalibur(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-}
-else if (personagem is Baobhan baobhan)
-{
-    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                if (escolhaSkill == ConsoleKey.D1)
+                {
+                    PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = artoria.SwordSkill(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D2)
+                {
+                    PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = artoria.ManaLoading(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D3 && artoria.SpInitial >= artoria.SpCost)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = artoria.Excalibur(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+            }
+            else if (personagem is Baobhan baobhan)
+            {
+                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
     
-    if (escolhaSkill == ConsoleKey.D1)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = baobhan.RangeAttack(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D2)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = baobhan.FinesseImprovement(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D3 && baobhan.SpInitial >= baobhan.SpCost)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = baobhan.FetchFailnaught(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-}
-else if (personagem is Jalter jalter)
-{
-    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                if (escolhaSkill == ConsoleKey.D1)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = baobhan.RangeAttack(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D2)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = baobhan.FinesseImprovement(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D3 && baobhan.SpInitial >= baobhan.SpCost)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = baobhan.FetchFailnaught(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+            }
+            else if (personagem is Jalter jalter)
+            {
+                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
     
-    if (escolhaSkill == ConsoleKey.D1)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = jalter.SwordSkill(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D2)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = jalter.SelfModificationCritUp(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D3)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = jalter.OblivionCorrectionCritUp(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D4 && jalter.SpInitial >= jalter.SpCost)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = jalter.LeGrondementdelaHaine(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-}
-else if (personagem is Mordred mordred)
-{
-    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                if (escolhaSkill == ConsoleKey.D1)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = jalter.SwordSkill(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D2)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = jalter.SelfModificationCritUp(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D3)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = jalter.OblivionCorrectionCritUp(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D4 && jalter.SpInitial >= jalter.SpCost)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = jalter.LeGrondementdelaHaine(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+            }
+            else if (personagem is Mordred mordred)
+            {
+                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
     
-    if (escolhaSkill == ConsoleKey.D1)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = mordred.SwordSkill(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D2)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = mordred.ManaLoading(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D3)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = mordred.KnightofCrimsonThunder(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-    else if (escolhaSkill == ConsoleKey.D4 && mordred.SpInitial >= mordred.SpCost)
-    {
-        Controls.SistemaFGO.PlaySound(audioFilePath);
-        danoTotalUser = mordred.ClarentBloodArthur(defesaInimigo, danoTotalUser);
-        SuccessToAttack = true;
-        Console.Clear();
-    }
-}
+                if (escolhaSkill == ConsoleKey.D1)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = mordred.SwordSkill(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D2)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = mordred.ManaLoading(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D3)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = mordred.KnightofCrimsonThunder(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+                else if (escolhaSkill == ConsoleKey.D4 && mordred.SpInitial >= mordred.SpCost)
+                {
+                     PlaySound(audioFilePath, waveOutDevice);
+                    danoTotalUser = mordred.ClarentBloodArthur(defesaInimigo, danoTotalUser);
+                    SuccessToAttack = true;
+                    Console.Clear();
+                }
+            }
+            if (!SuccessToAttack) { string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav"; PlaySound(audioFilePath, waveOutDevice); }
 
+            if (escolhaSkill != ConsoleKey.Escape)
             escolhaSkill = ConsoleKey.D0;
 
             return danoTotalUser;
