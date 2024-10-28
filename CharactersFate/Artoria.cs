@@ -231,7 +231,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Clear();
         }
         private void PerformExtra2()
@@ -256,7 +256,7 @@
                 }
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Clear();
         }
         private void PerformExtra3()
@@ -273,7 +273,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Clear();
         }
         private void PerformComment1()
@@ -290,7 +290,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformComment2()
@@ -307,7 +307,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformComment3()
@@ -324,7 +324,7 @@
                 Thread.Sleep(10);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformComment4()
@@ -341,7 +341,7 @@
                 Thread.Sleep(10);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformExcalibur1()
@@ -390,7 +390,7 @@
                 }
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformExcalibur2()
@@ -440,7 +440,7 @@
             }
             Console.ResetColor();
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformExcalibur3()
@@ -490,7 +490,7 @@
             }
             Console.ResetColor();
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformManaLoading1()
@@ -515,7 +515,7 @@
                 }
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformManaLoading2()
@@ -532,7 +532,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
 
         private void PerformManaLoading3()
@@ -557,7 +557,7 @@
                 }
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
         //  =========================================
         //  FIM DE "FUNCOES ACTIONS".

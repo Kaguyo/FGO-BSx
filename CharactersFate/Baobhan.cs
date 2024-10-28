@@ -236,7 +236,7 @@
                 else if (c == '?' && i < 2)
                 {
                     Console.Write(c);
-                    Thread.Sleep(2200);
+                    Thread.Sleep(2000);
                     i++;
                 }
                 else if (c == '?' && i < 3)
@@ -252,7 +252,7 @@
                 }
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             
         }
         
@@ -272,20 +272,20 @@
                     Thread.Sleep(2700);
                     i++;
                 }
-                else if (c == '!' && i == 3)
-                {
-                    Console.Write(c);
-                    Thread.Sleep(1500);
-                    i++;
-                }
                 else
                 {
                     Console.Write(c);
                     Thread.Sleep(40);
                 }
+                if (c == '!' && i == 3)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(2000);
+                    i++;
+                }
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             
         }
 
@@ -302,7 +302,7 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
 
         }
 
@@ -319,7 +319,7 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
 
         }
 
@@ -336,7 +336,7 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             
         }
 
@@ -353,7 +353,7 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
 
         }
 
@@ -370,7 +370,7 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
 
         }
 
@@ -387,7 +387,7 @@
                 Thread.Sleep(40);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
 
         }
         private void PerformExtra1()
@@ -404,7 +404,7 @@
                 Thread.Sleep(22);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Clear();
         }
         private void PerformExtra2()
@@ -429,7 +429,7 @@
                 }
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Clear();
         }
         private void PerformExtra3()
@@ -446,7 +446,7 @@
                 Thread.Sleep(12);
             }
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Clear();
         }
         //  =========================================

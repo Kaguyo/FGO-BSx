@@ -96,7 +96,7 @@
                     Console.WriteLine(")");
 
                     Console.Write("\nSelect: ");
-                    escolhaPersonagem = Console.ReadKey().Key;
+                    escolhaPersonagem = Console.ReadKey(true).Key;
                     personagemFiltrado = Controls.SistemaFGO.FiltroEscolha(escolhaPersonagem);
 
                     if (personagemFiltrado == "stop")
@@ -131,7 +131,7 @@
                             Console.WriteLine(")");
 
                             Console.Write("\nSelect: ");
-                            escolhaInimigo = Console.ReadKey().Key;
+                            escolhaInimigo = Console.ReadKey(true).Key;
                             inimigoFiltrado = Controls.SistemaFGO.FiltroEscolha(escolhaInimigo);
                             if (inimigoFiltrado == "stop")
                             {
@@ -236,6 +236,7 @@
                     double spInimigo, spCostInimigo;
                     int userHealth = personagensHp[indexPersonagem];
                     int enemyHealth = inimigoHp[indexInimigo];
+                    bool keyboardEntry = false;
                     // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                     while (userHealth > 0 && enemyHealth > 0)
                     {
@@ -252,17 +253,27 @@
                             Controls.SistemaFGO.escolhaSkill != ConsoleKey.D7 && Controls.SistemaFGO.escolhaSkill != ConsoleKey.D8 &&
                             Controls.SistemaFGO.escolhaSkill != ConsoleKey.D9) || (!Controls.SistemaFGO.SuccessToAttack))
                             {
-                                Console.WriteLine("\n");
-                                Controls.SistemaFGO.MyServantAndEnemy(Controls.SistemaFGO.personagemEscolhido, userHealth, Controls.SistemaFGO.inimigoEscolhido, enemyHealth, spInimigo, spCostInimigo);
-                                Console.WriteLine("\n===============");
-                                Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
-                                Console.WriteLine(":");
-                                Console.WriteLine("===============\n");
-                                Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
+                                keyboardEntry = false;  // Block input initially
+                                while (!keyboardEntry)
+                                {
+                                    Console.WriteLine("\n");
+                                    Controls.SistemaFGO.MyServantAndEnemy(Controls.SistemaFGO.personagemEscolhido, userHealth, Controls.SistemaFGO.inimigoEscolhido, enemyHealth, spInimigo, spCostInimigo);
+                                    Console.WriteLine("\n===============");
+                                    Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
+                                    Console.WriteLine(":");
+                                    Console.WriteLine("===============\n");
+                                    Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
 
-                                Console.Write("\n\nSelect a Skill: ");
-                                Controls.SistemaFGO.escolhaSkill = Console.ReadKey().Key;
-                                Console.Clear();
+                                    Console.Write("\n\nSelect a Skill: ");
+                                    keyboardEntry = true;  // Allow input once output is done
+                                }
+
+                                // Check for keyboard input only when `keyboardEntry` is true
+                                if (keyboardEntry)
+                                {
+                                    Controls.SistemaFGO.escolhaSkill = Console.ReadKey(true).Key;
+                                    Console.Clear();
+                                }
                                 Controls.SistemaFGO.SuccessToAttack = false;
                                 danoTotalUser = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotalUser);
                                 if (Controls.SistemaFGO.SuccessToAttack)
@@ -271,31 +282,36 @@
                                     break;
                                 }
                             }
+
                             Console.Clear();
                             int xcount = 0;
                             int ycount = 1;
-                            for (int i = 0; i < 1000; i++)
+                            while (keyboardEntry)
                             {
-                                xcount++;
+                                for (int i = 0; i < 1000; i++)
+                                {
+                                    xcount++;
+                                    if (i == 0)
+                                        Console.Write("Turno do Oponente.");
 
-                                if (i == 0)
-                                    Console.Write("Turno do Oponente.");
-                                if (xcount - 150 == 0)
-                                {
-                                    ycount++;
-                                    if (ycount != 4)
+                                    if (xcount - 150 == 0)
                                     {
-                                        Console.Write(".");
-                                        Thread.Sleep(300);
+                                        ycount++;
+                                        if (ycount != 4)
+                                        {
+                                            Console.Write(".");
+                                            Thread.Sleep(300);
+                                        }
+                                        xcount = 0;
                                     }
-                                    xcount = 0;
+                                    if (ycount == 4)
+                                    {
+                                        Console.Clear();
+                                        Console.Write("Turno do Oponente");
+                                        ycount = 1;
+                                    }
                                 }
-                                if (ycount == 4)
-                                {
-                                    Console.Clear();
-                                    Console.Write("Turno do Oponente");
-                                    ycount = 1;
-                                }
+                                keyboardEntry = false;  // Block further input during enemy turn
                             }
                             danoTotalEnemy = Controls.SistemaFGO.EnemyAttack(Controls.SistemaFGO.inimigoEscolhido, defUsuario, danoTotalEnemy);
                             Console.Clear();
@@ -306,28 +322,32 @@
                             Console.Clear();
                             int xcount = 0;
                             int ycount = 1;
-                            for (int i = 0; i < 1000; i++)
+                            while (keyboardEntry)
                             {
-                                xcount++;
+                                for (int i = 0; i < 1000; i++)
+                                {
+                                    xcount++;
 
-                                if (i == 0)
-                                    Console.Write("Turno do Oponente.");
-                                if (xcount - 150 == 0)
-                                {
-                                    ycount++;
-                                    if (ycount != 4)
+                                    if (i == 0)
+                                        Console.Write("Turno do Oponente.");
+                                    if (xcount - 150 == 0)
                                     {
-                                        Console.Write(".");
-                                        Thread.Sleep(300);
+                                        ycount++;
+                                        if (ycount != 4)
+                                        {
+                                            Console.Write(".");
+                                            Thread.Sleep(300);
+                                        }
+                                        xcount = 0;
                                     }
-                                    xcount = 0;
+                                    if (ycount == 4)
+                                    {
+                                        Console.Clear();
+                                        Console.Write("Turno do Oponente");
+                                        ycount = 1;
+                                    }
                                 }
-                                if (ycount == 4)
-                                {
-                                    Console.Clear();
-                                    Console.Write("Turno do Oponente");
-                                    ycount = 1;
-                                }
+                                keyboardEntry = false;
                             }
                             danoTotalEnemy = Controls.SistemaFGO.EnemyAttack(Controls.SistemaFGO.inimigoEscolhido, defUsuario, danoTotalEnemy);
                             Thread.Sleep(1000);
@@ -339,17 +359,26 @@
                             Controls.SistemaFGO.escolhaSkill != ConsoleKey.D7 && Controls.SistemaFGO.escolhaSkill != ConsoleKey.D8 &&
                             Controls.SistemaFGO.escolhaSkill != ConsoleKey.D9) || (!Controls.SistemaFGO.SuccessToAttack))
                             {
+                                keyboardEntry = false;
                                 Console.WriteLine("\n");
-                                Controls.SistemaFGO.MyServantAndEnemy(Controls.SistemaFGO.personagemEscolhido, userHealth, Controls.SistemaFGO.inimigoEscolhido, enemyHealth, spInimigo, spCostInimigo);
-                                Console.WriteLine("\n===============");
-                                Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
-                                Console.WriteLine(":");
-                                Console.WriteLine("===============\n");
-                                Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
+                                while (!keyboardEntry)
+                                {
+                                    Console.WriteLine("\n");
+                                    Controls.SistemaFGO.MyServantAndEnemy(Controls.SistemaFGO.personagemEscolhido, userHealth, Controls.SistemaFGO.inimigoEscolhido, enemyHealth, spInimigo, spCostInimigo);
+                                    Console.WriteLine("\n===============");
+                                    Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
+                                    Console.WriteLine(":");
+                                    Console.WriteLine("===============\n");
+                                    Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
 
-                                Console.Write("\n\nSelect a Skill: ");
-                                Controls.SistemaFGO.escolhaSkill = Console.ReadKey().Key;
-                                Console.Clear();
+                                    Console.Write("\n\nSelect a Skill: ");
+                                    keyboardEntry = true;
+                                }
+                                if (keyboardEntry)
+                                {
+                                    Controls.SistemaFGO.escolhaSkill = Console.ReadKey(true).Key;
+                                    Console.Clear();
+                                }
                                 Controls.SistemaFGO.SuccessToAttack = false;
                                 danoTotalUser = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotalUser);
                                 if (Controls.SistemaFGO.SuccessToAttack)
