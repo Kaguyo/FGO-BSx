@@ -312,6 +312,7 @@ namespace FGO_BSx.CharactersFate
         }
         public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
+            Console.Clear();
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.DarkYellow);
             Console.WriteLine(":");
             while (true)

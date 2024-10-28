@@ -171,7 +171,7 @@ namespace FGO_BSx.Controls
 
         internal static void PlaySound(string audioFilePath)
         {
-            PlaySound(audioFilePath, waveOutDevice);
+           PlaySound(audioFilePath, waveOutDevice);
         }
 
         internal static void PlaySound(string audioFilePath, WaveOutEvent waveOutDevice)
@@ -196,6 +196,7 @@ namespace FGO_BSx.Controls
                 while (true)
                 {
                     int choice = random.Next(1, 4);
+                    break;
                 }
             }
             return danoTotalEnemy;
@@ -208,6 +209,7 @@ namespace FGO_BSx.Controls
     
                 if (escolhaSkill == ConsoleKey.D1)
                 {
+                    Console.Clear();
                     PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = artoria.SwordSkill(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
@@ -215,6 +217,7 @@ namespace FGO_BSx.Controls
                 }
                 else if (escolhaSkill == ConsoleKey.D2)
                 {
+                    Console.Clear();
                     PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = artoria.ManaLoading(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
@@ -222,7 +225,8 @@ namespace FGO_BSx.Controls
                 }
                 else if (escolhaSkill == ConsoleKey.D3 && artoria.SpInitial >= artoria.SpCost)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = artoria.Excalibur(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
@@ -234,21 +238,24 @@ namespace FGO_BSx.Controls
     
                 if (escolhaSkill == ConsoleKey.D1)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = baobhan.RangeAttack(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D2)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = baobhan.FinesseImprovement(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D3 && baobhan.SpInitial >= baobhan.SpCost)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = baobhan.FetchFailnaught(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
@@ -260,28 +267,31 @@ namespace FGO_BSx.Controls
     
                 if (escolhaSkill == ConsoleKey.D1)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = jalter.SwordSkill(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D2)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = jalter.SelfModificationCritUp(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D3)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = jalter.OblivionCorrectionCritUp(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D4 && jalter.SpInitial >= jalter.SpCost)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = jalter.LeGrondementdelaHaine(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
@@ -293,34 +303,38 @@ namespace FGO_BSx.Controls
     
                 if (escolhaSkill == ConsoleKey.D1)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = mordred.SwordSkill(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D2)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = mordred.ManaLoading(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D3)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = mordred.KnightofCrimsonThunder(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
                 else if (escolhaSkill == ConsoleKey.D4 && mordred.SpInitial >= mordred.SpCost)
                 {
-                     PlaySound(audioFilePath, waveOutDevice);
+                    Console.Clear();
+                    PlaySound(audioFilePath, waveOutDevice);
                     danoTotalUser = mordred.ClarentBloodArthur(defesaInimigo, danoTotalUser);
                     SuccessToAttack = true;
                     Console.Clear();
                 }
             }
-            if (!SuccessToAttack) { string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav"; PlaySound(audioFilePath, waveOutDevice); }
+            if (!SuccessToAttack) { string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav";PlaySound(audioFilePath, waveOutDevice); }
 
             if (escolhaSkill != ConsoleKey.Escape)
             escolhaSkill = ConsoleKey.D0;

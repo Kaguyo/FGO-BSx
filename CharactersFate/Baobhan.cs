@@ -174,6 +174,7 @@
         }
         public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
+            Console.Clear();
             Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Red);
             Console.WriteLine(":");
             while (true)
@@ -235,7 +236,7 @@
                 else if (c == '?' && i < 2)
                 {
                     Console.Write(c);
-                    Thread.Sleep(1800);
+                    Thread.Sleep(2200);
                     i++;
                 }
                 else if (c == '?' && i < 3)
@@ -268,7 +269,13 @@
                 if (c == '!' && i < 1)
                 {
                     Console.Write(c);
-                    Thread.Sleep(2400);
+                    Thread.Sleep(2700);
+                    i++;
+                }
+                else if (c == '!' && i == 3)
+                {
+                    Console.Write(c);
+                    Thread.Sleep(1500);
                     i++;
                 }
                 else

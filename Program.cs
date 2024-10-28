@@ -268,18 +268,67 @@
                                 if (Controls.SistemaFGO.SuccessToAttack)
                                 {
                                     enemyHealth -= danoTotalUser;
+                                    break;
                                 }
-                                danoTotalUser = 0;
                             }
-                            Thread.Sleep(1000);
                             Console.Clear();
+                            int xcount = 0;
+                            int ycount = 1;
+                            for (int i = 0; i < 1000; i++)
+                            {
+                                xcount++;
+
+                                if (i == 0)
+                                    Console.Write("Turno do Oponente.");
+                                if (xcount - 150 == 0)
+                                {
+                                    ycount++;
+                                    if (ycount != 4)
+                                    {
+                                        Console.Write(".");
+                                        Thread.Sleep(300);
+                                    }
+                                    xcount = 0;
+                                }
+                                if (ycount == 4)
+                                {
+                                    Console.Clear();
+                                    Console.Write("Turno do Oponente");
+                                    ycount = 1;
+                                }
+                            }
                             danoTotalEnemy = Controls.SistemaFGO.EnemyAttack(Controls.SistemaFGO.inimigoEscolhido, defUsuario, danoTotalEnemy);
-                            Thread.Sleep(1000);
                             Console.Clear();
                             userHealth -= danoTotalEnemy;
                         }
                         else
                         {
+                            Console.Clear();
+                            int xcount = 0;
+                            int ycount = 1;
+                            for (int i = 0; i < 1000; i++)
+                            {
+                                xcount++;
+
+                                if (i == 0)
+                                    Console.Write("Turno do Oponente.");
+                                if (xcount - 150 == 0)
+                                {
+                                    ycount++;
+                                    if (ycount != 4)
+                                    {
+                                        Console.Write(".");
+                                        Thread.Sleep(300);
+                                    }
+                                    xcount = 0;
+                                }
+                                if (ycount == 4)
+                                {
+                                    Console.Clear();
+                                    Console.Write("Turno do Oponente");
+                                    ycount = 1;
+                                }
+                            }
                             danoTotalEnemy = Controls.SistemaFGO.EnemyAttack(Controls.SistemaFGO.inimigoEscolhido, defUsuario, danoTotalEnemy);
                             Thread.Sleep(1000);
                             Console.Clear();
@@ -301,16 +350,14 @@
                                 Console.Write("\n\nSelect a Skill: ");
                                 Controls.SistemaFGO.escolhaSkill = Console.ReadKey().Key;
                                 Console.Clear();
+                                Controls.SistemaFGO.SuccessToAttack = false;
                                 danoTotalUser = Controls.SistemaFGO.UserAttack(Controls.SistemaFGO.personagemEscolhido, defInimigo, danoTotalUser);
                                 if (Controls.SistemaFGO.SuccessToAttack)
                                 {
                                     enemyHealth -= danoTotalUser;
+                                    break;
                                 }
                             }
-                            enemyHealth -= danoTotalUser;
-                            Thread.Sleep(1000);
-                            Controls.SistemaFGO.SuccessToAttack = false;
-                            Console.Clear();
                         }
                     }
                 }
