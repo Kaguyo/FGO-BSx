@@ -193,10 +193,26 @@ namespace FGO_BSx.Controls
         {
             if (inimigo is EnemiesFate.EnemyArtoria enemyArtoria) 
             {
+                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+
                 while (true)
                 {
                     int choice = random.Next(1, 4);
-                    break;
+                    if (choice == 1)
+                    {
+                        danoTotalEnemy = enemyArtoria.SwordSkill(defesaUsuario, danoTotalEnemy);
+                        break;
+                    }
+                    else if (choice == 2)
+                    {
+                        danoTotalEnemy = enemyArtoria.ManaLoading(defesaUsuario, danoTotalEnemy);
+                        break;
+                    }
+                    else if (choice == 3 && enemyArtoria.SpInitial >= enemyArtoria.SpCost)
+                    {
+                        danoTotalEnemy = enemyArtoria.Excalibur(defesaUsuario, danoTotalEnemy);
+                        break;
+                    }
                 }
             }
             return danoTotalEnemy;
