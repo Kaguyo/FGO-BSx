@@ -105,6 +105,12 @@ namespace FGO_BSx.Controls
                 }
             }
         }
+        public static double ReturnSpInimigo(object inimigoEscolhido) 
+        {
+            if (inimigoEscolhido is EnemiesFate.EnemyArtoria enemyArtoria)
+                return EnemiesFate.EnemyArtoria.SpInitial;
+            else return 0;
+        }
         public static void MyServantAndEnemy(object personagemEscolhido, int vidaUsuario, object inimigoEscolhido, int vidaInimigo, double spEnemy, double spCostEnemy)
         {
             if (personagemEscolhido is Artoria artoria)
@@ -208,7 +214,7 @@ namespace FGO_BSx.Controls
                         danoTotalEnemy = enemyArtoria.ManaLoading(defesaUsuario, danoTotalEnemy);
                         break;
                     }
-                    else if (choice == 3 && enemyArtoria.SpInitial >= enemyArtoria.SpCost)
+                    else if (choice == 3 && EnemiesFate.EnemyArtoria.SpInitial >= EnemiesFate.EnemyArtoria.SpCost)
                     {
                         danoTotalEnemy = enemyArtoria.Excalibur(defesaUsuario, danoTotalEnemy);
                         break;

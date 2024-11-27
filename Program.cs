@@ -27,9 +27,9 @@
 
                 int[] inimigoHp = [enemyArtoria.Hp];
 
-                double[] inimigoSp = [enemyArtoria.SpInitial];
+                double[] inimigoSp = [EnemiesFate.EnemyArtoria.SpInitial];
 
-                double[] inimigoSpCost = [enemyArtoria.SpCost];
+                double[] inimigoSpCost = [EnemiesFate.EnemyArtoria.SpCost];
 
                 int[] inimigoSpeed = [enemyArtoria.SPD];
                                    
@@ -242,6 +242,7 @@
                     {
                         danoTotalUser = 0;
                         danoTotalEnemy = 0;
+                        inimigoSp[indexInimigo] = Controls.SistemaFGO.ReturnSpInimigo(inimigo[indexInimigo]);
                         spInimigo = inimigoSp[indexInimigo];
                         spCostInimigo = inimigoSpCost[indexInimigo];
 
@@ -258,7 +259,7 @@
                                 Console.WriteLine("\n===============");
                                 Controls.SistemaFGO.WriteColored("Skills", ConsoleColor.Green);
                                 Console.WriteLine(":");
-                                Console.WriteLine("===============\n");
+                                Console.WriteLine("================\n");
                                 Controls.SistemaFGO.SkillsCharacterX(Controls.SistemaFGO.personagemEscolhido);
 
                                 Console.Write("\n\nSelect a Skill: ");

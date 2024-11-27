@@ -17,8 +17,8 @@ namespace FGO_BSx.EnemiesFate
         private int _hp = 465629;
         private int _atk = 940;
         private int _def = 215;
-        private double _spCost = 200;
-        private double _spInitial = 0;
+        static private double _spCost = 200;
+        static private double _spInitial = 0;
         private double _basicAtk = 4;
         private double _swordAtk = 6;
         private double _heavyAtk = 6.4;
@@ -37,8 +37,8 @@ namespace FGO_BSx.EnemiesFate
         internal int Hp { get => _hp; set => _hp = value; }
         internal int Atk { get => _atk; set => _atk = value; }
         internal int Def { get => _def; set => _def = value; }
-        internal double SpCost { get => _spCost; set => _spCost = value; }
-        internal double SpInitial { get => _spInitial; set => _spInitial = value; }
+        static internal double SpCost { get => _spCost; set => _spCost = value; }
+        static internal double SpInitial { get => _spInitial; set => _spInitial = value; }
         internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
         internal double Extra { get => _extraAtk; set => _extraAtk = value; }
         internal double UltNp { get => _ultNp; set => _ultNp = value; }

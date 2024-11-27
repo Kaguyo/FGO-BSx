@@ -611,7 +611,7 @@ namespace FGO_BSx.CharactersFate
                 Controls.SistemaFGO.WriteColored(" (", ConsoleColor.DarkGray);
                 Controls.SistemaFGO.WriteColored("Clarent Blood Arthur", ConsoleColor.Yellow);
                 Console.Write(" (");
-                Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored("4", ConsoleColor.Green);
                 Console.Write(")");
                 Controls.SistemaFGO.WriteColored(")", ConsoleColor.DarkGray);
                 Controls.SistemaFGO.WriteColored("\nNP Energy", ConsoleColor.White);
