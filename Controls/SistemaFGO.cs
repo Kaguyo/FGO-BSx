@@ -3,7 +3,42 @@ using NAudio.Wave;
 
 namespace FGO_BSx.Controls
 {
-    public class SistemaFGO
+    public class SaveGame 
+    {
+
+    }
+    public class GameJourneys : SaveGame
+    {
+        private static string[] Journeys = [];
+        private static int journeysCount = Journeys.Count();
+        internal static void CreateNewJourney(string JourneyName) 
+        {
+            int repeatedName = 1;
+            while(true)
+            {
+                if (Journeys.Contains(JourneyName))
+                {
+                    while (true)
+                    {
+                        JourneyName += $"({repeatedName})";
+                        if (Journeys.Contains(JourneyName)) repeatedName++;
+                        else
+                        {
+                            Journeys.Append(JourneyName);
+                            break;
+                        }
+                    }
+                    break;
+                }
+                else 
+                {
+                    Journeys.Append(JourneyName);
+                    break;
+                }
+            }
+        }
+    }
+    public class SistemaFGO : GameJourneys
     {
         private static readonly Random random = new Random();
         private static WaveStream? audioFileReader;
@@ -15,7 +50,65 @@ namespace FGO_BSx.Controls
         private static WaveOutEvent? waveOutDevice;
 
         internal static bool SuccessToAttack { get; set; }
+        public static int rowUpdate(ConsoleKey teclaSelecionada, int row) 
+        {
 
+            if (teclaSelecionada == ConsoleKey.D1)
+            {
+                row = 1;
+            }
+            else if (teclaSelecionada == ConsoleKey.D2)
+            {
+                row = 2;
+            }
+            else if (teclaSelecionada == ConsoleKey.D3) 
+            {
+                row = 3;
+            }
+            else if (teclaSelecionada == ConsoleKey.W || teclaSelecionada == ConsoleKey.UpArrow)
+            {
+                if (row > 1) row--;
+                else row = 3;
+            }
+            else if (teclaSelecionada == ConsoleKey.S || teclaSelecionada == ConsoleKey.DownArrow)
+            {
+                if (row < 3) row++;
+                else row = 1;
+            }
+
+            return row;
+        }
+        public static void NewGame() 
+        {
+            while (true) 
+            {
+                Console.WriteLine("================");
+                WriteColored(" New Game\n", ConsoleColor.Green);
+                Console.WriteLine("================\n");
+
+                Console.WriteLine("Enter a Name to your Journey:");
+                string journey = Console.ReadLine();
+                if (journey.Length > 16)
+                {
+                    Console.Clear();
+                    Console.Write("ERROR: Characters limit exceded (16).");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                }
+                else if (journey.Length < 1)
+                {
+                    Console.Clear();
+                    Console.Write("ERROR: Must enter atleast one character.");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                }
+                else
+                {
+                    CreateNewJourney(journey);
+                    break;
+                }
+            }
+        }
         public static string FiltroEscolha(ConsoleKey escolhaPersonagem)
         {
             if (escolhaPersonagem == ConsoleKey.D1)

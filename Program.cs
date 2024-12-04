@@ -4,9 +4,61 @@
     {
         public static void Main()
         {
-           
             while (true)
             {
+                int row = 1;
+                bool instantMenuChoice = false;
+                while (true) 
+                {
+                    ConsoleKey escolhaMenu;
+                    Console.WriteLine("================");
+                    Controls.SistemaFGO.WriteColored(" Menu\n", ConsoleColor.Green);
+                    Console.WriteLine("================\n");
+                    Console.Write("New Game (");
+                    Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);
+                    Console.Write(")");
+                    if (row == 1) Controls.SistemaFGO.WriteColored(" <<\n", ConsoleColor.Green);
+                    else Console.WriteLine();
+
+                    Console.Write("Load Game (");
+                    Controls.SistemaFGO.WriteColored("2", ConsoleColor.Green);
+                    Console.Write(")");
+                    if (row == 2) Controls.SistemaFGO.WriteColored(" <<\n", ConsoleColor.Green);
+                    else Console.WriteLine();
+
+                    Console.Write("Options (");
+                    Controls.SistemaFGO.WriteColored("3", ConsoleColor.Green);
+                    Console.Write(")");
+                    if (row == 3) Controls.SistemaFGO.WriteColored(" <<\n", ConsoleColor.Green);
+                    else Console.WriteLine();
+
+                    Console.Write("\n\nSelect (");
+                    Controls.SistemaFGO.WriteColored("Enter", ConsoleColor.Green);
+                    Console.Write(")");
+
+
+                    do { escolhaMenu = Console.ReadKey(true).Key; }
+                    while (escolhaMenu != ConsoleKey.D1 &&
+                    escolhaMenu != ConsoleKey.D2 &&
+                    escolhaMenu != ConsoleKey.D3 &&
+                    escolhaMenu != ConsoleKey.W &&
+                    escolhaMenu != ConsoleKey.S &&
+                    escolhaMenu != ConsoleKey.UpArrow &&
+                    escolhaMenu != ConsoleKey.DownArrow &&
+                    escolhaMenu != ConsoleKey.Enter);
+                    if (escolhaMenu != ConsoleKey.Enter)
+                    {
+                        row = Controls.SistemaFGO.rowUpdate(escolhaMenu, row);
+                        Console.Clear();
+                    }
+                    else if (escolhaMenu == ConsoleKey.Enter || instantMenuChoice)
+                    {
+                        if (row == 1) Controls.SistemaFGO.NewGame();
+                        else if (row == 2) Controls.SistemaFGO.LoadGame();
+                        else if (row == 3) Controls.SistemaFGO.Options();
+                        break;
+                    }
+                }
                 string faseDeJogo = "";
                 ConsoleKey escolhaPersonagem;
                 string personagemFiltrado;
@@ -81,7 +133,7 @@
                     Console.WriteLine("================");
                     Controls.SistemaFGO.WriteColored("Select a Servant", ConsoleColor.Green);
                     Console.WriteLine(":");
-                    Console.WriteLine("===============\n");
+                    Console.WriteLine("================\n");
 
                     for (int i = 0; i < personagens.Length; i++)
                     {
