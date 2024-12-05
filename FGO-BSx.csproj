@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Save\" />
     <Folder Include="Track&amp;Sounds\Characters\JalterNoises\" />
     <Folder Include="Track&amp;Sounds\Characters\OkadaNoises\" />
     <Folder Include="Track&amp;Sounds\Characters\TristanNoises\" />

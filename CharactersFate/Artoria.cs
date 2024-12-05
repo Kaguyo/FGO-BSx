@@ -18,7 +18,6 @@
         private double _ultNp = 13.2; // single hit
         private double _extraAtk = 0.73; // 3 hits
         private int _spd = 110;
-        private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 15;
         private double _classDmgBonus;
@@ -39,11 +38,15 @@
         internal double Extra { get => _extraAtk; set => _extraAtk = value; }
         internal double UltNp { get => _ultNp; set => _ultNp = value; }
         internal int SPD { get => _spd; set => _spd = value; }
-        internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
         internal int ExcaliburBuff { get; set; } = -1;
         internal static int ExtraAttackCooldown { get; set; } = 6;
+        internal static int Level { get; set; } = 1;
+        internal static int Exp { get; set; } = 0;
+        internal static int ExpNeeded { get; set; } = 70;
+
+
 
         //  =========================================
         //  INICIO DE "FUNCOES PRIMARIAS".

@@ -1,18 +1,71 @@
 ﻿using FGO_BSx.CharactersFate;
 using NAudio.Wave;
+using System.Text.Json;
 
 namespace FGO_BSx.Controls
 {
-    public class SaveGame 
+    public class PlayerData
     {
+        int ArtoriaLevel = Artoria.Level;
+        int ArtoriaExp = Artoria.Exp;
+        
+        int MordredLevel = Mordred.Level;
+        int MordredExp = Mordred.Exp;
+
+        int BaobhanLevel = Baobhan.Level;
+        int BaobhanExp = Baobhan.Exp;
+
+        int JalterLevel = Jalter.Level;
+        int JalterExp = Jalter.Exp;
 
     }
-    public class GameJourneys : SaveGame
+    public class SaveGame 
     {
-        private static string[] Journeys = [];
-        private static int journeysCount = Journeys.Count();
+        static string filePath = @"..\Save\save.json";
+        internal static string[] SavedJourneys = [];
+        internal static void CreateNewSave(GameJourneys data) 
+        {
+            try
+            {
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                string jsonString = JsonSerializer.Serialize(data, options);
+                File.WriteAllText(filePath, jsonString);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Falha ao tentar criar nova Jornada.");
+                Console.ReadKey(true);
+                Console.Clear();
+            }
+        }
+        internal static object GetSaves() 
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine("Falha ao tentar encontrar Arquivo salvo.");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                    return null;
+                }
+                string jsonString = File.ReadAllText(filePath);
+                GameJourneys data = JsonSerializer.Deserialize<GameJourneys>(jsonString);
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao ler arquivo. ERR:{ex.Message}");
+                return null;
+            }
+        }
+    }
+    public class GameJourneys
+    {
         internal static void CreateNewJourney(string JourneyName) 
         {
+            object[] Journeys = SaveGame.GetSaves();
+            int journeysCount = Journeys.Count();
             int repeatedName = 1;
             while(true)
             {
@@ -292,7 +345,7 @@ namespace FGO_BSx.Controls
         {
             if (inimigo is EnemiesFate.EnemyArtoria enemyArtoria) 
             {
-                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                string audioFilePath = @"..\Track&Sounds\Effects\Selected.wav";
 
                 while (true)
                 {
@@ -318,10 +371,9 @@ namespace FGO_BSx.Controls
         }
         public static int UserAttack(object personagem, int defesaInimigo, int danoTotalUser)
         {
+            string audioFilePath = @"..\Track&Sounds\Effects\Selected.wav";
             if (personagem is Artoria artoria)
             {
-                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
-    
                 if (escolhaSkill == ConsoleKey.D1)
                 {
                     Console.Clear();
@@ -349,7 +401,7 @@ namespace FGO_BSx.Controls
             }
             else if (personagem is Baobhan baobhan)
             {
-                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+               
     
                 if (escolhaSkill == ConsoleKey.D1)
                 {
@@ -378,8 +430,6 @@ namespace FGO_BSx.Controls
             }
             else if (personagem is Jalter jalter)
             {
-                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
-    
                 if (escolhaSkill == ConsoleKey.D1)
                 {
                     Console.Clear();
@@ -414,8 +464,6 @@ namespace FGO_BSx.Controls
             }
             else if (personagem is Mordred mordred)
             {
-                string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
-    
                 if (escolhaSkill == ConsoleKey.D1)
                 {
                     Console.Clear();
@@ -449,7 +497,7 @@ namespace FGO_BSx.Controls
                     Console.Clear();
                 }
             }
-            if (!SuccessToAttack) { string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav";PlaySound(audioFilePath, waveOutDevice); }
+            if (!SuccessToAttack) { audioFilePath = @"..\Track&Sounds\Effects\Fail.wav";PlaySound(audioFilePath, waveOutDevice); }
 
             if (escolhaSkill != ConsoleKey.Escape)
             escolhaSkill = ConsoleKey.D0;

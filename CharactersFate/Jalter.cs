@@ -33,7 +33,6 @@ namespace FGO_BSx.CharactersFate
         private static double _ultNpHit9 = 2.95; // 1 hit
         private double _extraAtk = 0.35; // 5 hits
         private int _spd = 100;
-        private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 5;
         private double _classDmgBonus;
@@ -65,9 +64,12 @@ namespace FGO_BSx.CharactersFate
         internal static int SelfModDuration { get; set; } = -1;
         internal static int OblivionDuration { get; set; } = -1;
         internal int SPD { get => _spd; set => _spd = value; }
-        internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
+        internal static int Level { get; set; } = 1;
+        internal static int Exp { get; set; } = 0;
+        internal static int ExpNeeded { get; set; } = 70;
+
         internal double[] NPInstances = { UltNpHit1, UltNpHit2, UltNpHit3, UltNpHit4, UltNpHit5, UltNpHit6, UltNpHit7, UltNpHit8, UltNpHit9 };
 
         //  =========================================

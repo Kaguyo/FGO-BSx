@@ -22,7 +22,6 @@
         private static double _ultNpHit4 = 3.02; // 1 hit
         private static double _ultNpHit5 = 3.5; // 1 hit
         private int _spd = 100;
-        private int _lvl = 1;
         private double _critDmg = 10;
         private double _critRate = 5;
         private double _classDmgBonus;
@@ -47,20 +46,23 @@
         internal static double UltNpHit4 { get => _ultNpHit4; set => _ultNpHit4 = value; }
         internal static double UltNpHit5 { get => _ultNpHit5; set => _ultNpHit5 = value; }
         internal int SPD { get => _spd; set => _spd = value; }
-        internal int Lvl { get => _lvl; set => _lvl = value; }
         internal double CritDmg { get => _critDmg; set => _critDmg = value; }
         internal double CritRate { get => _critRate; set => _critRate = value; }
         internal int FinnesseImproveDuration { get; set; } = -1;
         internal static int ExtraAttackCooldown { get; set; } = 5;
         internal double[] NPInstances = { UltNpHit1, UltNpHit2, UltNpHit3, UltNpHit4, UltNpHit5 };
+        internal static int Level { get; set; } = 1;
+        internal static int Exp { get; set; } = 0;
+        internal static int ExpNeeded { get; set; } = 70;
+
 
         //  =========================================
         //  INICIO DE "FUNCOES PRIMARIAS".
         //  =========================================
 
-            /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
-            as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
-            */
+        /* This comment serves to mark the beginning or end of functions that are designed to call other functions which perform actions in the game,
+        as well as make general changes to stats, cooldowns, buffs, debuffs, etc., for better organization and pattern consistency.
+        */
         public int FetchFailnaught(int defesaInimigo, int danoTotal)
         {
             Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
