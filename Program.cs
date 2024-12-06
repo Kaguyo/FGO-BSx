@@ -10,6 +10,7 @@
                 bool instantMenuChoice = false;
                 while (true) 
                 {
+                    string validation = null;
                     ConsoleKey escolhaMenu;
                     Console.WriteLine("================");
                     Controls.SistemaFGO.WriteColored(" Menu\n", ConsoleColor.Green);
@@ -53,10 +54,9 @@
                     }
                     else if (escolhaMenu == ConsoleKey.Enter || instantMenuChoice)
                     {
-                        if (row == 1) Controls.SistemaFGO.NewGame();
-                        else if (row == 2) Controls.SistemaFGO.LoadGame();
-                        else if (row == 3) Controls.SistemaFGO.Options();
-                        break;
+                        Console.Clear();
+                        if (row == 1) validation = Controls.SistemaFGO.NewGame("newGame");
+                        if (validation != null) break; // Se validation for null, volta para Menu principal, contrario: Segue linha de jogo
                     }
                 }
                 string faseDeJogo = "";

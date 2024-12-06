@@ -6,92 +6,100 @@ namespace FGO_BSx.Controls
 {
     public class PlayerData
     {
-        int ArtoriaLevel = Artoria.Level;
-        int ArtoriaExp = Artoria.Exp;
-        
-        int MordredLevel = Mordred.Level;
-        int MordredExp = Mordred.Exp;
+        public string JourneyName { get; set; }
 
-        int BaobhanLevel = Baobhan.Level;
-        int BaobhanExp = Baobhan.Exp;
+        public int ArtoriaLevel { get; set; }
+        public int ArtoriaExp { get; set; }
+        public int MordredLevel { get; set; }
+        public int MordredExp { get; set; }
+        public int BaobhanLevel { get; set; }
+        public int BaobhanExp { get; set; }
+        public int JalterLevel { get; set; }
+        public int JalterExp { get; set; }
 
-        int JalterLevel = Jalter.Level;
-        int JalterExp = Jalter.Exp;
+        public PlayerData(string journeyName)
+        {
+            JourneyName = journeyName;
 
+            ArtoriaLevel = Artoria.Level;
+            ArtoriaExp = Artoria.Exp;
+
+            MordredLevel = Mordred.Level;
+            MordredExp = Mordred.Exp;
+
+            BaobhanLevel = Baobhan.Level;
+            BaobhanExp = Baobhan.Exp;
+
+            JalterLevel = Jalter.Level;
+            JalterExp = Jalter.Exp;
+        }
     }
-    public class SaveGame 
+
+    public class SaveGame
     {
-        static string filePath = @"..\Save\save.json";
-        internal static string[] SavedJourneys = [];
-        internal static void CreateNewSave(GameJourneys data) 
+        internal static string[] SavedJourneys = Array.Empty<string>();
+
+        internal static bool CreateSave(string filePath, string journeyName)
         {
             try
             {
+                PlayerData save = new PlayerData(journeyName);
                 var options = new JsonSerializerOptions { WriteIndented = true };
-                string jsonString = JsonSerializer.Serialize(data, options);
+                string jsonString = JsonSerializer.Serialize(save, options);
                 File.WriteAllText(filePath, jsonString);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Falha ao tentar criar nova Jornada.");
-                Console.ReadKey(true);
-                Console.Clear();
+                Console.WriteLine($"ERR: {ex.Message}");
+                Thread.Sleep(500);
+                return false;
             }
+            return true;
         }
-        internal static object GetSaves() 
+
+        internal static bool NewSave(string journeyName, string operationType) 
         {
             try
             {
-                if (!File.Exists(filePath))
+                string saveDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Save");
+                string saveFilePath = Path.Combine(saveDirectory, $"{journeyName}.json");
+
+                if (!Directory.Exists(saveDirectory))
                 {
-                    Console.WriteLine("Falha ao tentar encontrar Arquivo salvo.");
+                    Directory.CreateDirectory(saveDirectory);
+                }
+
+                if (File.Exists(saveFilePath) && operationType == "newGame")
+                {
+                    Console.WriteLine("File name already exists.");
+                    Console.WriteLine("Please rename it or exclude the previous file.");
                     Console.ReadKey(true);
                     Console.Clear();
-                    return null;
+                    return false;
                 }
-                string jsonString = File.ReadAllText(filePath);
-                GameJourneys data = JsonSerializer.Deserialize<GameJourneys>(jsonString);
-                return data;
+
+              
+                bool checkOperation = CreateSave(saveFilePath, journeyName);
+                if (checkOperation)
+                {
+                    Console.WriteLine("Journey created successfully.");
+                    Console.ReadKey(true);
+                    return true;
+                }
+                else
+                {
+                    throw new Exception("Journey couldn't be created.");
+                }
+                
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao ler arquivo. ERR:{ex.Message}");
-                return null;
+                Console.WriteLine($"Error: {ex.Message}");
+                return false;
             }
         }
     }
-    public class GameJourneys
-    {
-        internal static void CreateNewJourney(string JourneyName) 
-        {
-            object[] Journeys = SaveGame.GetSaves();
-            int journeysCount = Journeys.Count();
-            int repeatedName = 1;
-            while(true)
-            {
-                if (Journeys.Contains(JourneyName))
-                {
-                    while (true)
-                    {
-                        JourneyName += $"({repeatedName})";
-                        if (Journeys.Contains(JourneyName)) repeatedName++;
-                        else
-                        {
-                            Journeys.Append(JourneyName);
-                            break;
-                        }
-                    }
-                    break;
-                }
-                else 
-                {
-                    Journeys.Append(JourneyName);
-                    break;
-                }
-            }
-        }
-    }
-    public class SistemaFGO : GameJourneys
+    public class SistemaFGO : SaveGame
     {
         private static readonly Random random = new Random();
         private static WaveStream? audioFileReader;
@@ -103,6 +111,35 @@ namespace FGO_BSx.Controls
         private static WaveOutEvent? waveOutDevice;
 
         internal static bool SuccessToAttack { get; set; }
+        static string CaptureEscReadLine()
+        {
+            var entrada = string.Empty;
+
+            while (true)
+            {
+                var tecla = Console.ReadKey(intercept: true); // Captura tecla sem exibir no console
+
+                if (tecla.Key == ConsoleKey.Escape)
+                {
+                    return null; // Retorna null se ESC for pressionado
+                }
+                else if (tecla.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine(); // Move para a próxima linha
+                    return entrada; // Retorna a entrada digitada
+                }
+                else if (tecla.Key == ConsoleKey.Backspace && entrada.Length > 0)
+                {
+                    entrada = entrada.Remove(entrada.Length - 1); // Remove o último caractere
+                    Console.Write("\b \b"); // Remove o caractere do console
+                }
+                else
+                {
+                    entrada += tecla.KeyChar; // Adiciona a tecla à entrada
+                    Console.Write(tecla.KeyChar); // Exibe a tecla no console
+                }
+            }
+        }
         public static int rowUpdate(ConsoleKey teclaSelecionada, int row) 
         {
 
@@ -131,24 +168,25 @@ namespace FGO_BSx.Controls
 
             return row;
         }
-        public static void NewGame() 
+        public static string NewGame(string operationType) 
         {
             while (true) 
             {
                 Console.WriteLine("================");
-                WriteColored(" New Game\n", ConsoleColor.Green);
+                WriteColored("New Game\n", ConsoleColor.Green);
                 Console.WriteLine("================\n");
 
-                Console.WriteLine("Enter a Name to your Journey:");
-                string journey = Console.ReadLine();
-                if (journey.Length > 16)
+                Console.Write("Enter a Name to your Journey:");
+                string journeyName = CaptureEscReadLine();
+                if (journeyName == null) return null; // Finaliza operacao cancelando metodo NewGame
+                else if (journeyName.Length > 16)
                 {
                     Console.Clear();
                     Console.Write("ERROR: Characters limit exceded (16).");
                     Console.ReadKey(true);
                     Console.Clear();
                 }
-                else if (journey.Length < 1)
+                else if (journeyName.Length < 1)
                 {
                     Console.Clear();
                     Console.Write("ERROR: Must enter atleast one character.");
@@ -157,8 +195,16 @@ namespace FGO_BSx.Controls
                 }
                 else
                 {
-                    CreateNewJourney(journey);
-                    break;
+                    Console.Clear();
+                    bool checkOperation = NewSave(journeyName, operationType);
+                    if (checkOperation) return "Seccess"; // Se todas operacoes funcionarem, fim da funcao, contrario: Loop while.
+                    else 
+                    {
+                        Console.Write("Press any ");
+                        WriteColored("Key", ConsoleColor.Green);
+                        Console.ReadKey(true);
+                        Console.Clear();
+                    }
                 }
             }
         }
@@ -346,7 +392,7 @@ namespace FGO_BSx.Controls
             if (inimigo is EnemiesFate.EnemyArtoria enemyArtoria) 
             {
                 string audioFilePath = @"..\Track&Sounds\Effects\Selected.wav";
-
+    
                 while (true)
                 {
                     int choice = random.Next(1, 4);
