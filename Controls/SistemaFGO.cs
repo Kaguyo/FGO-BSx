@@ -10,7 +10,7 @@ namespace FGO_BSx.Controls
 
         public int ArtoriaLevel { get; set; }
         public int ArtoriaExp { get; set; }
-        public int MordredLevel { get; set; }
+        public int MordredLevel { get; set; }                                                                                      
         public int MordredExp { get; set; }
         public int BaobhanLevel { get; set; }
         public int BaobhanExp { get; set; }
@@ -176,9 +176,13 @@ namespace FGO_BSx.Controls
                 WriteColored("New Game\n", ConsoleColor.Green);
                 Console.WriteLine("================\n");
 
-                Console.Write("Enter a Name to your Journey:");
+                Console.Write("Enter a Name to your Journey: ");
                 string journeyName = CaptureEscReadLine();
-                if (journeyName == null) return null; // Finaliza operacao cancelando metodo NewGame
+                if (journeyName == null) 
+                {
+                    Console.Clear();
+                    return null; // Finaliza operacao cancelando metodo NewGame
+                }
                 else if (journeyName.Length > 16)
                 {
                     Console.Clear();
@@ -202,6 +206,7 @@ namespace FGO_BSx.Controls
                     {
                         Console.Write("Press any ");
                         WriteColored("Key", ConsoleColor.Green);
+                        Console.Write("to continue");
                         Console.ReadKey(true);
                         Console.Clear();
                     }
@@ -391,7 +396,7 @@ namespace FGO_BSx.Controls
         {
             if (inimigo is EnemiesFate.EnemyArtoria enemyArtoria) 
             {
-                string audioFilePath = @"..\Track&Sounds\Effects\Selected.wav";
+                string audioFilePath = @"..\..\..\Track&Sounds\Effects\Selected.wav";
     
                 while (true)
                 {
@@ -417,7 +422,7 @@ namespace FGO_BSx.Controls
         }
         public static int UserAttack(object personagem, int defesaInimigo, int danoTotalUser)
         {
-            string audioFilePath = @"..\Track&Sounds\Effects\Selected.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Effects\Selected.wav";
             if (personagem is Artoria artoria)
             {
                 if (escolhaSkill == ConsoleKey.D1)
@@ -543,7 +548,11 @@ namespace FGO_BSx.Controls
                     Console.Clear();
                 }
             }
-            if (!SuccessToAttack) { audioFilePath = @"..\Track&Sounds\Effects\Fail.wav";PlaySound(audioFilePath, waveOutDevice); }
+            if (!SuccessToAttack) 
+            {
+                audioFilePath = @"..\..\..\Track&Sounds\Effects\Selected.wav";
+                PlaySound(audioFilePath, waveOutDevice); 
+            }
 
             if (escolhaSkill != ConsoleKey.Escape)
             escolhaSkill = ConsoleKey.D0;
@@ -609,7 +618,7 @@ namespace FGO_BSx.Controls
         }
         public static void WriteColoredAnsi(string text, string ansiColor)
         {
-            Console.Write($"{ansiColor}{text}\x1b[0m");
+            Console.Write($"{ ansiColor}{text}\x1b[0m");
             Console.ResetColor();
         }
         public static void WriteColoredAnsi(int i, string ansiColor)

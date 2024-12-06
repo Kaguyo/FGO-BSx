@@ -130,7 +130,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Right choice.";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Skill1.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Skill1.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -148,7 +148,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Just leave it to me.";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Skill2.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Skill2.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -166,7 +166,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Okay, okay.";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Skill3.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Skill3.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -203,7 +203,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Howl, Fafnir!.";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Obv1.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Obv1.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -221,7 +221,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "How's that!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Obv2.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Obv2.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -239,7 +239,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Come, dragon of mine.";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Obv3.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Obv3.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -360,7 +360,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Thy path has long since come to an end!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Extra1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Extra1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -378,7 +378,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Thou shalt be punished by flame.";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Extra2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Extra2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -395,7 +395,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Ramble amidst the flames!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Extra3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Extra3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -412,7 +412,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "This is the howl of a soul filled with hatred!\r\nLa Grondement Du Haine!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\NP1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\NP1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             int x = 1;
@@ -440,7 +440,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "My flames of vengeance. My flames of retribution. I'll skewer you with my festering hatred!\nLa Grondement du Haine!! Ahahahahahahahaha!!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\NP2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\NP2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             int x = 1;
@@ -483,7 +483,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "My sword is hatred! My dragon is vengeance! My flames are retribution! Everything will be pierced!\nLa Grondement du Haine!!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\NP3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\NP3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -517,7 +517,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Ahahaha!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Atk1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -535,7 +535,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Well!?";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Atk2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -553,7 +553,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Pathetic!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Atk3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -570,7 +570,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Burn away!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\JalterNoises\Atk4.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\JalterNoises\Atk4.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 

@@ -13,7 +13,7 @@
                     string validation = null;
                     ConsoleKey escolhaMenu;
                     Console.WriteLine("================");
-                    Controls.SistemaFGO.WriteColored(" Menu\n", ConsoleColor.Green);
+                    Controls.SistemaFGO.WriteColored("Menu\n", ConsoleColor.Green);
                     Console.WriteLine("================\n");
                     Console.Write("New Game (");
                     Controls.SistemaFGO.WriteColored("1", ConsoleColor.Green);

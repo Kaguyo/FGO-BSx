@@ -121,7 +121,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "This feels awesome!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\KoCT1.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\KoCT1.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -139,7 +139,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Yeah!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\KoCT2.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\KoCT2.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -157,7 +157,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Got it!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\KoCT3.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\KoCT3.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -196,7 +196,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Okay!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill1.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Skill1.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -214,7 +214,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "Leave it to me!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill2.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Skill2.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -232,7 +232,7 @@ namespace FGO_BSx.CharactersFate
                 {
                     string comment = "All right!";
                     LastComment = comment;
-                    string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Skill3.wav";
+                    string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Skill3.wav";
 
                     Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -360,7 +360,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Take that, you fiend!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Extra1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Extra1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -377,7 +377,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "I'm gonna teach you a lesson!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Extra2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Extra2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -394,7 +394,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Crush!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Extra3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Extra3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -411,7 +411,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "So it's time for some overkill!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\NP1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\NP1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             foreach (char c in comment)
@@ -427,7 +427,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "This is the evil sword that destroyed my father...\nClarent Blood Arthur!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\NP2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\NP2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             int x = 0;
@@ -461,7 +461,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "I am no king, but I follow in the king's path.\nI will destroy all that I must to bring the king peace!\nClarent Blood Arthur!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\NP3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\NP3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -498,7 +498,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Shut up!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Atk1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -516,7 +516,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Silence!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Atk2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -534,7 +534,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "Drop dead!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Atk3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -551,7 +551,7 @@ namespace FGO_BSx.CharactersFate
         {
             string comment = "What's the matter!?";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\MordredNoises\Atk4.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\MordredNoises\Atk4.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 

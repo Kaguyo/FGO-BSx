@@ -223,7 +223,7 @@
         {
             string comment = "Kyaaahahahahaha!\nHey, how does it feel to be murdered by a weakling like me?\nIs it frustrating? Disappointing?\nNot that I care!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanNP1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanNP1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             byte i = 0;
@@ -262,7 +262,7 @@
         {
             string comment = "Hehe... Ehehe, ahahaha!\nWeakling! Loser!\nWatch as you die without even knowing why!\nFetch Failnaught!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanNP2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanNP2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             byte i = 0;
@@ -295,7 +295,7 @@
         {
             string comment = "You have awful taste!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanBasic1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanBasic1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             foreach (char c in comment)
@@ -312,7 +312,7 @@
         {
             string comment = "Does it hurt?";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanBasic2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanBasic2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             foreach (char c in comment)
@@ -329,7 +329,7 @@
         {
             string comment = "Why don't you die?";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanBasic3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanBasic3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             foreach (char c in comment)
@@ -346,7 +346,7 @@
         {
             string comment = "Cruelty. Depravity.";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\Skill1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\Skill1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             foreach (char c in comment)
@@ -363,7 +363,7 @@
         {
             string comment = "Like taking a bath !";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\Skill2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\Skill2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             foreach (char c in comment)
@@ -380,7 +380,7 @@
         {
             string comment = "More, more!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\Skill3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\Skill3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
             foreach (char c in comment)
@@ -396,7 +396,7 @@
         {
             string comment = "Watch closely.";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanExtra1.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanExtra1.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -413,7 +413,7 @@
         {
             string comment = "Look, look!";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanExtra2.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanExtra2.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
@@ -438,7 +438,7 @@
         {
             string comment = "How about being reborn as a wretched scapegoat?";
             LastComment = comment;
-            string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Characters\BaobhanNoises\BaobhanExtra3.wav";
+            string audioFilePath = @"..\..\..\Track&Sounds\Characters\BaobhanNoises\BaobhanExtra3.wav";
 
             Controls.SistemaFGO.PlaySound(audioFilePath);
 
