@@ -10,42 +10,26 @@ namespace FGO_BSx.EnemiesFate
     {
         internal static readonly Random random = new Random();
 
-        private string _name = "Artoria";
-        private int _hpMax = 465629;
-        private int _atkMax = 940;
-        private int _defMax = 215;
-        private int _hp = 465629;
-        private int _atk = 940;
-        private int _def = 215;
-        static private double _spCost = 200;
-        static private double _spInitial = 0;
-        private double _basicAtk = 4;
-        private double _swordAtk = 6;
-        private double _heavyAtk = 6.4;
-        private double _ultNp = 11;
-        private int _spd = 100;
-        private int _lvl = 1;
-        private double _critDmg = 10;
-        private double _critRate = 5;
-        private double _extraAtk = 0.3;
-
+        internal string Name { get; } = "Artoria";
+        internal int HpMax { get; set; } = 465629;
+        internal int AtkMax { get; set; } = 940;
+        internal int DefMax { get; set; } = 215;
+        internal int Hp { get; set; } = 465629;
+        internal int Atk { get; set; } = 940;
+        internal int Def { get; set; } = 215;
+        static internal double SpCost { get; set; } = 200;
+        static internal double SpInitial { get; set; } = 0;
+        internal double BasicAttack { get; set; } = 4;
+        internal double Extra { get; set; } = 0.3;
+        internal double UltNp { get; set; } = 11;
+        internal int SPD { get; set; } = 100;
+        internal int Lvl { get; set; } = 1;
+        internal double CritDmg { get; set; } = 10;
+        internal double CritRate { get; set; } = 5;
+        internal double SwordAtk { get; set; } = 6;
+        internal double HeavyAtk { get; set; } = 6.4;
         internal string? LastComment { get; set; }
-        internal string Name { get => _name; }
-        internal int HpMax { get => _hpMax; set => _hpMax = value; }
-        internal int AtkMax { get => _atkMax; set => _atkMax = value; }
-        internal int DefMax { get => _defMax; set => _defMax = value; }
-        internal int Hp { get => _hp; set => _hp = value; }
-        internal int Atk { get => _atk; set => _atk = value; }
-        internal int Def { get => _def; set => _def = value; }
-        static internal double SpCost { get => _spCost; set => _spCost = value; }
-        static internal double SpInitial { get => _spInitial; set => _spInitial = value; }
-        internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
-        internal double Extra { get => _extraAtk; set => _extraAtk = value; }
-        internal double UltNp { get => _ultNp; set => _ultNp = value; }
-        internal int SPD { get => _spd; set => _spd = value; }
-        internal int Lvl { get => _lvl; set => _lvl = value; }
-        internal double CritDmg { get => _critDmg; set => _critDmg = value; }
-        internal double CritRate { get => _critRate; set => _critRate = value; }
+
 
         internal int ExcaliburBuff { get; set; } = -1;
         internal static int ExtraAttackCooldown { get; set; } = 6;
@@ -61,7 +45,7 @@ namespace FGO_BSx.EnemiesFate
         {
             ExcaliburBuff = 2; // Contador de duração do buff após uso de Excalibur
 
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {
@@ -97,7 +81,7 @@ namespace FGO_BSx.EnemiesFate
 
         public int ManaLoading(int defesaInimigo, int danoTotal)
         {
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {
@@ -136,7 +120,7 @@ namespace FGO_BSx.EnemiesFate
 
         public int SwordSkill(int defesaInimigo, int danoTotal)
         {
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {
@@ -181,7 +165,7 @@ namespace FGO_BSx.EnemiesFate
         public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
             Console.Clear();
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {

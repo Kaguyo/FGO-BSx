@@ -4,56 +4,34 @@
     {
         private static readonly Random random = new Random();
 
-        // Fields
-        private string _name = "Baobhan";
-        private int _hpMax = 4929;
-        private int _atkMax = 6320;
-        private int _defMax = 499;
-        private int _hp = 4929;
-        private int _atk = 6320;
-        private int _def = 499;
-        private double _spCost = 100;
-        private double _spInitial = 0;
-        private double _basicAtk = 0.65; // 2 hits
-        private double _extraAtk = 0.55; // 4 hits
-        private static double _ultNpHit1 = 0.9; // 1 hit
-        private static double _ultNpHit2 = 1.2; // 1 hit
-        private static double _ultNpHit3 = 2.1; // 1 hit
-        private static double _ultNpHit4 = 3.02; // 1 hit
-        private static double _ultNpHit5 = 3.5; // 1 hit
-        private int _spd = 100;
-        private double _critDmg = 10;
-        private double _critRate = 5;
-        private double _classDmgBonus;
-
-        // Properties
-        internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
+        internal string Name { get; } = "Baobhan";
+        internal int HpMax { get; set; } = 4929;
+        internal int AtkMax { get; set; } = 6320;
+        internal int DefMax { get; set; } = 499;
+        internal int Hp { get; set; } = 4929;
+        internal int Atk { get; set; } = 6320;
+        internal int Def { get; set; } = 499;
+        internal double SpCost { get; set; } = 100;
+        internal double SpInitial { get; set; } = 0;
+        internal double BasicAttack { get; set; } = 0.65;
+        internal double Extra { get; set; } = 0.55;
+        internal static double UltNpHit1 { get; set; } = 0.9;
+        internal static double UltNpHit2 { get; set; } = 1.2;
+        internal static double UltNpHit3 { get; set; } = 2.1;
+        internal static double UltNpHit4 { get; set; } = 3.02;
+        internal static double UltNpHit5 { get; set; } = 3.5;
+        internal int SPD { get; set; } = 100;
+        internal double CritDmg { get; set; } = 10;
+        internal double CritRate { get; set; } = 5;
+        internal double ClassDmgBonus { get; set; }
         internal string? LastComment { get; set; }
-        internal string Name { get => _name; }
-        internal int HpMax { get => _hpMax; set => _hpMax = value; }
-        internal int AtkMax { get => _atkMax; set => _atkMax = value; }
-        internal int DefMax { get => _defMax; set => _defMax = value; }
-        internal int Hp { get => _hp; set => _hp = value; }
-        internal int Atk { get => _atk; set => _atk = value; }
-        internal int Def { get => _def; set => _def = value; }
-        internal double SpCost { get => _spCost; set => _spCost = value; }
-        internal double SpInitial { get => _spInitial; set => _spInitial = value; }
-        internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
-        internal double Extra { get => _extraAtk; set => _extraAtk = value; }
-        internal static double UltNpHit1 { get => _ultNpHit1; set => _ultNpHit1 = value; }
-        internal static double UltNpHit2 { get => _ultNpHit2; set => _ultNpHit2 = value; }
-        internal static double UltNpHit3 { get => _ultNpHit3; set => _ultNpHit3 = value; }
-        internal static double UltNpHit4 { get => _ultNpHit4; set => _ultNpHit4 = value; }
-        internal static double UltNpHit5 { get => _ultNpHit5; set => _ultNpHit5 = value; }
-        internal int SPD { get => _spd; set => _spd = value; }
-        internal double CritDmg { get => _critDmg; set => _critDmg = value; }
-        internal double CritRate { get => _critRate; set => _critRate = value; }
-        internal int FinnesseImproveDuration { get; set; } = -1;
+        internal static int FinnesseImproveDuration { get; set; } = -1;
         internal static int ExtraAttackCooldown { get; set; } = 5;
-        internal double[] NPInstances = { UltNpHit1, UltNpHit2, UltNpHit3, UltNpHit4, UltNpHit5 };
+        internal static double[] NPInstances { get; } = { UltNpHit1, UltNpHit2, UltNpHit3, UltNpHit4, UltNpHit5 };
         internal static int Level { get; set; } = 1;
         internal static int Exp { get; set; } = 0;
         internal static int ExpNeeded { get; set; } = 70;
+
 
 
         //  =========================================
@@ -177,7 +155,7 @@
         public int ExtraAttack(int defesaInimigo, int danoTotal)
         {
             Console.Clear();
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Red);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Red);
             Console.WriteLine(":");
             while (true)
             {

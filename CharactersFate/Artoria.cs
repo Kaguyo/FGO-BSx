@@ -4,42 +4,24 @@
     {
         internal static readonly Random random = new Random();
 
-        // Fields
-        private string _name = "Artoria";
-        private int _hpMax = 5629;
-        private int _atkMax = 7720;
-        private int _defMax = 629;
-        private int _hp = 5629;
-        private int _atk = 7720;
-        private int _def = 529;
-        private double _spCost = 140;
-        private double _spInitial = 0;
-        private double _basicAtk = 1.70; // single hit
-        private double _ultNp = 13.2; // single hit
-        private double _extraAtk = 0.73; // 3 hits
-        private int _spd = 110;
-        private double _critDmg = 10;
-        private double _critRate = 15;
-        private double _classDmgBonus;
-
         // Properties
-        internal double ClassDmgBonus { get => _classDmgBonus; set => _classDmgBonus = value; }
+        internal string Name { get; set; } = "Artoria";
+        internal int HpMax { get; set; } = 5629;
+        internal int AtkMax { get; set; } = 7720;
+        internal int DefMax { get; set; } = 629;
+        internal int Hp { get; set; } = 5629;
+        internal int Atk { get; set; } = 7720;
+        internal int Def { get; set; } = 529;
+        internal double SpCost { get; set; } = 140;
+        internal double SpInitial { get; set; } = 0;
+        internal double BasicAttack { get; set; } = 1.70;
+        internal double Extra { get; set; } = 0.73;
+        internal double UltNp { get; set; } = 13.2;
+        internal int SPD { get; set; } = 110;
+        internal double CritDmg { get; set; } = 10;
+        internal double CritRate { get; set; } = 15;
+        internal double ClassDmgBonus { get; set; } = 0;
         internal string? LastComment { get; set; }
-        internal string Name { get => _name; }
-        internal int HpMax { get => _hpMax; set => _hpMax = value; }
-        internal int AtkMax { get => _atkMax; set => _atkMax = value; }
-        internal int DefMax { get => _defMax; set => _defMax = value; }
-        internal int Hp { get => _hp; set => _hp = value; }
-        internal int Atk { get => _atk; set => _atk = value; }
-        internal int Def { get => _def; set => _def = value; }
-        internal double SpCost { get => _spCost; set => _spCost = value; }
-        internal double SpInitial { get => _spInitial; set => _spInitial = value; }
-        internal double BasicAttack { get => _basicAtk; set => _basicAtk = value; }
-        internal double Extra { get => _extraAtk; set => _extraAtk = value; }
-        internal double UltNp { get => _ultNp; set => _ultNp = value; }
-        internal int SPD { get => _spd; set => _spd = value; }
-        internal double CritDmg { get => _critDmg; set => _critDmg = value; }
-        internal double CritRate { get => _critRate; set => _critRate = value; }
         internal int ExcaliburBuff { get; set; } = -1;
         internal static int ExtraAttackCooldown { get; set; } = 6;
         internal static int Level { get; set; } = 1;
@@ -59,7 +41,7 @@
         {
             ExcaliburBuff = 2; // Contador de duração do buff após uso de Excalibur
 
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {
@@ -95,7 +77,7 @@
 
         public int ManaLoading(int defesaInimigo, int danoTotal)
         {
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {
@@ -134,7 +116,7 @@
 
         public int SwordSkill(int defesaInimigo, int danoTotal)
         {
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {
@@ -179,7 +161,7 @@
         public int ExtraAttack(int defesaInimigo, int danoTotal) 
         {
             Console.Clear();
-            Controls.SistemaFGO.WriteColored(_name, ConsoleColor.Yellow);
+            Controls.SistemaFGO.WriteColored(Name, ConsoleColor.Yellow);
             Console.WriteLine(":");
             while (true)
             {

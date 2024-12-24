@@ -304,7 +304,7 @@ namespace FGO_BSx.Controls
         }
         public static double ReturnSpInimigo(object inimigoEscolhido) 
         {
-            if (inimigoEscolhido is EnemiesFate.EnemyArtoria enemyArtoria)
+            if (inimigoEscolhido is EnemiesFate.EnemyArtoria)
                 return EnemiesFate.EnemyArtoria.SpInitial;
             else return 0;
         }
@@ -558,6 +558,39 @@ namespace FGO_BSx.Controls
             escolhaSkill = ConsoleKey.D0;
 
             return danoTotalUser;
+        }
+        public static void EnemysTurnTransition(bool keyboardEntry)
+        {
+            int ycount = 0;
+            string allowInputAfterOutput = "";
+            string expectedOutput = "Turno do Oponente...Turno do Oponente...Turno do Oponente.";
+            while (keyboardEntry || allowInputAfterOutput != expectedOutput)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+
+                    if (i == 0)
+                    {
+                        Console.Write("Turno do Oponente.");
+                        allowInputAfterOutput = "Turno do Oponente.";
+                    }
+                    else if (ycount != 3)
+                    {
+                        Console.Write(".");
+                        Thread.Sleep(300);
+                        allowInputAfterOutput += ".";
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.Write("Turno do Oponente.");
+                        allowInputAfterOutput += "Turno do Oponente.";
+                        ycount = 0;
+                    }
+                    ycount++;
+                }
+                ycount = 0;
+            }
         }
         public static int DefesaUsuario(object Usuario)
         {

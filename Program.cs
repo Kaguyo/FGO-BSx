@@ -38,7 +38,10 @@
                     Console.Write(")");
 
 
-                    do { escolhaMenu = Console.ReadKey(true).Key; }
+                    do 
+                    {
+                        escolhaMenu = Console.ReadKey(true).Key;
+                    }
                     while (escolhaMenu != ConsoleKey.D1 &&
                     escolhaMenu != ConsoleKey.D2 &&
                     escolhaMenu != ConsoleKey.D3 &&
@@ -159,7 +162,7 @@
                     }
                     else if (validChoices.Contains(personagemFiltrado))     // GameLine goes on
                     {
-                        string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                        string audioFilePath = @"..\..\..\Track&Sounds\Effects\Selected.wav";
                         Controls.SistemaFGO.PlaySound(audioFilePath);
                         Console.Clear();
                         while (true)
@@ -187,14 +190,14 @@
                             inimigoFiltrado = Controls.SistemaFGO.FiltroEscolha(escolhaInimigo);
                             if (inimigoFiltrado == "stop")
                             {
-                                audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                                audioFilePath = @"..\..\..\Track&Sounds\Effects\Selected.wav";
                                 Controls.SistemaFGO.PlaySound(audioFilePath);
                                 Console.Clear();
                                 break;
                             }
                             else if (validEnemyChoices.Contains(inimigoFiltrado))
                             {
-                                audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Selected.wav";
+                                audioFilePath = @"..\..\..\Track&Sounds\Effects\Selected.wav";
                                 Controls.SistemaFGO.PlaySound(audioFilePath);
                                 faseDeJogo = "combat";
                                 Console.Clear();
@@ -202,7 +205,7 @@
                             }
                             else
                             {
-                                audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav";
+                                audioFilePath = @"..\..\..\Track&Sounds\Effects\Fail.wav";
                                 Controls.SistemaFGO.PlaySound(audioFilePath);
                             }
                         }
@@ -211,7 +214,7 @@
                     }
                     else 
                     {
-                        string audioFilePath = @"C:\Users\Kaguyo\source\repos\FGO-BSx\Track&Sounds\Effects\Fail.wav";
+                        string audioFilePath = @"..\..\..\Track&Sounds\Effects\Fail.wav";
                         Controls.SistemaFGO.PlaySound(audioFilePath);
                     }
                 }
@@ -239,32 +242,21 @@
                     {
                         Controls.SistemaFGO.personagemEscolhido = personagens[1];
                         indexPersonagem = 1;
-                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[0]);
+                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[1]);
                     }
                     else if (personagemFiltrado == "3" || personagemFiltrado == personagensNome[2])
                     {
                         Controls.SistemaFGO.personagemEscolhido = personagens[2];
                         indexPersonagem = 2;
-                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[0]);
+                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[2]);
                     }
                     else if (personagemFiltrado == "4" || personagemFiltrado == personagensNome[3])
                     {
                         Controls.SistemaFGO.personagemEscolhido = personagens[3];
                         indexPersonagem = 3;
-                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[0]);
+                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[3]);
                     }
-                    else if (personagemFiltrado == "5" || personagemFiltrado == personagensNome[4])
-                    {
-                        Controls.SistemaFGO.personagemEscolhido = personagens[4];
-                        indexPersonagem = 4;
-                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[0]);
-                    }
-                    else if (personagemFiltrado == "6" || personagemFiltrado == personagensNome[5])
-                    {
-                        Controls.SistemaFGO.personagemEscolhido = personagens[5];
-                        indexPersonagem = 5;
-                        defUsuario = Controls.SistemaFGO.DefesaUsuario(personagens[0]);
-                    }
+
 
                     // Seleção do inimigo
                     if (inimigoFiltrado == "stop")
@@ -283,12 +275,14 @@
                         indexInimigo = 1;
                         defInimigo = Controls.SistemaFGO.DefesaInimigo(inimigo[1]);
                     }
+                    
                     int danoTotalUser;
                     int danoTotalEnemy;
                     double spInimigo, spCostInimigo;
                     int userHealth = personagensHp[indexPersonagem];
                     int enemyHealth = inimigoHp[indexInimigo];
                     bool keyboardEntry = false;
+
                     // Enquanto o Hp do personagem e inimigo forem maiores que 0 e a escolha de skill não for "stop"
                     while (userHealth > 0 && enemyHealth > 0)
                     {
@@ -327,77 +321,19 @@
                                 }
                             }
                             Console.Clear();
-                            int ycount = 0;
-                            string allowInputAfterOutput = "";
-                            string expectedOutput = "Turno do Oponente...Turno do Oponente...Turno do Oponente.";
-                            while (keyboardEntry || allowInputAfterOutput != expectedOutput)
-                            {
-                                for (int i = 0; i < 7; i++)
-                                {
-                                    
-                                    if (i == 0)
-                                    {
-                                        Console.Write("Turno do Oponente.");
-                                        allowInputAfterOutput = "Turno do Oponente.";
-                                    }
-                                    else if (ycount != 3)
-                                    {
-                                        Console.Write(".");
-                                        Thread.Sleep(300);
-                                        allowInputAfterOutput += ".";
-                                    }
-                                    else
-                                    {
-                                        Console.Clear();
-                                        Console.Write("Turno do Oponente.");
-                                        allowInputAfterOutput += "Turno do Oponente.";
-                                        ycount = 0;
-                                    }
-                                    ycount++;
-                                }
-                                ycount = 0;
-                            }
+                            Controls.SistemaFGO.EnemysTurnTransition(keyboardEntry);
                             Console.Clear();
                             danoTotalEnemy = Controls.SistemaFGO.EnemyAttack(Controls.SistemaFGO.inimigoEscolhido, defUsuario, danoTotalEnemy);
-                            Console.Clear();
                             userHealth -= danoTotalEnemy;
+                            Console.Clear();
                         }
                         else
                         {
                             Console.Clear();
-                            int ycount = 0;
-                            string allowInputAfterOutput = "";
-                            string expectedOutput = "Turno do Oponente...Turno do Oponente...Turno do Oponente.";
-                            while (keyboardEntry || allowInputAfterOutput != expectedOutput)
-                            {
-                                for (int i = 0; i < 7; i++)
-                                {
-
-                                    if (i == 0)
-                                    {
-                                        Console.Write("Turno do Oponente.");
-                                        allowInputAfterOutput = "Turno do Oponente.";
-                                    }
-                                    else if (ycount != 3)
-                                    {
-                                        Console.Write(".");
-                                        Thread.Sleep(300);
-                                        allowInputAfterOutput += ".";
-                                    }
-                                    else
-                                    {
-                                        Console.Clear();
-                                        Console.Write("Turno do Oponente.");
-                                        allowInputAfterOutput += "Turno do Oponente.";
-                                        ycount = 0;
-                                    }
-                                    ycount++;
-                                }
-                                ycount = 0;
-                            }
+                            Controls.SistemaFGO.EnemysTurnTransition(keyboardEntry);
                             danoTotalEnemy = Controls.SistemaFGO.EnemyAttack(Controls.SistemaFGO.inimigoEscolhido, defUsuario, danoTotalEnemy);
-                            Console.Clear();
                             userHealth -= danoTotalEnemy;
+                            Console.Clear();
                             while ((Controls.SistemaFGO.escolhaSkill != ConsoleKey.D1 && Controls.SistemaFGO.escolhaSkill != ConsoleKey.D2 &&
                             Controls.SistemaFGO.escolhaSkill != ConsoleKey.D3 && Controls.SistemaFGO.escolhaSkill != ConsoleKey.D4 &&
                             Controls.SistemaFGO.escolhaSkill != ConsoleKey.D5 && Controls.SistemaFGO.escolhaSkill != ConsoleKey.D6 &&
