@@ -2,9 +2,9 @@
 {
     internal class DamageFormulas
     {
-        //  ======================
-        //  GENERIC DAMAGE FORMULA
-        //  ======================
+        //  =======================
+        //  GENERIC DAMAGE FORMULAS
+        //  =======================
         public static int CauseDamage(Random random, double mainStat, double[] skillAtk, double critRate, double critDmg, int hits, int defesaInimigo, int danoTotal, string name)
         {
             bool keyboardEntry = false;
@@ -51,11 +51,10 @@
 
                     Console.SetCursorPosition(0, 2);
                     Console.Write($"Dano Total: ");
-                    SistemaFGO.WriteColored(totalDano, (name == "Mordred" ||
-                                                        name == "Artoria" ||
-                                                        name == "Jeanne d'Arc (Alter)") ?
-                                                       ConsoleColor.Yellow :
-                                                       ConsoleColor.Red
+                    SistemaFGO.WriteColored(totalDano, // Primeiro Parametro
+                    (name == "Mordred" ||   // Segundo Parametro
+                    name == "Artoria" || 
+                    name == "Jeanne d'Arc (Alter)") ? ConsoleColor.Yellow : ConsoleColor.Red
                     );
 
                     Thread.Sleep(40);
@@ -114,11 +113,10 @@
 
                     Console.SetCursorPosition(0, 2);
                     Console.Write($"Dano Total: ");
-                    SistemaFGO.WriteColored(totalDano, (name == "Mordred" ||
-                                                        name == "Artoria" ||
-                                                        name == "Jeanne d'Arc (Alter)") ?
-                                                       ConsoleColor.Yellow :
-                                                       ConsoleColor.Red
+                    SistemaFGO.WriteColored(totalDano,  // Primeiro Parametro
+                    (name == "Mordred" ||   // Segundo Parametro
+                    name == "Artoria" ||
+                    name == "Jeanne d'Arc (Alter)") ? ConsoleColor.Yellow : ConsoleColor.Red
                     );
                     Thread.Sleep(60);
                 }

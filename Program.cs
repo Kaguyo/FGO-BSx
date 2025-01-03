@@ -10,7 +10,7 @@
                 bool instantMenuChoice = false;
                 while (true) 
                 {
-                    string validation = null;
+                    string? validation = null;
                     ConsoleKey escolhaMenu;
                     Console.WriteLine("================");
                     Controls.SistemaFGO.WriteColored("Menu\n", ConsoleColor.Green);

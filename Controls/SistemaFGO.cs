@@ -215,28 +215,29 @@ namespace FGO_BSx.Controls
         }
         public static string FiltroEscolha(ConsoleKey escolhaPersonagem)
         {
+            string numeralChoice = "";
             if (escolhaPersonagem == ConsoleKey.D1)
-                return "1";
+                numeralChoice = "1";
             else if (escolhaPersonagem == ConsoleKey.D2)
-                return "2";
+                numeralChoice = "2";
             else if (escolhaPersonagem == ConsoleKey.D3)
-                return "3";
+                numeralChoice = "3";
             else if (escolhaPersonagem == ConsoleKey.D4)
-                return "4";
+                numeralChoice = "4";
             else if (escolhaPersonagem == ConsoleKey.D5)
-                return "5";
+                numeralChoice = "5";
             else if (escolhaPersonagem == ConsoleKey.D6)
-                return "6";
+                numeralChoice = "6";
             else if (escolhaPersonagem == ConsoleKey.D7)
-                return "7";
+                numeralChoice = "7";
             else if (escolhaPersonagem == ConsoleKey.D8)
-                return "8";
+                numeralChoice = "8";
             else if (escolhaPersonagem == ConsoleKey.D9)
-                return "9";
+                numeralChoice = "9";
             else if (escolhaPersonagem == ConsoleKey.Escape)
-                return "stop";
-            else
-                return "";
+                numeralChoice = "stop";
+            
+            return numeralChoice;
         }
         public static string Capitalize(string input)
         {
@@ -304,9 +305,12 @@ namespace FGO_BSx.Controls
         }
         public static double ReturnSpInimigo(object inimigoEscolhido) 
         {
+            double enemySpInitial = 0;
             if (inimigoEscolhido is EnemiesFate.EnemyArtoria)
-                return EnemiesFate.EnemyArtoria.SpInitial;
-            else return 0;
+            {
+                enemySpInitial = EnemiesFate.EnemyArtoria.SpInitial;
+            }
+            return enemySpInitial;
         }
         public static void MyServantAndEnemy(object personagemEscolhido, int vidaUsuario, object inimigoEscolhido, int vidaInimigo, double spEnemy, double spCostEnemy)
         {
@@ -594,37 +598,35 @@ namespace FGO_BSx.Controls
         }
         public static int DefesaUsuario(object Usuario)
         {
+            int Defesa = 0;
             if (Usuario is Artoria artoria)
             {
-                return artoria.Def;
+                Defesa = artoria.Def;
             }
             else if (Usuario is Jalter jalter) 
             {
-                return jalter.Def;
+                Defesa = jalter.Def;
             }
             else if (Usuario is Mordred mordred)
             {
-                return mordred.Def;
+                Defesa = mordred.Def;
             }
             else if (Usuario is Baobhan baobhan)
             {
-                return baobhan.Def;
+                Defesa = baobhan.Def;
             }
-            else
-            {
-                return 0;
-            }
+            
+            return Defesa;
         }
         public static int DefesaInimigo(object Inimigo) 
         {
+            int enemyDef = 0;
             if (Inimigo is EnemiesFate.EnemyArtoria enemyArtoria)
             {
-                return enemyArtoria.Def;
+                enemyDef = enemyArtoria.Def;
             }
-            else
-            {
-                return 0;
-            }
+            
+            return enemyDef;
         }
         public static void WriteColored(string text, ConsoleColor color)
         {
