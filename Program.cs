@@ -7,7 +7,6 @@
             while (true)
             {
                 int row = 1;
-                bool instantMenuChoice = false;
                 while (true) 
                 {
                     string? validation = null;
@@ -55,10 +54,10 @@
                         row = Controls.SistemaFGO.rowUpdate(escolhaMenu, row);
                         Console.Clear();
                     }
-                    else if (escolhaMenu == ConsoleKey.Enter || instantMenuChoice)
+                    else if (escolhaMenu == ConsoleKey.Enter)
                     {
                         Console.Clear();
-                        if (row == 1) validation = Controls.SistemaFGO.NewGame("newGame");
+                        if (row == 1) validation = Controls.SistemaFGO.NewGame();
                         if (validation != null) break; // Se validation for null, volta para Menu principal, contrario: Segue linha de jogo
                     }
                 }
@@ -95,16 +94,16 @@
 
                 //  Propriedades personagens do usuario
 
-                int[] personagensHp = [artoria.Hp,
-                                    baobhan.Hp,
-                                    mordred.Hp,
-                                    jalter.Hp
-                                  ];
+                int[] personagensHp = [ artoria.Hp,
+                                        baobhan.Hp,
+                                        mordred.Hp,
+                                        jalter.Hp
+                                    ];
                 int[] personagensSpeed = [ artoria.SPD,
-                                    baobhan.SPD,
-                                    mordred.SPD,
-                                    jalter.SPD
-                                  ];
+                                           baobhan.SPD,
+                                           mordred.SPD,
+                                           jalter.SPD
+                                        ];
                 string[] personagensNome = [ artoria.Name,
                                              baobhan.Name,
                                              mordred.Name,

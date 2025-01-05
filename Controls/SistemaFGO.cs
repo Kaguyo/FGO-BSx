@@ -57,7 +57,7 @@ namespace FGO_BSx.Controls
             return true;
         }
 
-        internal static bool NewSave(string journeyName, string operationType) 
+        internal static bool NewSave(string journeyName) 
         {
             try
             {
@@ -69,7 +69,7 @@ namespace FGO_BSx.Controls
                     Directory.CreateDirectory(saveDirectory);
                 }
 
-                if (File.Exists(saveFilePath) && operationType == "newGame")
+                if (File.Exists(saveFilePath))
                 {
                     Console.WriteLine("File name already exists.");
                     Console.WriteLine("Please rename it or exclude the previous file.");
@@ -98,6 +98,51 @@ namespace FGO_BSx.Controls
                 return false;
             }
         }
+        public static string? NewGame() 
+        {
+            while (true) 
+            {
+                Console.WriteLine("================");
+                SistemaFGO.WriteColored("New Game\n", ConsoleColor.Green);
+                Console.WriteLine("================\n");
+
+                Console.Write("Enter a Name to your Journey: ");
+                string? journeyName = SistemaFGO.CaptureEscReadLine();
+                if (journeyName == null) 
+                {
+                    Console.Clear();
+                    return null; // Finaliza operacao cancelando metodo NewGame
+                }
+                else if (journeyName.Length > 16)
+                {
+                    Console.Clear();
+                    Console.Write("ERROR: Characters limit exceded (16).");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                }
+                else if (journeyName.Length < 1)
+                {
+                    Console.Clear();
+                    Console.Write("ERROR: Must enter atleast one character.");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    bool checkOperation = NewSave(journeyName);
+                    if (checkOperation) return "Seccess"; // Se todas operacoes funcionarem, fim da funcao, contrario: Loop while.
+                    else 
+                    {
+                        Console.Write("Press any ");
+                        SistemaFGO.WriteColored("Key", ConsoleColor.Green);
+                        Console.Write("to continue");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                    }
+                }
+            }
+        }
     }
     public class SistemaFGO : SaveGame
     {
@@ -111,7 +156,7 @@ namespace FGO_BSx.Controls
         private static WaveOutEvent? waveOutDevice;
 
         internal static bool SuccessToAttack { get; set; }
-        static string? CaptureEscReadLine()
+        internal static string? CaptureEscReadLine()
         {
             var entrada = string.Empty;
 
@@ -167,51 +212,6 @@ namespace FGO_BSx.Controls
             }
 
             return row;
-        }
-        public static string? NewGame(string operationType) 
-        {
-            while (true) 
-            {
-                Console.WriteLine("================");
-                WriteColored("New Game\n", ConsoleColor.Green);
-                Console.WriteLine("================\n");
-
-                Console.Write("Enter a Name to your Journey: ");
-                string? journeyName = CaptureEscReadLine();
-                if (journeyName == null) 
-                {
-                    Console.Clear();
-                    return null; // Finaliza operacao cancelando metodo NewGame
-                }
-                else if (journeyName.Length > 16)
-                {
-                    Console.Clear();
-                    Console.Write("ERROR: Characters limit exceded (16).");
-                    Console.ReadKey(true);
-                    Console.Clear();
-                }
-                else if (journeyName.Length < 1)
-                {
-                    Console.Clear();
-                    Console.Write("ERROR: Must enter atleast one character.");
-                    Console.ReadKey(true);
-                    Console.Clear();
-                }
-                else
-                {
-                    Console.Clear();
-                    bool checkOperation = NewSave(journeyName, operationType);
-                    if (checkOperation) return "Seccess"; // Se todas operacoes funcionarem, fim da funcao, contrario: Loop while.
-                    else 
-                    {
-                        Console.Write("Press any ");
-                        WriteColored("Key", ConsoleColor.Green);
-                        Console.Write("to continue");
-                        Console.ReadKey(true);
-                        Console.Clear();
-                    }
-                }
-            }
         }
         public static string FiltroEscolha(ConsoleKey escolhaPersonagem)
         {
@@ -554,7 +554,7 @@ namespace FGO_BSx.Controls
             }
             if (!SuccessToAttack) 
             {
-                audioFilePath = @"..\..\..\Track&Sounds\Effects\Selected.wav";
+                audioFilePath = @"..\..\..\Track&Sounds\Effects\Fail.wav";
                 PlaySound(audioFilePath, waveOutDevice); 
             }
 

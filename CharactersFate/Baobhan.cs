@@ -433,6 +433,7 @@
         //  FIM DE "FUNCOES ACTIONS".
         //  =========================================
 
+        // Exibe interface de MoveSets desse personagem individualmente
         public static void SkillsBaobhan(double sp, double spCost)
         {
             Controls.SistemaFGO.WriteColored("Extra Attack", ConsoleColor.Red);
@@ -482,7 +483,7 @@
                 Console.Write(": ");
                 sp /= spCost;
                 sp *= 100;
-                Controls.SistemaFGO.WriteColored(((int)sp), ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored((int)sp, ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("/", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);

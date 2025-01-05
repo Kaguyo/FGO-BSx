@@ -548,6 +548,8 @@ namespace FGO_BSx.CharactersFate
         //  =========================================
         //  FIM DE "FUNCOES ACTIONS".
         //  =========================================
+
+        // Exibe interface de MoveSets desse personagem individualmente
         public static void SkillsMordred(double sp, double spCost) 
         {
             Controls.SistemaFGO.WriteColored("Extra Attack", ConsoleColor.Yellow);

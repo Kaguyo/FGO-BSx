@@ -561,6 +561,7 @@ namespace FGO_BSx.CharactersFate
         //  FIM DE "FUNCOES ACTIONS".
         //  =========================================
 
+        // Exibe interface de MoveSets desse personagem individualmente
         public static void SkillsJalter(double sp, double spCost) 
         {
             Controls.SistemaFGO.WriteColored("Extra Attack", ConsoleColor.DarkYellow);
@@ -614,7 +615,7 @@ namespace FGO_BSx.CharactersFate
                 Console.Write(": ");
                 sp /= spCost;
                 sp *= 100;
-                Controls.SistemaFGO.WriteColored(((int)sp), ConsoleColor.Green);
+                Controls.SistemaFGO.WriteColored((int)sp, ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("/", ConsoleColor.White);
                 Controls.SistemaFGO.WriteColored("100", ConsoleColor.Green);
                 Controls.SistemaFGO.WriteColored("  READY", ConsoleColor.Green);
