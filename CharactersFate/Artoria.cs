@@ -6,10 +6,10 @@
 
         // Properties
         internal string Name { get; set; } = "Artoria";
-        internal int HpMax { get; set; } = 5629;
+        internal int HpMax { get; set; } = 15629;
         internal int AtkMax { get; set; } = 7720;
         internal int DefMax { get; set; } = 629;
-        internal int Hp { get; set; } = 5629;
+        internal int Hp { get; set; } = 15629;
         internal int Atk { get; set; } = 7720;
         internal int Def { get; set; } = 529;
         internal double SpCost { get; set; } = 140;

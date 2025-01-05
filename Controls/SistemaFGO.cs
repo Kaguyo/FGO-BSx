@@ -111,7 +111,7 @@ namespace FGO_BSx.Controls
         private static WaveOutEvent? waveOutDevice;
 
         internal static bool SuccessToAttack { get; set; }
-        static string CaptureEscReadLine()
+        static string? CaptureEscReadLine()
         {
             var entrada = string.Empty;
 
@@ -168,7 +168,7 @@ namespace FGO_BSx.Controls
 
             return row;
         }
-        public static string NewGame(string operationType) 
+        public static string? NewGame(string operationType) 
         {
             while (true) 
             {
@@ -177,7 +177,7 @@ namespace FGO_BSx.Controls
                 Console.WriteLine("================\n");
 
                 Console.Write("Enter a Name to your Journey: ");
-                string journeyName = CaptureEscReadLine();
+                string? journeyName = CaptureEscReadLine();
                 if (journeyName == null) 
                 {
                     Console.Clear();

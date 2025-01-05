@@ -5,10 +5,10 @@
         private static readonly Random random = new Random();
 
         internal string Name { get; } = "Baobhan";
-        internal int HpMax { get; set; } = 4929;
+        internal int HpMax { get; set; } = 14929;
         internal int AtkMax { get; set; } = 6320;
         internal int DefMax { get; set; } = 499;
-        internal int Hp { get; set; } = 4929;
+        internal int Hp { get; set; } = 14929;
         internal int Atk { get; set; } = 6320;
         internal int Def { get; set; } = 499;
         internal double SpCost { get; set; } = 100;

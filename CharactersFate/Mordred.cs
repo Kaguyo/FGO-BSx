@@ -11,10 +11,10 @@ namespace FGO_BSx.CharactersFate
         private static readonly Random random = new Random();
 
         internal string Name { get; } = "Mordred";
-        internal int HpMax { get; set; } = 6021;
+        internal int HpMax { get; set; } = 16021;
         internal int AtkMax { get; set; } = 7020;
         internal int DefMax { get; set; } = 590;
-        internal int Hp { get; set; } = 6021;
+        internal int Hp { get; set; } = 16021;
         internal int Atk { get; set; } = 7020;
         internal int Def { get; set; } = 590;
         internal double SpCost { get; set; } = 160;

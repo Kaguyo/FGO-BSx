@@ -12,10 +12,10 @@ namespace FGO_BSx.CharactersFate
         private static readonly Random random = new Random();
 
         internal string Name { get; } = "Jeanne d'Arc (Alter)";
-        internal int HpMax { get; set; } = 6551;
+        internal int HpMax { get; set; } = 16551;
         internal int AtkMax { get; set; } = 7220;
         internal int DefMax { get; set; } = 590;
-        internal int Hp { get; set; } = 6551;
+        internal int Hp { get; set; } = 16551;
         internal int Atk { get; set; } = 7220;
         internal int Def { get; set; } = 590;
         internal double SpCost { get; set; } = 250;
